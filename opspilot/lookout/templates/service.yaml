@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "opspilot.fullname" . }}
+  name: {{ include "lookout.fullname" . }}
   labels:
-    {{- include "opspilot.labels" . | nindent 4 }}
+    {{- include "lookout.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "opspilot.selectorLabels" . | nindent 4 }}
+    {{- include "lookout.selectorLabels" . | nindent 4 }}
