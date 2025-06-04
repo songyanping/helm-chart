@@ -3,12 +3,12 @@ entries:
   opspilot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-04T14:17:39.424503082+08:00"
+    created: "2025-06-04T15:07:29.471512003+08:00"
     description: A Helm chart for Kubernetes
     digest: f06720809b03ee22e1251805895cedd7f8099ca986789397c0ee841f7d2958fc
     name: opspilot
     type: application
     urls:
-    - opspilot-0.1.0.tgz
+    - https://songyanping.github.io/helm-chart/opspilot-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-04T14:17:39.417830243+08:00"
+generated: "2025-06-04T15:07:29.4667718+08:00"
