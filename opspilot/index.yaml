@@ -3,7 +3,17 @@ entries:
   console:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-04T17:18:25.637136323+08:00"
+    created: "2025-06-04T17:44:26.574181213+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 9c39022842f1e1ef2b45dbc9d8ebd4389cb4524219d42e5ff7677e88a025fec4
+    name: console
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/console-0.1.20250523.tgz
+    version: 0.1.20250523
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-06-04T17:44:26.563524603+08:00"
     description: A Helm chart for Kubernetes
     digest: 4b317ae61dbb1415b70b8a2a2c938dbe5bc88ae8271a7f335bad89842007351d
     name: console
@@ -14,7 +24,17 @@ entries:
   lookout:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-04T17:18:25.643227248+08:00"
+    created: "2025-06-04T17:44:26.595582398+08:00"
+    description: A Helm chart for Kubernetes
+    digest: ea1b4615b865f649493d6bb1a17e230694272ba7b02115e22dda0cc5c7433783
+    name: lookout
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/lookout-0.1.20250523.tgz
+    version: 0.1.20250523
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-06-04T17:44:26.587765831+08:00"
     description: A Helm chart for Kubernetes
     digest: 67b388493518b424f66a497e07a22708c1922be92adf8f9e402a65713259942a
     name: lookout
@@ -22,4 +42,4 @@ entries:
     urls:
     - https://songyanping.github.io/helm-chart/opspilot/lookout-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-04T17:18:25.62987005+08:00"
+generated: "2025-06-04T17:44:26.554357571+08:00"

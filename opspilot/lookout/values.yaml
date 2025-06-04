@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: docker.io/song1206/ops-lookout
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "v20250523-main"
 
 imagePullSecrets: []
 nameOverride: ""
