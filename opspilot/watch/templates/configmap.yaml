@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: watch-config
+  labels:
+    app: watch-config
+data:
+  config.yaml: |
+    prometheus:
+      server: http://dev-prometheus-server.sre-base.svc.cluster.local
+      auth: None
+    apis:
+      metric-api:
+        port: ':8080'
+        timeout: 5000
+    elasticsearch8:
+      endpoint: http://elasticsearch.aiops.svc.cluster.local:9200
+      user:
+      password:
+    influxdb:
+      endpoint: http://10.158.215.5:8086
+      database: sre_metrics

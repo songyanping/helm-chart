@@ -1,0 +1,155 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "watch.fullname" . }}-exporter
+  labels:
+    {{- include "watch.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "watch.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "watch.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "watch.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: exporter-main
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3001
+              protocol: TCP
+          env:
+            - name: FUNCTION
+              value: exporter
+            - name: LOGLEVEL
+              value: info
+            - name: SLOWSQL_STANDARD
+              value: "30"
+            - name: TIMEOUT
+              value: "55"
+            - name: TZ
+              value: Asia/Shanghai
+            - name: MYSQL_SLOWSQL_STANDARD
+              value: "30"
+            - name: REDIS_SLOWSQL_STANDARD
+              value: "10"
+            - name: ES_SLOWSQL_STANDARD
+              value: "100"
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - -c
+                  - sleep 60
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3001
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3001
+          {{- if .Values.resources }}
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          {{- else if ne .Values.resourcesPreset "none" }}
+          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /opt/config/config.yaml
+              name: config-volume
+              subPath: config.yaml
+        - name: exporter-hour
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3002
+              protocol: TCP
+          env:
+            - name: FUNCTION
+              value: hour-exporter
+            - name: LOGLEVEL
+              value: info
+            - name: TIMEOUT
+              value: "55"
+            - name: TZ
+              value: Asia/Shanghai
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - -c
+                  - sleep 60
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3002
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3002
+          {{- if .Values.resources }}
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          {{- else if ne .Values.resourcesPreset "none" }}
+          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /opt/config/config.yaml
+              name: config-volume
+              subPath: config.yaml
+        - name: configmap-reload
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.configmapReload.image.repository }}:{{ .Values.configmapReload.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.configmapReload.image.pullPolicy }}
+          {{- if .Values.resources }}
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          {{- else if ne .Values.resourcesPreset "none" }}
+          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /opt/config/config.yaml
+              name: config-volume
+              subPath: config.yaml
+          args:
+            - --volume-dir=/opt/config/
+            - --webhook-url=http://localhost:3001/-/reload
+      volumes:
+        - name: config-volume
+          configMap:
+            name: watch-config
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -5,14 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: docker.io/song1206/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "v20250605-main"
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "watch-service"
+fullnameOverride: "watch-service"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false
@@ -56,6 +56,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+resourcesPreset: "micro"
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -80,3 +81,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+configmapReload:
+  image:
+    repository: public.ecr.aws/bitnami/configmap-reload
+    tag: 0.10.0
+    pullPolicy: IfNotPresent
