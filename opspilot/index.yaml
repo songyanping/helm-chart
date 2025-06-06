@@ -1,9 +1,47 @@
 apiVersion: v1
 entries:
+  aigc:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-06-06T15:15:05.481392156+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 4ff82a1469f2ee6703ff62897ba3757853e2342e916174bae04257d90147437a
+    name: aigc
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/aigc-0.1.0.tgz
+    version: 0.1.0
+  common-library:
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-06-06T15:15:05.494019379+08:00"
+    description: A Library Helm Chart for grouping common logic between bitnami charts.
+      This chart is not deployable by itself.
+    digest: 1eab446f4fd4f32dfc36cb6fa046339d137ec9c86795e4012da9b248235accdc
+    home: https://bitnami.com
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - common-library
+    - helper
+    - template
+    - function
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://songyanping.github.io/helm-chart
+    name: common-library
+    sources:
+    - https://songyanping.github.io/helm-chart/opspilot/common-library
+    type: library
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/common-library-1.0.0.tgz
+    version: 1.0.0
   console:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.783369401+08:00"
+    created: "2025-06-06T15:15:05.525838586+08:00"
     description: A Helm chart for Kubernetes
     digest: 49f0f2f5f75bdfe4924582ac234cd499765a4262447bf105ac89e8b1c5d93060
     name: console
@@ -13,7 +51,7 @@ entries:
     version: 0.1.20250605
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.778366104+08:00"
+    created: "2025-06-06T15:15:05.514490644+08:00"
     description: A Helm chart for Kubernetes
     digest: 9c39022842f1e1ef2b45dbc9d8ebd4389cb4524219d42e5ff7677e88a025fec4
     name: console
@@ -23,7 +61,7 @@ entries:
     version: 0.1.20250523
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.771573216+08:00"
+    created: "2025-06-06T15:15:05.50450435+08:00"
     description: A Helm chart for Kubernetes
     digest: 4b317ae61dbb1415b70b8a2a2c938dbe5bc88ae8271a7f335bad89842007351d
     name: console
@@ -34,7 +72,7 @@ entries:
   lookout:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.806513421+08:00"
+    created: "2025-06-06T15:15:05.550852216+08:00"
     description: A Helm chart for Kubernetes
     digest: e1a8a0ffdce04dc7ae1e3b7062918a3c15153e634917940bb03e55f15b603850
     name: lookout
@@ -44,7 +82,7 @@ entries:
     version: 0.1.20250605
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.797560566+08:00"
+    created: "2025-06-06T15:15:05.546060183+08:00"
     description: A Helm chart for Kubernetes
     digest: ea1b4615b865f649493d6bb1a17e230694272ba7b02115e22dda0cc5c7433783
     name: lookout
@@ -54,7 +92,7 @@ entries:
     version: 0.1.20250523
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.790308671+08:00"
+    created: "2025-06-06T15:15:05.540979096+08:00"
     description: A Helm chart for Kubernetes
     digest: 67b388493518b424f66a497e07a22708c1922be92adf8f9e402a65713259942a
     name: lookout
@@ -65,7 +103,7 @@ entries:
   watch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-05T17:59:54.814434315+08:00"
+    created: "2025-06-06T15:15:05.555375156+08:00"
     description: A Helm chart for Kubernetes
     digest: 855b7ad8f25f717f7f1f0a79fe5b09bfbc649fc0d696197119e044c9456e5871
     name: watch
@@ -73,4 +111,4 @@ entries:
     urls:
     - https://songyanping.github.io/helm-chart/opspilot/watch-0.1.20250605.tgz
     version: 0.1.20250605
-generated: "2025-06-05T17:59:54.76412181+08:00"
+generated: "2025-06-06T15:15:05.47114601+08:00"

@@ -16,6 +16,6 @@ helm repo index --url https://songyanping.github.io/helm-chart/opspilot .
 helm repo add opspilot https://songyanping.github.io/helm-chart/opspilot
 helm search repo console
 helm repo update opspilot
-helm install opsconsole opspilot/console --version 0.1.0
-helm upgrade opsconsole opspilot/console --version 0.1.20250523
+helm install opsconsole opspilot/console --version 0.1.0 --namespace opspilot
+helm upgrade opsconsole opspilot/console --version 0.1.20250523 --namespace opspilot
 ```
