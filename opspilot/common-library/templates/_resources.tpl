@@ -12,34 +12,70 @@ These presets are for basic testing and not meant to be used in production
 */}}
 {{- define "opspilot.resources.preset" -}}
 {{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
-{{- $presets := dict 
-  "nano" (dict 
-      "requests" (dict "cpu" "100m" "memory" "128Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "150m" "memory" "192Mi" "ephemeral-storage" "2Gi")
-   )
-  "micro" (dict 
-      "requests" (dict "cpu" "250m" "memory" "256Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "375m" "memory" "384Mi" "ephemeral-storage" "2Gi")
+{{- $presets := dict
+  "micro" (dict
+      "requests" (dict "cpu" "250m" "memory" "256Mi")
+      "limits" (dict "cpu" "500m" "memory" "512Mi")
    )
   "small" (dict 
-      "requests" (dict "cpu" "500m" "memory" "512Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "750m" "memory" "768Mi" "ephemeral-storage" "2Gi")
+      "requests" (dict "cpu" "500m" "memory" "512Mi")
+      "limits" (dict "cpu" "750m" "memory" "768Mi")
    )
   "medium" (dict 
-      "requests" (dict "cpu" "500m" "memory" "1024Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "750m" "memory" "1536Mi" "ephemeral-storage" "2Gi")
+      "requests" (dict "cpu" "500m" "memory" "1024Mi")
+      "limits" (dict "cpu" "750m" "memory" "1536Mi")
    )
   "large" (dict 
-      "requests" (dict "cpu" "1.0" "memory" "2048Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "1.5" "memory" "3072Mi" "ephemeral-storage" "2Gi")
+      "requests" (dict "cpu" "1.0" "memory" "2048Mi")
+      "limits" (dict "cpu" "1.5" "memory" "3072Mi")
    )
-  "xlarge" (dict 
-      "requests" (dict "cpu" "1.0" "memory" "3072Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "3.0" "memory" "6144Mi" "ephemeral-storage" "2Gi")
+  "smallOpspilot" (dict
+      "requests" (dict "cpu" "250m" "memory" "1024Mi")
+      "limits" (dict "cpu" "250m" "memory" "1024Mi")
    )
-  "2xlarge" (dict 
-      "requests" (dict "cpu" "1.0" "memory" "3072Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "6.0" "memory" "12288Mi" "ephemeral-storage" "2Gi")
+  "mediumOpspilot" (dict
+      "requests" (dict "cpu" "500m" "memory" "2048Mi")
+      "limits" (dict "cpu" "500m" "memory" "2048Mi")
+   )
+  "largeOpspilot" (dict
+      "requests" (dict "cpu" "1.0" "memory" "4Gi")
+      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+   )
+  "smallSkywalking" (dict
+      "requests" (dict "cpu" "1.0" "memory" "8Gi")
+      "limits" (dict "cpu" "1.0" "memory" "8Gi")
+   )
+  "mediumSkywalking" (dict
+      "requests" (dict "cpu" "2.0" "memory" "16Gi")
+      "limits" (dict "cpu" "2.0" "memory" "16Gi")
+   )
+  "largeSkywalking" (dict
+      "requests" (dict "cpu" "4.0" "memory" "32Gi")
+      "limits" (dict "cpu" "4.0" "memory" "32Gi")
+   )
+  "smallElasticsearch" (dict
+      "requests" (dict "cpu" "1.0" "memory" "8Gi")
+      "limits" (dict "cpu" "1.0" "memory" "8Gi")
+   )
+  "mediumElasticsearch" (dict
+      "requests" (dict "cpu" "2.0" "memory" "16Gi")
+      "limits" (dict "cpu" "2.0" "memory" "16Gi")
+   )
+  "largeElasticsearch" (dict
+      "requests" (dict "cpu" "4.0" "memory" "32Gi")
+      "limits" (dict "cpu" "4.0" "memory" "32Gi")
+   )
+  "smallPrometheus" (dict
+      "requests" (dict "cpu" "1.0" "memory" "4Gi")
+      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+   )
+  "mediumPrometheus" (dict
+      "requests" (dict "cpu" "2.0" "memory" "8Gi")
+      "limits" (dict "cpu" "2.0" "memory" "8Gi")
+   )
+  "largePrometheus" (dict
+      "requests" (dict "cpu" "4.0" "memory" "16Gi")
+      "limits" (dict "cpu" "4.0" "memory" "16Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
