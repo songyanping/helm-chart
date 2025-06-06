@@ -11,8 +11,8 @@ image:
   tag: "v20250605-main"
 
 imagePullSecrets: []
-nameOverride: "watch-service"
-fullnameOverride: "watch-service"
+nameOverride: "watch"
+fullnameOverride: "watch"
 
 serviceAccount:
   # Specifies whether a service account should be created

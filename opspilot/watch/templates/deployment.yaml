@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "watch.fullname" . }}
+  name: {{ include "watch.fullname" . }}-service
   labels:
     {{- include "watch.labels" . | nindent 4 }}
 spec:
@@ -39,7 +39,7 @@ spec:
               protocol: TCP
           env:
             {{- if .Values.extraEnvVars }}
-            {{- include "common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
+            {{- include "opspilot.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
             {{- end }}
           livenessProbe:
             httpGet:
