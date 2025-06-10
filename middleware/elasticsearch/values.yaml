@@ -510,24 +510,23 @@ master:
   ## @param master.resources.limits The resources limits for elasticsearch containers
   ## @param master.resources.requests The requested resources for elasticsearch containers
   ##
-  resources:
+  resourcesPreset: largeOpspilot
+  resources: {}
     ## Example:
     ## limits:
     ##    cpu: 500m
     ##    memory: 1Gi
-    limits: {}
     ## Examples:
     ## requests:
     ##    cpu: 250m
     ##    memory: 256Mi
-    requests: {}
   ## @param master.heapSize Elasticsearch master-eligible node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
   ## Example:
   ##   heapSize: 128m
   ##
-  heapSize: 2048m
+#  heapSize: 2048m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param master.podSecurityContext.enabled Enabled master-elegible pods' Security Context
@@ -626,7 +625,7 @@ master:
   ##
   startupProbe:
     enabled: false
-    initialDelaySeconds: 180
+    initialDelaySeconds: 90
     periodSeconds: 10
     timeoutSeconds: 5
     successThreshold: 1
@@ -642,7 +641,7 @@ master:
     enabled: true
     initialDelaySeconds: 180
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param master.readinessProbe.enabled Enable/disable the readiness probe (master-eligible nodes pod)
@@ -654,9 +653,9 @@ master:
   ##
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 180
+    initialDelaySeconds: 90
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param master.customStartupProbe Override default startup probe
@@ -723,7 +722,7 @@ master:
   persistence:
     ## @param master.persistence.enabled Enable persistence using a `PersistentVolumeClaim`
     ##
-    enabled: true
+    enabled: false
     ## @param master.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -827,18 +826,15 @@ data:
   ## @param data.resources.limits The resources limits for the data containers
   ## @param data.resources.requests [object] The requested resources for the data containers
   ##
-  resources:
-    limits: {}
-    requests:
-      cpu: 25m
-      memory: 2048Mi
+  resources: {}
+  resourcesPreset: large
   ## @param data.heapSize Elasticsearch data node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
   ## Example:
   ##   heapSize: 128m
   ##
-  heapSize: 8192m
+#  heapSize: 8192m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param data.podSecurityContext.enabled Enabled data pods' Security Context
@@ -953,7 +949,7 @@ data:
     enabled: true
     initialDelaySeconds: 180
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param data.readinessProbe.enabled Enable/disable the readiness probe (data nodes pod)
@@ -965,9 +961,9 @@ data:
   ##
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 180
+    initialDelaySeconds: 90
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param data.customStartupProbe Override default startup probe
@@ -1034,7 +1030,7 @@ data:
   persistence:
     ## @param data.persistence.enabled Enable persistence using a `PersistentVolumeClaim`
     ##
-    enabled: true
+    enabled: false
     ## @param data.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -1140,20 +1136,15 @@ coordinating:
   ## @param coordinating.resources.limits The resources limits for the coordinating-only containers
   ## @param coordinating.resources.requests [object] The requested resources for the coordinating-only containers
   ##
-  resources:
-    limits:
-      cpu: 4
-      memory: 8Gi
-    requests:
-      cpu: 500m
-      memory: 2048Mi
+  resourcesPreset: "small"
+  resources: {}
   ## @param coordinating.heapSize Elasticsearch coordinating node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
   ## Example:
   ##   heapSize: 128m
   ##
-  heapSize: 4096m
+#  heapSize: 4096m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param coordinating.podSecurityContext.enabled Enabled coordinating-only pods' Security Context
@@ -1268,7 +1259,7 @@ coordinating:
     enabled: true
     initialDelaySeconds: 180
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param coordinating.readinessProbe.enabled Enable/disable the readiness probe (coordinating-only nodes pod)
@@ -1280,9 +1271,9 @@ coordinating:
   ##
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 180
+    initialDelaySeconds: 90
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param coordinating.customStartupProbe Override default startup probe
@@ -1423,18 +1414,15 @@ ingest:
   ## @param ingest.resources.limits The resources limits for the ingest-only containers
   ## @param ingest.resources.requests [object] The requested resources for the ingest-only containers
   ##
-  resources:
-    limits: {}
-    requests:
-      cpu: 25m
-      memory: 256Mi
+  resourcesPreset: "small"
+  resources: {}
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
   ## Example:
   ##   heapSize: 128m
   ##
-  heapSize: 128m
+#  heapSize: 128m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param ingest.podSecurityContext.enabled Enabled ingest-only pods' Security Context
@@ -1549,7 +1537,7 @@ ingest:
     enabled: true
     initialDelaySeconds: 180
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param ingest.readinessProbe.enabled Enable/disable the readiness probe (ingest-only nodes pod)
@@ -1561,9 +1549,9 @@ ingest:
   ##
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 180
+    initialDelaySeconds: 90
     periodSeconds: 10
-    timeoutSeconds: 30
+    timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
   ## @param ingest.customStartupProbe Override default startup probe

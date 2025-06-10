@@ -9,7 +9,7 @@ image:
   name: casdoor
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "v1.599.0"
 
 # ref: https://casdoor.org/docs/basic/server-installation#via-ini-file
 config: |
@@ -34,14 +34,14 @@ config: |
 
 database:
   # Supports mysql, postgres, cockroachdb, sqlite3
-  driver: sqlite3
+  driver: postgres
 
-  user: ""
-  password: ""
-  host: ""
+  user: "postgres"
+  password: "Devops2019"
+  host: "postgresql"
   # If port is empty, default port will be used.
   # mysql: 3306, postgres: 5432, cockroachdb: 26257
-  port: ""
+  port: "5432"
   databaseName: casdoor
 
   sslMode: disable

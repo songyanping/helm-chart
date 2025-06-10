@@ -13,11 +13,10 @@ global:
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  imagePullSecrets: 
-    - name: docker-registry
+  imagePullSecrets: []
   ## @param global.storageClass Global StorageClass for Persistent Volume(s)
   ##
-  storageClass: "nfs-client"
+  storageClass: "standard"
   postgresql:
     ## @param global.postgresql.auth.postgresPassword Password for the "postgres" admin user (overrides `auth.postgresPassword`)
     ## @param global.postgresql.auth.username Name for a custom user to create (overrides `auth.username`)
@@ -407,7 +406,7 @@ primary:
   ##
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 5
+    initialDelaySeconds: 30
     periodSeconds: 10
     timeoutSeconds: 5
     failureThreshold: 6
@@ -448,7 +447,7 @@ primary:
     limits: {}
     requests:
       memory: 256Mi
-      cpu: 250m
+      cpu: 200m
   ## Pod Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   ## @param primary.podSecurityContext.enabled Enable security context
@@ -583,7 +582,7 @@ primary:
   service:
     ## @param primary.service.type Kubernetes Service type
     ##
-    type: NodePort
+    type: ClusterIP
     ## @param primary.service.ports.postgresql PostgreSQL service port
     ##
     ports:
