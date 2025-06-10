@@ -15,7 +15,7 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "micro" (dict
       "requests" (dict "cpu" "250m" "memory" "256Mi")
-      "limits" (dict "cpu" "500m" "memory" "512Mi")
+      "limits" (dict "cpu" "500m" "memory" "511Mi")
    )
   "small" (dict 
       "requests" (dict "cpu" "500m" "memory" "512Mi")
