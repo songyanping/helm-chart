@@ -49,13 +49,8 @@ oap:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
-  resources:
-     limits:
-       cpu: 2000m
-       memory: 8Gi
-     requests:
-       cpu: 200m
-       memory: 2Gi
+  resourcesPreset: large
+  resources: {}
   livenessProbe:
     tcpSocket:
       port: 12800
@@ -137,7 +132,7 @@ oap:
             
            // Service Instance Scope metrics
            // service_instance_sla = from(ServiceInstance.*).percent(status == true);
-           // service_instance_resp_time = from(ServiceInstance.latency).longAvg();
+           service_instance_resp_time = from(ServiceInstance.latency).longAvg();
            // service_instance_cpm = from(ServiceInstance.*).cpm();
             
            // Endpoint scope metrics
@@ -232,6 +227,8 @@ ui:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
+  resourcesPreset: large
+  resources: {}
   ingress:
     enabled: false
     annotations:

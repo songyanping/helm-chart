@@ -116,7 +116,7 @@ image:
 
 ## @param architecture Redis&reg; architecture. Allowed values: `standalone` or `replication`
 ##
-architecture: replication
+architecture: standalone
 ## Redis&reg; Authentication parameters
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/redis#setting-the-server-password-on-first-run
 ##
@@ -264,9 +264,8 @@ master:
   ## @param master.resources.limits The resources limits for the Redis&reg; master containers
   ## @param master.resources.requests The requested resources for the Redis&reg; master containers
   ##
-  resources:
-    limits: {}
-    requests: {}
+  resources: {}
+  resourcesPreset: small
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param master.podSecurityContext.enabled Enabled Redis&reg; master pods' Security Context
@@ -421,7 +420,7 @@ master:
   persistence:
     ## @param master.persistence.enabled Enable persistence on Redis&reg; master nodes using Persistent Volume Claims
     ##
-    enabled: true
+    enabled: false
     ## @param master.persistence.medium Provide a medium for `emptyDir` volumes.
     ##
     medium: ""
@@ -477,7 +476,7 @@ master:
   service:
     ## @param master.service.type Redis&reg; master service type
     ##
-    type: LoadBalancer
+    type: ClusterIP
     ## @param master.service.ports.redis Redis&reg; master service port
     ##
     ports:
@@ -523,9 +522,9 @@ master:
     externalIPs: []
     ## @param master.service.annotations Additional custom annotations for Redis&reg; master service
     ##
-    annotations:
-      service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: intranet
-      service.beta.kubernetes.io/alibaba-cloud-loadbalancer-instance-charge-type: PayBySpec
+    annotations: {}
+#      service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: intranet
+#      service.beta.kubernetes.io/alibaba-cloud-loadbalancer-instance-charge-type: PayBySpec
     ## @param master.service.sessionAffinity Session Affinity for Kubernetes service, can be "None" or "ClientIP"
     ## If "ClientIP", consecutive client requests will be directed to the same Pod
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
@@ -1437,7 +1436,7 @@ tls:
 metrics:
   ## @param metrics.enabled Start a sidecar prometheus exporter to expose Redis&reg; metrics
   ##
-  enabled: true
+  enabled: false
   ## Bitnami Redis&reg; Exporter image
   ## ref: https://hub.docker.com/r/bitnami/redis-exporter/tags/
   ## @param metrics.image.registry Redis&reg; Exporter image registry

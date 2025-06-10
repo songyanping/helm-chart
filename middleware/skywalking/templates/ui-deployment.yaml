@@ -70,10 +70,12 @@ spec:
         ports:
         - containerPort: {{ .Values.ui.service.internalPort }}
           name: page
-{{- if .Values.ui.resources }}
+        {{- if .Values.ui.resources }}
         resources:
-{{ toYaml .Values.ui.resources | indent 10 }}
-{{- end }}
+        {{ toYaml .Values.ui.resources | indent 10 }}
+        {{- else if ne .Values.ui.resourcesPreset "none" }}
+        resources: {{- include "opspilot.resources.preset" (dict "type" .Values.ui.resourcesPreset) | nindent 12 }}
+        {{- end }}
         env:
         - name: SW_OAP_ADDRESS
           value: "http://{{ template "skywalking.oap.fullname" . }}:{{ .Values.oap.ports.rest }}"
