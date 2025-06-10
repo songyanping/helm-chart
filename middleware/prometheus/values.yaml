@@ -996,7 +996,7 @@ server:
   alertmanagers:
   - static_configs:
     - targets:
-        - prometheus-alertmanager.opspilot.svc:9093
+        - prometheus-alertmanager:9093
   ## Specify if a Pod Security Policy for node-exporter must be created
   ## Ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/
   ##
@@ -1065,13 +1065,8 @@ server:
   ## Prometheus server resource requests and limits
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources:
-     limits:
-       cpu: 1
-       memory: 2Gi
-     requests:
-       cpu: 100m
-       memory: 256Mi
+  resourcesPreset: small
+  resources: {}
 
   # Required for use in managed kubernetes clusters (such as AWS EKS) with custom CNI (such as calico),
   # because control-plane managed by AWS cannot communicate with pods' IP CIDR and admission webhooks are not working
@@ -1447,8 +1442,8 @@ alertmanagerFiles:
     route:
       group_by: ['alertname']
       group_interval: 1m
-      group_wait: 30s
-      repeat_interval: 2m
+      group_wait: 1m
+      repeat_interval: 30m
       receiver: "webhook"
       routes:
 #        - receiver: bob.chang

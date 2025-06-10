@@ -54,7 +54,7 @@ oap:
   livenessProbe:
     tcpSocket:
       port: 12800
-    initialDelaySeconds: 180
+    initialDelaySeconds: 60
     periodSeconds: 30
     timeoutSeconds: 5
     successThreshold: 1
@@ -64,14 +64,14 @@ oap:
   # 9 (failureThreshold) * 10 (periodSeconds) = 90 seconds in this case.
     tcpSocket:
       port: 12800
-    initialDelaySeconds: 180
+    initialDelaySeconds: 60
     failureThreshold: 3
-    periodSeconds: 60
+    periodSeconds: 30
   readinessProbe:
     tcpSocket:
       port: 12800
-    initialDelaySeconds: 120
-    periodSeconds: 20
+    initialDelaySeconds: 60
+    periodSeconds: 30
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 3

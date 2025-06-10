@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  generateName: skywalking-oap-init-
+  labels:
+    app: skywalking
+    component: skywalking-job
+    job-name: skywalking-oap-init
+    release: skywalking
+  name: skywalking-oap-init-h4jjg
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: JAVA_OPTS
+      value: ' -Dmode=init'
+    - name: SW_STORAGE
+      value: elasticsearch
+    - name: SW_STORAGE_ES_CLUSTER_NODES
+      value: elasticsearch:9200
+    - name: SW_ES_USER
+      value: xxx
+    - name: SW_ES_PASSWORD
+      value: xxx
+    - name: SW_CORE_METRICS_DATA_TTL
+      value: "2"
+    - name: SW_CORE_RECORD_DATA_TTL
+      value: "2"
+    - name: SW_OAL_ENGINE_DEBUG
+      value: "true"
+    image: apache/skywalking-oap-server:10.0.1
+    imagePullPolicy: IfNotPresent
+    name: oap
+    resources: {}
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-ckf55
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  initContainers:
+  - command:
+    - sh
+    - -c
+    - for i in $(seq 1 60); do nc -z -w3 elasticsearch 9200 && exit 0 || sleep 5;
+      done; exit 1
+    image: busybox:1.30
+    imagePullPolicy: IfNotPresent
+    name: wait-for-elasticsearch
+    resources: {}
