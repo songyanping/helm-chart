@@ -126,7 +126,7 @@ spec:
         resources:
         {{ toYaml .Values.oap.resources | indent 10 }}
 {{- else if ne .Values.oap.resourcesPreset "none" }}
-        resources:{{- include "opspilot.resources.preset" (dict "type" .Values.oap.resourcesPreset) | nindent 12 }}
+        resources:{{- include "skywalking.resources.preset" (dict "type" .Values.oap.resourcesPreset) | nindent 12 }}
 {{- end }}
         env:
         - name: JAVA_OPTS

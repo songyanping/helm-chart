@@ -194,7 +194,7 @@ spec:
           {{ toYaml .Values.server.resources | indent 12 }}
           {{- else if ne .Values.server.resourcesPreset "none" }}
           resources:
-          {{- include "opspilot.resources.preset" (dict "type" .Values.server.resourcesPreset) | nindent 12 }}
+          {{- include "prometheus.resources.preset" (dict "type" .Values.server.resourcesPreset) | nindent 12 }}
           {{- end }}
           volumeMounts:
             - name: config-volume

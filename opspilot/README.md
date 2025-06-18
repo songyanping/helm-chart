@@ -9,6 +9,8 @@ helm package console/ --dependency-update=true
 
 helm package aigc/ --dependency-update=true
 
+helm package common-library/ --dependency-update=true
+
 //创建index.html
 helm repo index --url https://songyanping.github.io/helm-chart/opspilot .
 

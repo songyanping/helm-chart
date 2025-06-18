@@ -49,8 +49,8 @@ oap:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
-  resourcesPreset: large
   resources: {}
+  resourcesPreset: medium
   livenessProbe:
     tcpSocket:
       port: 12800
@@ -228,7 +228,13 @@ ui:
   nodeSelector: {}
   tolerations: []
   resourcesPreset: large
-  resources: {}
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 1
+      memory: 1024Mi
   ingress:
     enabled: false
     annotations:
@@ -534,7 +540,7 @@ postgresql:
     host: postgresql.opspilot.svc.cluster.local
   auth:
     username: postgres
-    password: "Devops2019"
+    password: "xxxxxx"
     database: skywalking
   containerPorts:
     postgresql: 5432

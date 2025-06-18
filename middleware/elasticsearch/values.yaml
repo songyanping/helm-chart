@@ -510,16 +510,13 @@ master:
   ## @param master.resources.limits The resources limits for elasticsearch containers
   ## @param master.resources.requests The requested resources for elasticsearch containers
   ##
-  resourcesPreset: large
-  resources: {}
-    ## Example:
-    ## limits:
-    ##    cpu: 500m
-    ##    memory: 1Gi
-    ## Examples:
-    ## requests:
-    ##    cpu: 250m
-    ##    memory: 256Mi
+  resources:
+    limits:
+      cpu: 1
+      memory: 4096Mi
+    requests:
+      cpu: 500m
+      memory: 2048Mi
   ## @param master.heapSize Elasticsearch master-eligible node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -827,7 +824,7 @@ data:
   ## @param data.resources.requests [object] The requested resources for the data containers
   ##
   resources: {}
-  resourcesPreset: large
+  resourcesPreset: medium
   ## @param data.heapSize Elasticsearch data node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -1136,8 +1133,14 @@ coordinating:
   ## @param coordinating.resources.limits The resources limits for the coordinating-only containers
   ## @param coordinating.resources.requests [object] The requested resources for the coordinating-only containers
   ##
-  resourcesPreset: "small"
-  resources: {}
+  resources:
+    limits:
+      memory: 4096Mi
+      cpu: 1
+    requests:
+      memory: 500m
+      cpu: 2048Mi
+
   ## @param coordinating.heapSize Elasticsearch coordinating node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -1414,8 +1417,14 @@ ingest:
   ## @param ingest.resources.limits The resources limits for the ingest-only containers
   ## @param ingest.resources.requests [object] The requested resources for the ingest-only containers
   ##
-  resourcesPreset: "small"
-  resources: {}
+  resources:
+    limits:
+      memory: 4096Mi
+      cpu: 1
+    requests:
+      memory: 500m
+      cpu: 2048Mi
+
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
