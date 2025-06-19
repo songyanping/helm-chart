@@ -6,7 +6,7 @@ entries:
     created: "2025-06-19T18:33:50.3438989+08:00"
     dependencies:
     - name: common-library
-      repository: https://songyanping.github.iohelm-chart/common
+      repository: https://songyanping.github.io/helm-chart/common
       tags:
       - common-library
       version: 1.0.0
@@ -23,7 +23,7 @@ entries:
     created: "2025-06-19T18:33:50.3449202+08:00"
     dependencies:
     - name: common-library
-      repository: https://songyanping.github.iohelm-chart/common
+      repository: https://songyanping.github.io/helm-chart/common
       tags:
       - common-library
       version: 1.0.0
@@ -32,7 +32,7 @@ entries:
     name: console
     type: application
     urls:
-    - https://songyanping.github.io/helm-chart/common/console-0.1.20250606.tgz
+    - https://songyanping.github.io/helm-chart/opspilot/console-0.1.20250606.tgz
     version: 0.1.20250606
   lookout:
   - apiVersion: v2
@@ -40,7 +40,7 @@ entries:
     created: "2025-06-19T18:33:50.3459449+08:00"
     dependencies:
     - name: common-library
-      repository: https://songyanping.github.iohelm-chart/common
+      repository: https://songyanping.github.io/helm-chart/common
       tags:
       - common-library
       version: 1.0.0
@@ -57,7 +57,7 @@ entries:
     created: "2025-06-19T18:33:50.3469651+08:00"
     dependencies:
     - name: common-library
-      repository: https://songyanping.github.iohelm-chart/common
+      repository: https://songyanping.github.io/helm-chart/common
       tags:
       - common-library
       version: 1.0.0
