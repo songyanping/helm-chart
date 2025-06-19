@@ -8,7 +8,7 @@ apiVersion: v2
 appVersion: 8.8.2
 dependencies:
   - name: common-library
-    repository: https://songyanping.github.io/helm-chart/opspilot
+    repository: https://songyanping.github.io/helm-chart/common
     tags:
       - common-library
     version: 1.0.0

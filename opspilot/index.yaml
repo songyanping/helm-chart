@@ -6,7 +6,7 @@ entries:
     created: "2025-06-06T16:48:56.754380761+08:00"
     dependencies:
     - name: common-library
-      repository: https://songyanping.github.io/helm-chart/opspilot
+      repository: https://songyanping.github.io/helm-chart/common
       tags:
       - common-library
       version: 1.0.0

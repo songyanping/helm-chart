@@ -31,7 +31,7 @@ maintainers:
 
 dependencies:
   - name: common-library
-    repository: https://songyanping.github.io/helm-chart/opspilot
+    repository: https://songyanping.github.io/helm-chart/common
     tags:
       - common-library
     version: 1.0.0

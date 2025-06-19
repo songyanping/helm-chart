@@ -17,7 +17,7 @@ dependencies:
       - bitnami-common
     version: 2.x.x
   - name: common-library
-    repository: https://songyanping.github.io/helm-chart/opspilot
+    repository: https://songyanping.github.io/helm-chart/common
     tags:
       - common-library
     version: 1.0.0
