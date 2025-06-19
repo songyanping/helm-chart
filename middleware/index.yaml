@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  console:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-06-19T18:33:50.3449202+08:00"
+    dependencies:
+    - name: common-library
+      repository: https://songyanping.github.io/helm-chart/opspilot
+      tags:
+      - common-library
+      version: 1.0.0
+    description: A Helm chart for Kubernetes
+    digest: c452d6897a78c81feab401a8da00ef46618c877cf4356b10f9fd9e1351b48366
+    name: console
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/common/console-0.1.20250606.tgz
+    version: 0.1.20250606
+generated: "2025-06-19T18:33:50.3423394+08:00"

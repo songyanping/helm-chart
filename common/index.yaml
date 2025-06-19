@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  aigc:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-06-19T18:33:50.3438989+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 29e218e2108529a4b12169f9dd67ed3019869b30388b6c1efacf35e902e71760
+    name: common-library
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/common/common-library-1.0.0.tgz
+    version: 0.1.20250606
+generated: "2025-06-19T18:33:50.3423394+08:00"

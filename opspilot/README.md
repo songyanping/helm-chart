@@ -16,6 +16,8 @@ helm repo index --url https://songyanping.github.io/helm-chart/opspilot .
 
 // install && upgrade
 helm repo add opspilot https://songyanping.github.io/helm-chart/opspilot
+helm repo add middleware https://songyanping.github.io/helm-chart/middleware
+helm repo add common https://songyanping.github.io/helm-chart/common
 
 helm repo update opspilot
 
