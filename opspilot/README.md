@@ -22,12 +22,16 @@ helm install console opspilot/aigc --version 0.1.20250606 --namespace opspilot
 helm repo update opspilot
 helm repo update middleware
 helm repo update common
+helm upgrade console opspilot/watch --version 0.1.20250606 --namespace opspilot
 helm upgrade console opspilot/console --version 0.1.20250606 --namespace opspilot
+helm upgrade console opspilot/lookout --version 0.1.20250606 --namespace opspilot
+helm upgrade console opspilot/aigc --version 0.1.20250606 --namespace opspilot
 ```
 
 # Appendix
+
+1. 打包chart
 ```shell
-//打包chart
 helm package lookout/ --dependency-update=true
 helm package watch/  --dependency-update=true
 helm package console/ --dependency-update=true
@@ -35,7 +39,10 @@ helm package aigc/ --dependency-update=true
 
 helm package common-library/ --dependency-update=true
 
-//创建index.html
+
+```
+2. 创建index.html
+```shell
 helm repo index --url https://songyanping.github.io/helm-chart/opspilot .
 helm repo index --url https://songyanping.github.io/helm-chart/middleware .
 helm repo index --url https://songyanping.github.io/helm-chart/common .
