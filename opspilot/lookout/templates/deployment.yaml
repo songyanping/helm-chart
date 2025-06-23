@@ -1,3 +1,5 @@
+{{/* 加载资源预设（传递type参数为.Values.preset） */}}
+{{- $preset := include "common.resources.preset" (dict "type" .Values.resourcesPreset) | fromYaml -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +8,7 @@ metadata:
     {{- include "lookout.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ $preset.replicaCount}}
   {{- end }}
   selector:
     matchLabels:
@@ -52,7 +54,9 @@ spec:
           {{- if .Values.resources }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- else if ne .Values.resourcesPreset "none" }}
-          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 12 }}
+          resources:
+            requests: {{ toYaml $preset.requests | nindent 12 }}
+            limits: {{ toYaml $preset.limits | nindent 12 }}
           {{- end }}
           volumeMounts:
             - mountPath: /opt/configs/config.yaml

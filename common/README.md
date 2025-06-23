@@ -1,5 +1,13 @@
+### 1.修改common包之后需重新打包及更新index.html 
 ```shell
-helm package common/ --dependency-update=true
+cd  common
 
-helm repo index --url https://songyanping.github.io/helm-chart/common ./common
+helm package ../common --dependency-update=true
+
+helm repo index --url https://songyanping.github.io/helm-chart/common .
+```
+
+### 2.推送仓库
+```shell
+git push
 ```

@@ -13,15 +13,18 @@ These presets are for basic testing and not meant to be used in production
 {{- define "common.resources.preset" -}}
 {{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
 {{- $presets := dict
-  "small" (dict 
+  "small" (dict
+      "replicaCount" 1
       "requests" (dict "cpu" "100m" "memory" "256Mi")
       "limits" (dict "cpu" "200m" "memory" "512Mi")
    )
-  "medium" (dict 
+  "medium" (dict
+      "replicaCount" 2
       "requests" (dict "cpu" "200m" "memory" "512Mi")
       "limits" (dict "cpu" "500m" "memory" "1024Mi")
    )
-  "large" (dict 
+  "large" (dict
+      "replicaCount" 3
       "requests" (dict "cpu" "500m" "memory" "1024Mi")
       "limits" (dict "cpu" "1" "memory" "2048Mi")
    )
