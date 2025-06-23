@@ -1133,6 +1133,7 @@ coordinating:
   ## @param coordinating.resources.limits The resources limits for the coordinating-only containers
   ## @param coordinating.resources.requests [object] The requested resources for the coordinating-only containers
   ##
+  resourcesPreset: small
   resources:
     limits:
       memory: 4096Mi

@@ -166,6 +166,32 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 {{- end -}}
 
+{{- define "elasticsearch.coordinating.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "1Gi")
+      "limits" (dict "cpu" "200m" "memory" "1Gi")
+   )
+  "medium" (dict
+      "replicaCount" 2
+      "requests" (dict "cpu" "500m" "memory" "2Gi")
+      "limits" (dict "cpu" "500m" "memory" "2Gi")
+   )
+  "large" (dict
+      "replicaCount" 4
+      "requests" (dict "cpu" "1.0" "memory" "4Gi")
+      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "prometheus.resources.preset" -}}
 {{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
 {{- $presets := dict

@@ -12,7 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
+{{- $preset := include "skywalking.ui.resources.preset" (dict "type" .Values.ui.resourcesPreset) | fromYaml -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -70,9 +71,14 @@ spec:
         ports:
         - containerPort: {{ .Values.ui.service.internalPort }}
           name: page
-        {{- if .Values.ui.resources }}
-        resources: {{ toYaml .Values.ui.resources | indent 10 }}
-        {{- end }}
+{{- if .Values.ui.resources }}
+        resources:
+        {{ toYaml .Values.ui.resources | indent 10 }}
+{{- else if ne .Values.ui.resourcesPreset "none" }}
+        resources:
+          requests: {{ toYaml $preset.requests | nindent 12 }}
+          limits: {{ toYaml $preset.limits | nindent 12 }}
+{{- end }}
         env:
         - name: SW_OAP_ADDRESS
           value: "http://{{ template "skywalking.oap.fullname" . }}:{{ .Values.oap.ports.rest }}"

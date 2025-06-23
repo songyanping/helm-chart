@@ -50,7 +50,7 @@ oap:
   nodeSelector: {}
   tolerations: []
   resources: {}
-  resourcesPreset: medium
+  resourcesPreset: small
   livenessProbe:
     tcpSocket:
       port: 12800
@@ -227,11 +227,8 @@ ui:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
-  resourcesPreset: large
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
+  resourcesPreset: small
+  resources: {}
   ingress:
     enabled: false
     annotations:

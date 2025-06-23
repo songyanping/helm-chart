@@ -4,6 +4,7 @@ SPDX-License-Identifier: APACHE-2.0
 */}}
 
 {{- if (include "elasticsearch.coordinating.enabled" .) }}
+{{- $preset := include "elasticsearch.coordinating.resources.preset" (dict "type" .Values.coordinating.resourcesPreset) | fromYaml -}}
 apiVersion: {{ template "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
@@ -29,7 +30,11 @@ metadata:
   {{- end }}
 spec:
   {{- if not .Values.coordinating.autoscaling.enabled }}
+  {{- if .Values.coordinating.replicaCount }}
   replicas: {{ .Values.coordinating.replicaCount }}
+  {{- else if ne .Values.coordinating.resourcesPreset "none" }}
+  replicas: {{ $preset.replicaCount }}
+  {{- end }}
   {{- end }}
   selector:
     matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
@@ -236,6 +241,10 @@ spec:
           {{- end }}
           {{- if .Values.coordinating.resources }}
           resources: {{- toYaml .Values.coordinating.resources | nindent 12 }}
+          {{- else if ne .Values.coordinating.resourcesPreset "none" }}
+          resources:
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - name: data

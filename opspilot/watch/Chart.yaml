@@ -24,8 +24,8 @@ version: 0.1.20250606
 appVersion: "1.16.0"
 
 dependencies:
-  - name: common-library
+  - name: opspilot-common
     repository: https://songyanping.github.io/helm-chart/common
     tags:
-      - common-library
+      - opspilot-common
     version: 1.0.0
