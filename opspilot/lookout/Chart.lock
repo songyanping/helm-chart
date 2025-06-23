@@ -1,6 +1,0 @@
-dependencies:
-- name: common-library
-  repository: https://songyanping.github.io/helm-chart/opspilot
-  version: 1.0.0
-digest: sha256:33aa10629872070d39a6f82247571e064dabb1697dade79c8ce6ce5b759581b2
-generated: "2025-06-06T16:43:35.594017792+08:00"

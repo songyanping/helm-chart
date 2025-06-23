@@ -8,8 +8,12 @@ metadata:
     {{- include "lookout.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ $preset.replicaCount}}
+  {{- if .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }}
+  {{- else if ne .Values.resourcesPreset "none" }}
+  replicas: {{ $preset.replicaCount }}
   {{- end }}
+  {{- end}}
   selector:
     matchLabels:
       {{- include "lookout.selectorLabels" . | nindent 6 }}

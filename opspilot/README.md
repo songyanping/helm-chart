@@ -11,10 +11,13 @@ helm search repo middleware
 
 kubectl create ns opspilot
 kubectl create ns skywalking
-helm install console opspilot/watch --version 0.1.20250606 --namespace opspilot
-helm install console opspilot/console --version 0.1.20250606 --namespace opspilot
-helm install console opspilot/lookout --version 0.1.20250606 --namespace opspilot
-helm install console opspilot/aigc --version 0.1.20250606 --namespace opspilot
+helm install console opspilot/watch --version 0.1.20250606 --namespace opspilot --set resourcesPreset=medium
+helm install console opspilot/console --version 0.1.20250606 --namespace opspilot --set resourcesPreset=medium
+helm install console opspilot/lookout --version 0.1.20250606 --namespace opspilot --set resourcesPreset=medium
+helm install console opspilot/aigc --version 0.1.20250606 --namespace opspilot --set resourcesPreset=medium
+
+# debug 输出
+helm install lookout  --debug .
 ```
 
 # Upgrade
