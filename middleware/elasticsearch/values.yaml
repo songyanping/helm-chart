@@ -824,7 +824,7 @@ data:
   ## @param data.resources.requests [object] The requested resources for the data containers
   ##
   resources: {}
-  resourcesPreset: medium
+  resourcesPreset: small
   ## @param data.heapSize Elasticsearch data node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -1417,13 +1417,8 @@ ingest:
   ## @param ingest.resources.limits The resources limits for the ingest-only containers
   ## @param ingest.resources.requests [object] The requested resources for the ingest-only containers
   ##
-  resources:
-    limits:
-      memory: 4096Mi
-      cpu: 1
-    requests:
-      memory: 500m
-      cpu: 2048Mi
+  resourcesPreset: small
+  resources: {}
 
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.
   ## Note: The recommended heapSize is half of the container's memory.

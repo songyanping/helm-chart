@@ -261,8 +261,6 @@ spec:
           {{- end }}
           {{- if .Values.master.resources }}
           resources: {{- toYaml .Values.master.resources | nindent 12 }}
-          {{- else if ne .Values.master.resourcesPreset "none" }}
-          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.master.resourcesPreset) | nindent 12 }}
           {{- end }}
           volumeMounts:
             - name: data

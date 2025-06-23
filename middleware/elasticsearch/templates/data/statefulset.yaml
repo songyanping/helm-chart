@@ -3,6 +3,9 @@ Copyright VMware, Inc.
 SPDX-License-Identifier: APACHE-2.0
 */}}
 
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
+{{- $preset := include "elasticsearch.data.resources.preset" (dict "type" .Values.data.resourcesPreset) | fromYaml -}}
+
 {{- if (include "elasticsearch.data.enabled" .) }}
 apiVersion: {{ template "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
@@ -29,7 +32,11 @@ metadata:
   {{- end }}
 spec:
   {{- if not .Values.data.autoscaling.enabled }}
+  {{- if .Values.data.replicaCount }}
   replicas: {{ .Values.data.replicaCount }}
+  {{- else if ne .Values.data.resourcesPreset "none" }}
+  replicas: {{ $preset.replicaCount }}
+  {{- end }}
   {{- end }}
   podManagementPolicy: {{ .Values.data.podManagementPolicy }}
   selector:
@@ -261,11 +268,10 @@ spec:
           {{- end }}
           {{- if .Values.data.resources }}
           resources: {{- toYaml .Values.data.resources | nindent 12 }}
-          {{- end }}
-          {{- if .Values.data.resources }}
-          resources: {{- toYaml .Values.data.resources | nindent 12 }}
           {{- else if ne .Values.data.resourcesPreset "none" }}
-          resources: {{- include "elasticsearch.resources.preset" (dict "type" .Values.data.resourcesPreset) | nindent 12 }}
+          resources:
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - name: data

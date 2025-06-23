@@ -11,15 +11,15 @@ dependencies:
 #    name: kibana
 #    repository: oci://registry-1.docker.io/bitnamicharts
 #    version: 10.x.x
-  - name: common
-    repository: oci://registry-1.docker.io/bitnamicharts
-    tags:
-      - bitnami-common
-    version: 2.x.x
-  - name: common-library
+#  - name: common
+#    repository: oci://registry-1.docker.io/bitnamicharts
+#    tags:
+#      - bitnami-common
+#    version: 2.x.x
+  - name: opspilot-common
     repository: https://songyanping.github.io/helm-chart/common
     tags:
-      - common-library
+      - opspilot-common
     version: 1.0.0
 description: Elasticsearch is a distributed search and analytics engine. It is used for web search, log monitoring, and real-time analytics. Ideal for Big Data applications.
 home: https://bitnami.com

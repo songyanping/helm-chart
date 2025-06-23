@@ -8,15 +8,15 @@ description: A Library Helm Chart for grouping common logic between bitnami char
 home: https://bitnami.com
 icon: https://bitnami.com/downloads/logos/bitnami-mark.png
 keywords:
-- common
+- opspilot-common
 - helper
 - template
 - function
 maintainers:
 - name: Broadcom, Inc. All Rights Reserved.
   url: https://songyanping.github.io/helm-chart
-name: common
+name: opspilot-common
 sources:
-- https://songyanping.github.io/helm-chart/common
+- https://songyanping.github.io/helm-chart/common/opspilot-common
 type: library
 version: 1.0.0

@@ -1,4 +1,4 @@
-{{/* 加载资源预设（传递type参数为.Values.preset） */}}
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
 {{- $preset := include "common.resources.preset" (dict "type" .Values.resourcesPreset) | fromYaml -}}
 apiVersion: apps/v1
 kind: Deployment
@@ -59,8 +59,8 @@ spec:
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- else if ne .Values.resourcesPreset "none" }}
           resources:
-            requests: {{ toYaml $preset.requests | nindent 12 }}
-            limits: {{ toYaml $preset.limits | nindent 12 }}
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - mountPath: /opt/configs/config.yaml

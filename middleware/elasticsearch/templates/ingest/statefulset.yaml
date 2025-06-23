@@ -4,6 +4,7 @@ SPDX-License-Identifier: APACHE-2.0
 */}}
 
 {{- if (include "elasticsearch.ingest.enabled" . ) }}
+{{- $preset := include "elasticsearch.ingest.resources.preset" (dict "type" .Values.ingest.resourcesPreset) | fromYaml -}}
 apiVersion: {{ template "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
@@ -29,7 +30,11 @@ metadata:
   {{- end }}
 spec:
   {{- if not .Values.ingest.autoscaling.enabled }}
+  {{- if .Values.ingest.replicaCount }}
   replicas: {{ .Values.ingest.replicaCount }}
+  {{- else if ne .Values.ingest.resourcesPreset "none" }}
+  replicas: {{ $preset.replicaCount }}
+  {{- end }}
   {{- end }}
   podManagementPolicy: {{ .Values.ingest.podManagementPolicy }}
   selector:
@@ -237,6 +242,10 @@ spec:
           {{- end }}
           {{- if .Values.ingest.resources }}
           resources: {{- toYaml .Values.ingest.resources | nindent 12 }}
+          {{- else if ne .Values.ingest.resourcesPreset "none" }}
+          resources:
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - name: data
