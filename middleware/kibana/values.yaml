@@ -16,8 +16,7 @@ global:
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  imagePullSecrets:
-    - alicloud-registry-secret
+  imagePullSecrets: []
   storageClass: ""
 
 ## @section Common parameters
@@ -517,8 +516,14 @@ containerSecurityContext:
 ## @param resources.limits The resources limits for the container
 ## @param resources.requests The requested resources for the container
 ##
-resources: {}
-resourcesPreset: "small"
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 200m
+    memory: 512Mi
+
 ## @param podAffinityPreset Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
 ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
 ##

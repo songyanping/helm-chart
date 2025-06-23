@@ -1,5 +1,8 @@
 {{- if .Values.server.enabled -}}
 {{- if not .Values.server.statefulSet.enabled -}}
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
+{{- $preset := include "prometheus.resources.preset" (dict "type" .Values.server.resourcesPreset) | fromYaml -}}
+
 apiVersion: {{ template "prometheus.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
@@ -194,7 +197,8 @@ spec:
           {{ toYaml .Values.server.resources | indent 12 }}
           {{- else if ne .Values.server.resourcesPreset "none" }}
           resources:
-          {{- include "prometheus.resources.preset" (dict "type" .Values.server.resourcesPreset) | nindent 12 }}
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - name: config-volume

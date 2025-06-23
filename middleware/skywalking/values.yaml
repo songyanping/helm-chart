@@ -232,9 +232,6 @@ ui:
     limits:
       cpu: 500m
       memory: 512Mi
-    requests:
-      cpu: 1
-      memory: 1024Mi
   ingress:
     enabled: false
     annotations:

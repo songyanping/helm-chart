@@ -88,6 +88,32 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 {{- end -}}
 
+{{- define "skywalking.ui.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "512Mi")
+      "limits" (dict "cpu" "200m" "memory" "512Mi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "500m" "memory" "1Gi")
+      "limits" (dict "cpu" "500m" "memory" "1Gi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "1.0" "memory" "2Gi")
+      "limits" (dict "cpu" "1.0" "memory" "2Gi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "elasticsearch.data.resources.preset" -}}
 {{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
 {{- $presets := dict

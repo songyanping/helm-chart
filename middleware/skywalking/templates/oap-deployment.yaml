@@ -12,6 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
+{{- $preset := include "skywalking.oap.resources.preset" (dict "type" .Values.oap.resourcesPreset) | fromYaml -}}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -24,7 +26,11 @@ metadata:
     release: {{ .Release.Name }}
   name: {{ template "skywalking.oap.fullname" . }}
 spec:
+  {{- if ne .Values.oap.resourcesPreset "none" }}
+  replicas: {{ $preset.replicaCount }}
+  {{- else if .Values.oap.replicas }}
   replicas: {{ .Values.oap.replicas }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ template "skywalking.name" . }}
@@ -126,7 +132,9 @@ spec:
         resources:
         {{ toYaml .Values.oap.resources | indent 10 }}
 {{- else if ne .Values.oap.resourcesPreset "none" }}
-        resources:{{- include "skywalking.resources.preset" (dict "type" .Values.oap.resourcesPreset) | nindent 12 }}
+        resources:
+          requests: {{ toYaml $preset.requests | nindent 12 }}
+          limits: {{ toYaml $preset.limits | nindent 12 }}
 {{- end }}
         env:
         - name: JAVA_OPTS

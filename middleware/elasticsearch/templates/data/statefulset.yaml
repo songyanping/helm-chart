@@ -32,10 +32,10 @@ metadata:
   {{- end }}
 spec:
   {{- if not .Values.data.autoscaling.enabled }}
-  {{- if .Values.data.replicaCount }}
-  replicas: {{ .Values.data.replicaCount }}
-  {{- else if ne .Values.data.resourcesPreset "none" }}
+  {{- if ne .Values.data.resourcesPreset "none" }}
   replicas: {{ $preset.replicaCount }}
+  {{- else if .Values.data.replicaCount }}
+  replicas: {{ .Values.data.replicaCount }}
   {{- end }}
   {{- end }}
   podManagementPolicy: {{ .Values.data.podManagementPolicy }}

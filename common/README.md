@@ -2,7 +2,7 @@
 ```shell
 cd  common
 
-helm package ../common --dependency-update=true
+helm package ./opspilot-common --dependency-update=true
 
 helm repo index --url https://songyanping.github.io/helm-chart/common .
 ```

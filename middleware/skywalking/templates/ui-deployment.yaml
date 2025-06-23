@@ -71,8 +71,7 @@ spec:
         - containerPort: {{ .Values.ui.service.internalPort }}
           name: page
         {{- if .Values.ui.resources }}
-        resources:
-        {{ toYaml .Values.ui.resources | indent 10 }}
+        resources: {{ toYaml .Values.ui.resources | indent 10 }}
         {{- end }}
         env:
         - name: SW_OAP_ADDRESS

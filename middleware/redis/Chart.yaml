@@ -12,11 +12,6 @@ dependencies:
     tags:
       - bitnami-common
     version: 2.x.x
-  - name: common-library
-    repository: https://songyanping.github.io/helm-chart/common
-    tags:
-      - common-library
-    version: 1.0.0
 description: Redis(R) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 home: https://bitnami.com
 icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
