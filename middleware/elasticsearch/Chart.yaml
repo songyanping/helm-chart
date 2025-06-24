@@ -11,11 +11,11 @@ dependencies:
 #    name: kibana
 #    repository: oci://registry-1.docker.io/bitnamicharts
 #    version: 10.x.x
-#  - name: common
-#    repository: oci://registry-1.docker.io/bitnamicharts
-#    tags:
-#      - bitnami-common
-#    version: 2.x.x
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-common
+    version: 2.x.x
   - name: opspilot-common
     repository: https://songyanping.github.io/helm-chart/common
     tags:

@@ -4,6 +4,8 @@ SPDX-License-Identifier: APACHE-2.0
 */}}
 
 {{- if (include "elasticsearch.master.enabled" .) }}
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
+{{- $preset := include "elasticsearch.master.resources.preset" (dict "type" .Values.master.resourcesPreset) | fromYaml -}}
 apiVersion: {{ template "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
@@ -29,7 +31,11 @@ metadata:
   {{- end }}
 spec:
   {{- if not .Values.master.autoscaling.enabled }}
+  {{- if ne .Values.master.resourcesPreset "none" }}
+  replicas: {{ $preset.replicaCount }}
+  {{- else if .Values.master.replicaCount }}
   replicas: {{ .Values.master.replicaCount }}
+  {{- end }}
   {{- end }}
   podManagementPolicy: {{ .Values.master.podManagementPolicy }}
   selector:
@@ -200,6 +206,9 @@ spec:
             {{- if .Values.master.heapSize }}
             - name: ELASTICSEARCH_HEAP_SIZE
               value: {{ .Values.master.heapSize | quote }}
+            {{- else if ne .Values.master.resourcesPreset "none" }}
+            - name: ELASTICSEARCH_HEAP_SIZE
+              value: {{ $preset.heapSize | quote }}
             {{- end }}
             {{- if .Values.security.enabled }}
             {{- include "elasticsearch.configure.security" . | nindent 12 }}
@@ -261,6 +270,10 @@ spec:
           {{- end }}
           {{- if .Values.master.resources }}
           resources: {{- toYaml .Values.master.resources | nindent 12 }}
+          {{- else if ne .Values.master.resourcesPreset "none" }}
+          resources:
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - name: data

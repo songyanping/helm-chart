@@ -2,11 +2,9 @@
 Copyright VMware, Inc.
 SPDX-License-Identifier: APACHE-2.0
 */}}
-
+{{- if (include "elasticsearch.data.enabled" .) }}
 {{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
 {{- $preset := include "elasticsearch.data.resources.preset" (dict "type" .Values.data.resourcesPreset) | fromYaml -}}
-
-{{- if (include "elasticsearch.data.enabled" .) }}
 apiVersion: {{ template "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
@@ -207,6 +205,9 @@ spec:
             {{- if .Values.data.heapSize }}
             - name: ELASTICSEARCH_HEAP_SIZE
               value: {{ .Values.data.heapSize | quote }}
+            {{- else if ne .Values.data.resourcesPreset "none" }}
+            - name: ELASTICSEARCH_HEAP_SIZE
+              value: {{ $preset.heapSize | quote }}
             {{- end }}
             {{- if .Values.security.enabled }}
             {{- include "elasticsearch.configure.security" . | nindent 12 }}

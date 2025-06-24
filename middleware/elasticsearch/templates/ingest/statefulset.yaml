@@ -181,6 +181,9 @@ spec:
             {{- if .Values.ingest.heapSize }}
             - name: ELASTICSEARCH_HEAP_SIZE
               value: {{ .Values.ingest.heapSize | quote }}
+            {{- else if ne .Values.ingest.resourcesPreset "none" }}
+            - name: ELASTICSEARCH_HEAP_SIZE
+              value: {{ $preset.heapSize | quote }}
             {{- end }}
             {{- if .Values.security.enabled }}
             {{- include "elasticsearch.configure.security" . | nindent 12 }}
