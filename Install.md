@@ -8,14 +8,11 @@ git clone https://github.com/songyanping/helm-chart.git
 
 kubectl create ns skywalking
 
-cd middleware/elasticsearch
-helm install elasticsearch . --namespace skywalking 
+helm install elasticsearch middleware/elasticsearch --namespace skywalking 
 
-cd middleware/kibana
-helm install kibana . --namespace skywalking 
+helm install kibana middleware/kibana --namespace skywalking 
 
-cd middleware/skywalking
-helm install skywalking . --namespace skywalking 
+helm install skywalking middleware/skywalking --namespace skywalking
 ```
 
 #### 2.App Agent(Skywalking agent)
@@ -35,23 +32,18 @@ skywalking-oap.skywalking.svc.cluster.local:11800 -jar app.jar
 #### 3.部署Opspilot平台
 ```shell
 kubectl create ns opspilot
-cd middleware/elasticsearch
-helm install elasticsearch . --namespace opspilot 
 
-cd middleware/kibana
-helm install kibana . --namespace opspilot
+helm install elasticsearch middleware/elasticsearch --namespace opspilot 
 
-cd middleware/postgresql
-helm install postgresql . --namespace opspilot
+helm install kibana middleware/kibana --namespace opspilot
 
-cd middleware/casdoor
-helm install casdoor . --namespace opspilot
+helm install postgresql middleware/postgresql --namespace opspilot
 
-cd middleware/redis
-helm install redis . --namespace opspilot
+helm install casdoor middleware/casdoor --namespace opspilot
 
-cd middleware/prometheus
-helm install prometheus . --namespace opspilot
+helm install redis middleware/redis --namespace opspilot
+
+helm install prometheus middleware/prometheus --namespace opspilot
 
 # 通过helm添加仓库方式安装
 helm repo list
@@ -75,6 +67,9 @@ helm install aigc opspilot/aigc --version 0.1.20250606 --namespace opspilot --se
 #### 4.扩容示例
 通过helm upgrade命令进行扩容，--set参数修改对应服务配置
 ```shell
-helm upgrade elasticsearch . --namespace skywalking --set master.resourcesPreset=medium
+// 修改预设资源规格
+helm upgrade elasticsearch middleware/elasticsearch --namespace skywalking --set master.resourcesPreset=medium
 
+// 单独修改某个具体指标
+helm upgrade elasticsearch middleware/elasticsearch --namespace skywalking --set master.resources.limits.cpu=350m
 ```
