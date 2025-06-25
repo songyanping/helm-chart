@@ -27,7 +27,7 @@ data:
           - name: prometheus_events
           - name: build_events
           - name: k8s_events
-          - name: apislo
+          - name: slo_api_metrics
           - name: manage_zone
           - name: topology
           - name: manage_label
@@ -35,6 +35,9 @@ data:
           - name: notify  
       prometheus:
         addr: http://dev-prometheus-server.sre-base.svc.cluster.local
+      application:
+        app: "new-ecommerce"
+        env: "ft1-ali"
       interval:
         alertInterval: 240    # 分钟
         notifyInterval: 240   # 分钟

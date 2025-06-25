@@ -154,9 +154,9 @@ These presets are for basic testing and not meant to be used in production
    )
   "medium" (dict
       "replicaCount" 2
-      "heapSize" "1024m"
-      "requests" (dict "cpu" "500m" "memory" "2Gi")
-      "limits" (dict "cpu" "500m" "memory" "2Gi")
+      "heapSize" "1536m"
+      "requests" (dict "cpu" "500m" "memory" "3Gi")
+      "limits" (dict "cpu" "500m" "memory" "3Gi")
    )
   "large" (dict
       "replicaCount" 4
