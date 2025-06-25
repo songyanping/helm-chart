@@ -1,3 +1,5 @@
+{{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
+{{- $preset := include "opspilot.resources.preset" (dict "type" .Values.cronjob.resourcesPreset) | fromYaml -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -15,6 +17,7 @@ spec:
         metadata:
           labels:
             app: {{- include "watch.labels" . | nindent 12 }}
+            type: cronjob
         spec:
           containers:
             - name: {{ .Chart.Name }}
@@ -30,10 +33,12 @@ spec:
                   value: "info"
                 - name: RUN_MODE
                   value: "task"
-              {{- if .Values.resources }}
-              resources:{{- toYaml .Values.resources | nindent 16 }}
-              {{- else if ne .Values.resourcesPreset "none"}}
-              resources:{{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 16 }}
+              {{- if .Values.cronjob.resources }}
+              resources:{{- toYaml .Values.cronjob.resources | nindent 16 }}
+              {{- else if ne .Values.cronjob.resourcesPreset "none"}}
+              resources:
+                requests: {{ toYaml $preset.requests | nindent 18 }}
+                limits: {{ toYaml $preset.limits | nindent 18 }}
               {{- end }}
               volumeMounts:
                 - mountPath: /opt/config/config.yaml

@@ -3,7 +3,7 @@ entries:
   aigc:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-25T14:18:41.524538177+08:00"
+    created: "2025-06-25T15:50:21.459383504+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
@@ -20,7 +20,7 @@ entries:
   console:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-25T14:18:41.530952865+08:00"
+    created: "2025-06-25T15:50:21.490979752+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
@@ -37,7 +37,7 @@ entries:
   lookout:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-25T14:18:41.536661993+08:00"
+    created: "2025-06-25T15:50:21.498203405+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
@@ -45,7 +45,7 @@ entries:
       - opspilot-common
       version: 1.0.0
     description: A Helm chart for Kubernetes
-    digest: e70596c3f85d3b88344f8094a7ff46bb542add227df57b922924137fb3fa2e8c
+    digest: b93efd601b3e0116a22ba305eff452d5944df30985419b2f23b29a5bdd27d37d
     name: lookout
     type: application
     urls:
@@ -54,7 +54,7 @@ entries:
   watch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-25T14:18:41.543021983+08:00"
+    created: "2025-06-25T15:50:21.506565112+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
@@ -62,10 +62,10 @@ entries:
       - opspilot-common
       version: 1.0.0
     description: A Helm chart for Kubernetes
-    digest: fb40ca2e2738adce3bee884dae36b53428d98b7ddcf66c13fdfbdad3c0d7c5c7
+    digest: 0b9b8f2fa46cdc338757c671c7b47b7f38f515e55ee8f3e24b3491bf3e944c23
     name: watch
     type: application
     urls:
     - https://songyanping.github.io/helm-chart/opspilot/watch-0.1.20250606.tgz
     version: 0.1.20250606
-generated: "2025-06-25T14:18:41.517354262+08:00"
+generated: "2025-06-25T15:50:21.441851243+08:00"

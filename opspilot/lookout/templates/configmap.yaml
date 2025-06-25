@@ -15,7 +15,7 @@ data:
         timeout: 600s
     data:
       search:
-        addr: elasticsearch.aiops.svc.cluster.local
+        addr: elasticsearch
         port: 9200
         protocol: http
         username: ""
@@ -34,14 +34,14 @@ data:
           - name: problems
           - name: notify  
       prometheus:
-        addr: http://dev-prometheus-server.sre-base.svc.cluster.local
+        addr: http://prometheus-server
       application:
         app: "new-ecommerce"
         env: "ft1-ali"
       interval:
-        alertInterval: 240    # 分钟
-        notifyInterval: 240   # 分钟
-        notifyLevel: P1 
+        alertInterval: 240   # 分钟
+        notifyInterval: 240  # 分钟
+        notifyLevel: P1
       notify:
         url: https://opspilot-dev.intranet.local
       whitelist:

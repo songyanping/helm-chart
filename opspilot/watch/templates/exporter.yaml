@@ -1,5 +1,5 @@
 {{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
-{{- $preset := include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | fromYaml -}}
+{{- $preset := include "opspilot.resources.preset" (dict "type" .Values.exporter.resourcesPreset) | fromYaml -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,14 +8,15 @@ metadata:
     {{- include "watch.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  {{- if .Values.replicaCount }}
-  replicas: {{ .Values.replicaCount }}
-  {{- else if ne .Values.resourcesPreset "none" }}
+  {{- if .Values.exporter.replicaCount }}
+  replicas: {{ .Values.exporter.replicaCount }}
+  {{- else if ne .Values.exporter.resourcesPreset "none" }}
   replicas: {{ $preset.replicaCount }}
   {{- end }}
   {{- end }}
   selector:
     matchLabels:
+      type: exporter
       {{- include "watch.selectorLabels" . | nindent 6 }}
   template:
     metadata:
@@ -24,6 +25,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        type: exporter
         {{- include "watch.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -67,17 +69,17 @@ spec:
                   - sh
                   - -c
                   - sleep 60
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 3001
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 3001
-          {{- if .Values.resources }}
-          resources: {{- toYaml .Values.resources | nindent 12 }}
-          {{- else if ne .Values.resourcesPreset "none" }}
+{{/*          livenessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              path: /health*/}}
+{{/*              port: 3001*/}}
+{{/*          readinessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              path: /health*/}}
+{{/*              port: 3001*/}}
+          {{- if .Values.exporter.resources }}
+          resources: {{- toYaml .Values.exporter.resources | nindent 12 }}
+          {{- else if ne .Values.exporter.resourcesPreset "none" }}
           resources:
             requests: {{ toYaml $preset.requests | nindent 14 }}
             limits: {{ toYaml $preset.limits | nindent 14 }}
@@ -119,10 +121,12 @@ spec:
             httpGet:
               path: /health
               port: 3002
-          {{- if .Values.resources }}
-          resources: {{- toYaml .Values.resources | nindent 12 }}
-          {{- else if ne .Values.resourcesPreset "none" }}
-          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 12 }}
+          {{- if .Values.exporter.resources }}
+          resources: {{- toYaml .Values.exporter.resources | nindent 12 }}
+          {{- else if ne .Values.exporter.resourcesPreset "none" }}
+          resources:
+            requests: {{ toYaml $preset.requests | nindent 14 }}
+            limits: {{ toYaml $preset.limits | nindent 14 }}
           {{- end }}
           volumeMounts:
             - mountPath: /opt/config/config.yaml
@@ -133,10 +137,8 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.configmapReload.image.repository }}:{{ .Values.configmapReload.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.configmapReload.image.pullPolicy }}
-          {{- if .Values.resources }}
-          resources: {{- toYaml .Values.resources | nindent 12 }}
-          {{- else if ne .Values.resourcesPreset "none" }}
-          resources: {{- include "opspilot.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 12 }}
+          {{- if .Values.configmapReload.resources }}
+          resources: {{- toYaml .Values.configmapReload.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
             - mountPath: /opt/config/config.yaml
