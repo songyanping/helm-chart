@@ -54,6 +54,7 @@ cd middleware/prometheus
 helm install prometheus . --namespace opspilot
 
 # 通过helm添加仓库方式安装
+helm repo list
 helm repo add opspilot https://songyanping.github.io/helm-chart/opspilot
 helm repo update opspilot 
 helm search repo console
