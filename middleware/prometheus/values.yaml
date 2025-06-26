@@ -46,7 +46,7 @@ alertmanager:
   ## alertmanager container image
   ##
   image:
-    repository: docker.io/bitnami/alertmanager
+    repository: cnharbor.amway.com.cn/opspilot/alertmanager
     tag: 0.21.0
     pullPolicy: IfNotPresent
 
@@ -404,7 +404,7 @@ configmapReload:
     ## configmap-reload container image
     ##
     image:
-      repository: docker.io/bitnami/configmap-reload
+      repository: cnharbor.amway.com.cn/opspilot/configmap-reload
       tag: 0.11.0-debian-11-r4
       pullPolicy: IfNotPresent
 
@@ -700,7 +700,7 @@ server:
   ## Prometheus server container image
   ##
   image:
-    repository: docker.io/bitnami/prometheus
+    repository: cnharbor.amway.com.cn/opspilot/prometheus
     tag: 2.26.0-debian-10-r33
     pullPolicy: IfNotPresent
 
