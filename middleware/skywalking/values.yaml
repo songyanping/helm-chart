@@ -85,6 +85,11 @@ oap:
     SW_CORE_RECORD_DATA_TTL: 2
     SW_CORE_METRICS_DATA_TTL: 2
     SW_OAL_ENGINE_DEBUG: Y
+    SW_CORE_REST_REST_MAX_THREADS: 800
+    SW_CORE_REST_QUEUE_SIZE: 800
+    SW_TELEMETRY: prometheus
+    SW_OTEL_RECEIVER: default
+    SW_OTEL_RECEIVER_ENABLED_OTEL_METRICS_RULES: oap
 
     # more env, please refer to https://hub.docker.com/r/apache/skywalking-oap-server
     # or https://github.com/apache/skywalking-docker/blob/master/6/6.4/oap/README.md#sw_telemetry

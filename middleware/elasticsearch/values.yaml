@@ -104,8 +104,16 @@ config: {}
 extraConfig:
   thread_pool:
     search:
-      queue_size: 2000
+      queue_size: 8000
       size: 8
+    search_worker:
+      queue_size: 8000
+      size: 8
+    get:
+      queue_size: 2000
+      size: 2
+    write:
+      size: 2
 ## @param extraHosts A list of external hosts which are part of this cluster
 ## Example Use Case: When you have a cluster with nodes spaned acorss multiple K8s or namespaces
 ## extraHosts:
