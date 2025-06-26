@@ -26,13 +26,13 @@ serviceAccounts:
 imagePullSecrets: []
 
 initContainer:
-  image: busybox
+  image: cnharbor.amway.com.cn/opspilot/busybox
   tag: '1.30'
 
 oap:
   name: oap
   image:
-    repository: apache/skywalking-oap-server
+    repository: cnharbor.amway.com.cn/opspilot/skywalking-oap-server
     tag: 10.0.1  # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: elasticsearch
@@ -43,7 +43,7 @@ oap:
     rest: 12800
   replicas: 1
   service:
-    type: ClusterIP
+    type: LoadBalancer
 #  javaOpts: -Xmx4g -Xms4g
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -219,7 +219,7 @@ ui:
   name: ui
   replicas: 1
   image:
-    repository: apache/skywalking-ui
+    repository: cnharbor.amway.com.cn/opspilot/skywalking-ui
     tag: 10.0.1  # Must be set explicitly
     pullPolicy: IfNotPresent
   # podAnnotations:
@@ -243,7 +243,7 @@ ui:
     #    hosts:
     #      - skywalking.local
   service:
-    type: ClusterIP
+    type: LoadBalancer
     # clusterIP: None
     externalPort: 80
     internalPort: 8080

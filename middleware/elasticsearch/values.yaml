@@ -20,7 +20,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "local-path"
+  storageClass: "cn-stoprof-prod-01-tkgs"
   elasticsearch:
     service:
       name: elasticsearch
@@ -176,7 +176,8 @@ sidecars: []
 ##    imagePullPolicy: Always
 ##    command: ['sh', '-c', 'echo "hello world"']
 ##
-initContainers: []
+initContainers: {}
+
 ## @param useIstioLabels Use this variable to add Istio labels to all pods
 ##
 useIstioLabels: true
@@ -724,7 +725,7 @@ master:
   persistence:
     ## @param master.persistence.enabled Enable persistence using a `PersistentVolumeClaim`
     ##
-    enabled: false
+    enabled: true
     ## @param master.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -1032,7 +1033,7 @@ data:
   persistence:
     ## @param data.persistence.enabled Enable persistence using a `PersistentVolumeClaim`
     ##
-    enabled: false
+    enabled: true
     ## @param data.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -2212,7 +2213,7 @@ volumePermissions:
 sysctlImage:
   ## @param sysctlImage.enabled Enable kernel settings modifier image
   ##
-  enabled: false
+  enabled: true
   ## @param sysctlImage.registry Kernel settings modifier image registry
   ## @param sysctlImage.repository Kernel settings modifier image repository
   ## @param sysctlImage.tag Kernel settings modifier image tag
@@ -2220,8 +2221,8 @@ sysctlImage:
   ## @param sysctlImage.pullPolicy Kernel settings modifier image pull policy
   ## @param sysctlImage.pullSecrets Kernel settings modifier image pull secrets
   ##
-  registry: docker.io
-  repository: bitnami/os-shell
+  registry: cnharbor.amway.com.cn
+  repository: opspilot/os-shell
   tag: 11-debian-11-r2
   digest: ""
   ## Specify a imagePullPolicy

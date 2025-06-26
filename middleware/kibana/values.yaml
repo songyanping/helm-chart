@@ -330,7 +330,7 @@ service:
     http: 5601
   ## @param service.type Kubernetes Service type
   ##
-  type: ClusterIP
+  type: LoadBalancer
   ## @param service.nodePorts.http Specify the nodePort value for the LoadBalancer and NodePort service types
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
@@ -697,7 +697,7 @@ elasticsearch:
   ##   - elasticsearch-2
   ##
   hosts:
-    - elasticsearch.opspilot.svc.cluster.local
+    - elasticsearch
   ## @param elasticsearch.port Elasticsearch port
   ##
   port: "9200"

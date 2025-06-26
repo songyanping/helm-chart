@@ -452,7 +452,7 @@ configmapReload:
     ## configmap-reload container image
     ##
     image:
-      repository: docker.io/bitnami/configmap-reload
+      repository: cnharbor.amway.com.cn/opspilot/configmap-reload
       tag: 0.11.0-debian-11-r4
       pullPolicy: IfNotPresent
 
@@ -929,7 +929,7 @@ server:
     ## If true, Prometheus server will create/use a Persistent Volume Claim
     ## If false, use emptyDir
     ##
-    enabled: false
+    enabled: true
 
     ## Prometheus server data Persistent Volume access modes
     ## Must match those of existing PV or dynamic provisioner
@@ -957,7 +957,7 @@ server:
 
     ## Prometheus server data Persistent Volume size
     ##
-    size: 50Gi
+    size: 100Gi
 
     ## Prometheus server data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -966,7 +966,7 @@ server:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: ""
+    storageClass: "cn-stoprof-prod-01-tkgs"
 
     ## Prometheus server data Persistent Volume Binding Mode
     ## If defined, volumeBindingMode: <volumeBindingMode>
@@ -1146,7 +1146,7 @@ server:
     loadBalancerSourceRanges: []
     servicePort: 80
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
 
     ## Enable gRPC port on service to allow auto discovery with thanos-querier
     gRPC:
