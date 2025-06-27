@@ -697,7 +697,7 @@ elasticsearch:
   ##   - elasticsearch-2
   ##
   hosts:
-    - elasticsearch.opspilot.svc.cluster.local
+    - elasticsearch
   ## @param elasticsearch.port Elasticsearch port
   ##
   port: "9200"
