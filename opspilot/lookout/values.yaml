@@ -85,3 +85,7 @@ affinity: {}
 extraEnvVars:
  - name: RUN_MODE
    value: web
+ - name: APP_ID
+   value: new-ecommerce
+ - name: APP_ENV
+   value: pd

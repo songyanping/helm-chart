@@ -41,8 +41,8 @@ data:
       prometheus:
         addr: http://prometheus-server
       application:
-        app: "new-ecommerce"
-        env: "ft1-ali"
+        app: ""
+        env: ""
       interval:
         alertInterval: 240   # 分钟
         notifyInterval: 240  # 分钟
