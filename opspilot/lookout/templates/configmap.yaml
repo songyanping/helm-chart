@@ -14,6 +14,11 @@ data:
         addr: 0.0.0.0:8090
         timeout: 600s
     data:
+      mongodb:
+        addr: localhost:27017
+        dbname: "test"
+        username: "test"
+        password: "test"
       search:
         addr: elasticsearch
         port: 9200
@@ -36,8 +41,8 @@ data:
       prometheus:
         addr: http://prometheus-server
       application:
-        app: "new-ecommerce"
-        env: "ft1-ali"
+        app: ""
+        env: ""
       interval:
         alertInterval: 240   # 分钟
         notifyInterval: 240  # 分钟

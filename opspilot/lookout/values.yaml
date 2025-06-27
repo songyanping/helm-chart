@@ -4,10 +4,10 @@
 
 
 image:
-  repository: docker.io/song1206/ops-lookout
+  repository: cnharbor.amway.com.cn/opspilot/ops-lookout
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250605-main"
+  tag: "v20250627-main"
 
 imagePullSecrets: []
 nameOverride: "lookout"
@@ -85,3 +85,7 @@ affinity: {}
 extraEnvVars:
  - name: RUN_MODE
    value: web
+ - name: APP_ID
+   value: new-ecommerce
+ - name: APP_ENV
+   value: pd
