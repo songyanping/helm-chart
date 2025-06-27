@@ -48,7 +48,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: opspilot-dev.intranet.local
+    - host: opspilot-tw.intranet.local
       paths:
         - path: /
           pathType: ImplementationSpecific
