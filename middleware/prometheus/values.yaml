@@ -820,7 +820,10 @@ server:
 
   ## Additional Prometheus server Volumes
   ##
-  extraVolumes: []
+  extraVolumes:
+    - name: config-rules-manager
+      configMap:
+        name: rules-manager-config
 
   ## Additional Prometheus server hostPath mounts
   ##
