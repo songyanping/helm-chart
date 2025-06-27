@@ -683,7 +683,21 @@ server:
   #   sidecarContainers:
   #      webserver:
   #        image: nginx
-  sidecarContainers: {}
+  sidecarContainers:
+    rules-manager:
+      image: docker.io/song1206/ops-lookout:v20250627-main
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      volumeMounts:
+        - name: config-rules-manager
+          mountPath: /opt/configs/config.yaml
+          subPath: config.yaml
+        - name: storage-volume
+          mountPath: /data
+      env:
+        - name: RUN_MODE
+          value: cronjob
 
   # sidecarTemplateValues - context to be used in template for sidecarContainers
   # Example:
@@ -1417,7 +1431,7 @@ pushgateway:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "local-path"
+    storageClass: ""
 
     ## pushgateway data Persistent Volume Binding Mode
     ## If defined, volumeBindingMode: <volumeBindingMode>
@@ -1999,16 +2013,42 @@ serverFiles:
           - source_labels: [__meta_kubernetes_pod_phase]
             regex: Pending|Succeeded|Failed|Completed
             action: drop
-      - job_name: 'exporter'
+      - job_name: skywalking-exporter
+        scrape_interval: 1s
+        metrics_path: '/metrics'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [ __meta_kubernetes_pod_container_name, __meta_kubernetes_pod_container_port_name ]
+            action: keep
+            regex: oap;prometheus-port
+          - source_labels: [ ]
+            target_label: service
+            replacement: oap-server
+          - source_labels: [ __meta_kubernetes_pod_name ]
+            target_label: host_name
+            regex: (.+)
+            replacement: $1
+      - job_name: es-exporter
         scrape_interval: 60s
         honor_timestamps: false
-        scrape_timeout: 50s
         static_configs:
           - targets:
-            - apm-exporter.opspilot.svc.cluster.local:3001
-            - kubernetes-exporter.opspilot.svc.cluster.local:3001
-            - middleware-exporter.opspilot.svc.cluster.local:3001
-            - gateway-exporter.opspilot.svc.cluster.local:3001
+              - dev-elasticsearch-metrics.sre-base.svc:9114
+      - job_name: exporter
+        scrape_interval: 60s
+        honor_timestamps: false
+        scrape_timeout: 58s
+        static_configs:
+          - targets:
+              - watch-exporter:3001
+      - job_name: hour-exporter
+        scrape_interval: 3600s
+        honor_timestamps: false
+        scrape_timeout: 60s
+        static_configs:
+          - targets:
+              - watch-exporter:3002
 # adds additional scrape configs to prometheus.yml
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
