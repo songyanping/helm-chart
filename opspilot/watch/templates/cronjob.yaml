@@ -29,10 +29,20 @@ spec:
                 runAsGroup: 2000
                 runAsNonRoot: true
               env:
-                - name: LOG_LEVEL
-                  value: "info"
-                - name: RUN_MODE
-                  value: "task"
+                - name: FUNCTION
+                  value: cronjob
+                - name: LOGLEVEL
+                  value: info
+                - name: SLOWSQL_STANDARD # trace-analysis
+                  value: "30"
+                - name: SUC_THRESHOLD # slo-month
+                  value: "99.9"
+                - name: LAT_THRESHOLD # slo-month
+                  value: "500"
+                - name: REFRESH_NDAY # slo-month
+                  value: "3"
+                - name: TZ
+                  value: Asia/Shanghai
               {{- if .Values.cronjob.resources }}
               resources:{{- toYaml .Values.cronjob.resources | nindent 16 }}
               {{- else if ne .Values.cronjob.resourcesPreset "none"}}
