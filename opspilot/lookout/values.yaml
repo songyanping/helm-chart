@@ -7,7 +7,7 @@ image:
   repository: docker.io/song1206/ops-lookout
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250605-main"
+  tag: "v20250627-main"
 
 imagePullSecrets: []
 nameOverride: "lookout"
