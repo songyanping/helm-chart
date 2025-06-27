@@ -1466,7 +1466,7 @@ alertmanagerFiles:
       - name: webhook
         webhook_configs:
           - send_resolved: true
-            url: 'http://opslookout-web.opspilot.svc:8080/api/v1/webhook/prometheus'
+            url: 'http://lookout-service:8080/api/v1/prometheusEvents'
 #      - name: email
 #        email_configs:
 #          - to: '601211150@qq.com'
