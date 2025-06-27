@@ -41,6 +41,7 @@ oap:
     # zabbix: 10051
     grpc: 11800
     rest: 12800
+    prometheus-port: 1234
   replicas: 1
   service:
     type: ClusterIP
@@ -99,7 +100,7 @@ oap:
   config:
        trace-sampling-policy-settings.yml: |
          default:
-           rate: 2000
+           rate: 10000
            duration: -1
     # metadata-service-mapping.yaml: |
     #   serviceName: e2e::${LABELS."service.istio.io/canonical-name"}
