@@ -7,11 +7,6 @@ annotations:
 apiVersion: v2
 appVersion: 8.8.2
 dependencies:
-  - name: opspilot-common
-    repository: https://songyanping.github.io/helm-chart/common
-    tags:
-      - opspilot-common
-    version: 1.0.0
   - name: common
     repository: oci://registry-1.docker.io/bitnamicharts
     tags:

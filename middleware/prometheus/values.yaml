@@ -823,7 +823,7 @@ server:
   extraVolumes:
     - name: config-rules-manager
       configMap:
-        name: rules-manager-config
+        name: lookout-config
 
   ## Additional Prometheus server hostPath mounts
   ##
