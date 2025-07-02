@@ -1,6 +1,0 @@
-dependencies:
-- name: opspilot-common
-  repository: https://songyanping.github.io/helm-chart/common
-  version: 1.0.0
-digest: sha256:c821ab1f7914c094b762d893a3ee6624e794123b126189dac868d8b1435f8e50
-generated: "2025-06-25T14:17:37.479331368+08:00"
