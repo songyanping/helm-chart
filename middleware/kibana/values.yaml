@@ -196,7 +196,7 @@ volumePermissions:
     registry: docker.io
     repository: bitnami/os-shell
     tag: 11-debian-11-r2
-    digest: ""
+    digest: "sha256:f39b40e22dcf77d24136220b3933d8fe1c2324e6be0f2315e62ddd9af699a5c1"
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
@@ -385,7 +385,7 @@ service:
 ingress:
   ## @param ingress.enabled Enable ingress controller resource
   ##
-  enabled: false
+  enabled: true
   ## DEPRECATED: Use ingress.annotations instead of ingress.certManager
   ## certManager: false
   ##
@@ -398,7 +398,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress resource. If specified as "*" no host rule is configured
   ##
-  hostname: kibana.intranet.local
+  hostname: kibana.simple.com
   ## @param ingress.path The Path to Kibana. You may need to set this to '/*' in order to use this with ALB ingress controllers.
   ##
   path: /
