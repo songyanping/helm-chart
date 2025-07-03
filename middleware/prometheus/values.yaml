@@ -685,7 +685,7 @@ server:
   #        image: nginx
   sidecarContainers:
     rules-manager:
-      image: docker.io/song1206/ops-lookout:v20250627-main
+      image: docker.io/song1206/ops-lookout:v20250703-main-mac
       ports:
         - containerPort: 8080
           protocol: TCP
@@ -859,7 +859,7 @@ server:
   ingress:
     ## If true, Prometheus server Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
@@ -867,8 +867,8 @@ server:
 
     ## Prometheus server Ingress annotations
     ##
-    annotations:
-      kubernetes.io/ingress.class: nginx
+    annotations: {}
+#      kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
     ## Prometheus server Ingress additional labels
@@ -879,7 +879,7 @@ server:
     ## Must be provided if Ingress is enabled
     ##
     hosts:
-      - prometheus.zroid.xyz
+      - prometheus.simple.com
     #   - domain.com/prometheus
 
     path: /
