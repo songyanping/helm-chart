@@ -685,7 +685,7 @@ server:
   #        image: nginx
   sidecarContainers:
     rules-manager:
-      image: docker.io/song1206/ops-lookout:v20250703-main-mac
+      image: docker.io/song1206/ops-lookout:20250703-main-mac
       ports:
         - containerPort: 8080
           protocol: TCP
