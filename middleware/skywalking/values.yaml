@@ -33,7 +33,7 @@ oap:
   name: oap
   image:
     repository: apache/skywalking-oap-server
-    tag: 10.0.1  # Must be set explicitly
+    tag: 10.0.1@sha256:aef8db6922c3a30cf703a948642b32bb26b6ec14a241fd55f0ce78d7b6fbcf5d  # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: elasticsearch
   ports:
@@ -236,13 +236,14 @@ ui:
   resourcesPreset: small
   resources: {}
   ingress:
-    enabled: false
-    annotations:
-       kubernetes.io/ingress.class: nginx
+    enabled: true
+    annotations: {}
+
+      # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
-      - skywalking-ui.zroid.xyz
+      - skywalking-ui.simple.com
     # - skywalking.local
     tls: []
     #  - secretName: skywalking-tls
