@@ -1101,7 +1101,13 @@ server:
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
   resourcesPreset: medium
-  resources: {}
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 3072Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
 
   # Required for use in managed kubernetes clusters (such as AWS EKS) with custom CNI (such as calico),
   # because control-plane managed by AWS cannot communicate with pods' IP CIDR and admission webhooks are not working
