@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: skywalking-oap-init
+  namespace: skywalking
+  labels:
+    app: dev-skywalking
+    chart: skywalking-helm-4.5.0
+    component: skywalking-job
+    release: dev-skywalking
+spec:
+  template:
+    metadata:
+      name: dev-skywalking-oap-init
+      labels:
+        app: dev-skywalking
+        component: skywalking-job
+        job-name: skywalking-oap-init
+        release: dev-skywalking
+    spec:
+      initContainers:
+        - name: wait-for-elasticsearch
+          image: >-
+            cnharbor.amway.com.cn/opspilot/busybox:1.30
+          command:
+            - sh
+            - '-c'
+            - >-
+              for i in $(seq 1 60); do nc -z -w3 elasticsearch 9200 && exit
+              0 || sleep 5; done; exit 1
+          imagePullPolicy: IfNotPresent
+      containers:
+        - name: oap
+          image: >-
+            cnharbor.amway.com.cn/opspilot/skywalking-oap-server:10.0.1
+          env:
+            - name: JAVA_OPTS
+              value: '-Xmx2g -Xms2g -Dmode=init'
+            - name: SW_STORAGE
+              value: elasticsearch
+            - name: SW_STORAGE_ES_CLUSTER_NODES
+              value: elasticsearch:9200
+            - name: SW_CORE_METRICS_DATA_TTL
+              value: '2'
+            - name: SW_CORE_RECORD_DATA_TTL
+              value: '2'
+            - name: SW_OAL_ENGINE_DEBUG
+              value: 'true'
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Never

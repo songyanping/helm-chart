@@ -96,7 +96,15 @@ server:
   resourcesPreset: "small"
   resources: {}
   replicaCount: 1
-  extraEnvVars: {}
+  extraEnvVars:
+    - name: FUNCTION
+      value: metric-api
+    - name: LOGLEVEL
+      value: info
+    - name: PORT
+      value: "8080"
+    - name: TZ
+      value: Asia/Shanghai
 
 exporter:
   resourcesPreset: "small"
