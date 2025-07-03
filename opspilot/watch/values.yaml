@@ -71,7 +71,7 @@ affinity: {}
 
 configmapReload:
   image:
-    repository: public.ecr.aws/bitnami/configmap-reload
+    repository: docker.io/bitnami/configmap-reload
     tag: 0.10.0
     pullPolicy: IfNotPresent
   resources:
