@@ -49,7 +49,7 @@ fi
 
 
 # 安装 Opspilot 平台组件
-helm install watch opspilot/watch --version $VERSION --namespace opspilot
+helm install watch opspilot/watch --version $VERSION --namespace opspilot --set watch.resourcesPreset=medium
 if [ $? -ne 0 ]; then
     echo "安装 watch 失败"
     exit 1
@@ -66,5 +66,8 @@ if [ $? -ne 0 ]; then
     echo "安装 lookout 失败"
     exit 1
 fi
+
+sleep 30
+kubectl -n opspilot get pod
 
 echo "所有组件安装完成"
