@@ -3,15 +3,31 @@ entries:
   aigc:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-27T11:25:14.5817183+08:00"
+    created: "2025-07-04T10:18:38.968368562+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
       tags:
       - opspilot-common
-      version: 1.0.0
+      version: 1.0.1
     description: A Helm chart for Kubernetes
-    digest: d4ea54bdff9bf1a31c4b348902ffb0735d57f9b1ab240de400e23a490049ebe6
+    digest: 367dca237e49bfa3cc86e004e22b9f252cf376a970a3a07c4139d66755c59618
+    name: aigc
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/aigc-1.0.0-arm.tgz
+    version: 1.0.0-arm
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-04T10:18:38.962381214+08:00"
+    dependencies:
+    - name: opspilot-common
+      repository: https://songyanping.github.io/helm-chart/common
+      tags:
+      - opspilot-common
+      version: 1.0.1
+    description: A Helm chart for Kubernetes
+    digest: ebcfea954e95d12230426d0500e7cd7ed83c614141317c8752d9f738a5b3ed51
     name: aigc
     type: application
     urls:
@@ -20,15 +36,31 @@ entries:
   console:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-27T11:25:14.586720383+08:00"
+    created: "2025-07-04T10:18:38.98214948+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
       tags:
       - opspilot-common
-      version: 1.0.0
+      version: 1.0.1
     description: A Helm chart for Kubernetes
-    digest: 24bfa99ca57e472e86f402cc342b3670efd1b53f67abb22e8357282e8563b4a6
+    digest: 79ac1a0361b932ee5a68d1513b6cc29c71fd1defce501bc10511b9da50fea3db
+    name: console
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/console-1.0.0-arm.tgz
+    version: 1.0.0-arm
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-04T10:18:38.97317079+08:00"
+    dependencies:
+    - name: opspilot-common
+      repository: https://songyanping.github.io/helm-chart/common
+      tags:
+      - opspilot-common
+      version: 1.0.1
+    description: A Helm chart for Kubernetes
+    digest: 5b0564328166875069fc0e82eaa273f72789fe2c4e08d644ff3b1a1a233a5f09
     name: console
     type: application
     urls:
@@ -37,15 +69,31 @@ entries:
   lookout:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-27T11:25:14.591440131+08:00"
+    created: "2025-07-04T10:18:38.993063572+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
       tags:
       - opspilot-common
-      version: 1.0.0
+      version: 1.0.1
     description: A Helm chart for Kubernetes
-    digest: e8bab15ad9592408428e1806933c248febd9d731982f3c1a2a1ba486dccc5125
+    digest: 6271c62878a9a44bec1b19ba18e0d6ee8dd4b3ad7f6283f36f560a0237a5d86d
+    name: lookout
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/lookout-1.0.0-arm.tgz
+    version: 1.0.0-arm
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-04T10:18:38.987226597+08:00"
+    dependencies:
+    - name: opspilot-common
+      repository: https://songyanping.github.io/helm-chart/common
+      tags:
+      - opspilot-common
+      version: 1.0.1
+    description: A Helm chart for Kubernetes
+    digest: e47b64afea23b97041a09bb9ea9ac225ca085fa052dc4112d6fdd3875ef68e9e
     name: lookout
     type: application
     urls:
@@ -54,18 +102,34 @@ entries:
   watch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-06-27T11:25:14.59527336+08:00"
+    created: "2025-07-04T10:18:39.012519017+08:00"
     dependencies:
     - name: opspilot-common
       repository: https://songyanping.github.io/helm-chart/common
       tags:
       - opspilot-common
-      version: 1.0.0
+      version: 1.0.1
     description: A Helm chart for Kubernetes
-    digest: dab13787d87990b5cde2a29fa92d911352c61791b05c3ec588128ec4eaba1b93
+    digest: 09b00b206cf9843bdf98ff77535cb21e1122e62d3f796298269fd866aa7a2027
+    name: watch
+    type: application
+    urls:
+    - https://songyanping.github.io/helm-chart/opspilot/watch-1.0.0-arm.tgz
+    version: 1.0.0-arm
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-04T10:18:39.004608502+08:00"
+    dependencies:
+    - name: opspilot-common
+      repository: https://songyanping.github.io/helm-chart/common
+      tags:
+      - opspilot-common
+      version: 1.0.1
+    description: A Helm chart for Kubernetes
+    digest: 2aa362c991f2de6fb0aaf5566630b8f242db18f41081522f26f735ede0580249
     name: watch
     type: application
     urls:
     - https://songyanping.github.io/helm-chart/opspilot/watch-0.1.20250606.tgz
     version: 0.1.20250606
-generated: "2025-06-27T11:25:14.575946759+08:00"
+generated: "2025-07-04T10:18:38.956871075+08:00"
