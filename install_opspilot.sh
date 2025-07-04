@@ -16,6 +16,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+sleep 60
+
 helm install kibana middleware/kibana --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 kibana 失败"
@@ -67,7 +69,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-sleep 30
 kubectl -n opspilot get pod
 
 echo "所有组件安装完成"
