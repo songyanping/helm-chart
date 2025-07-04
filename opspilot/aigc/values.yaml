@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/song1206/ops-aigc
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "20250704-dev-arm"
 
