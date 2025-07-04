@@ -5,10 +5,10 @@ dependencies:
   name: kube-state-metrics
   repository: https://prometheus-community.github.io/helm-charts
   version: 4.13.*
-- name: common-library
+- name: opspilot-common
   repository: https://songyanping.github.io/helm-chart/common
   tags:
-    - common-library
+    - opspilot-common
   version: 1.0.1
 description: Prometheus is a monitoring system and time series database.
 home: https://prometheus.io/
