@@ -202,7 +202,7 @@ image:
   registry: docker.io
   repository: bitnami/elasticsearch
   tag: 8.11.1-debian-11-r0
-  digest: ""
+  digest: "sha256:cf703e8d47facb0b53e5671f2429509b40d711b922da3226ed55c6bf69616b5a"
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images

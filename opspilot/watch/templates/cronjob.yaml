@@ -16,8 +16,7 @@ spec:
       template:
         metadata:
           labels:
-            app: {{- include "watch.labels" . | nindent 12 }}
-            type: cronjob
+            app: watch-cronjob
         spec:
           containers:
             - name: {{ .Chart.Name }}
