@@ -16,7 +16,7 @@ global:
   imagePullSecrets: []
   ## @param global.storageClass Global StorageClass for Persistent Volume(s)
   ##
-  storageClass: "standard"
+  storageClass: "gp2"
   postgresql:
     ## @param global.postgresql.auth.postgresPassword Password for the "postgres" admin user (overrides `auth.postgresPassword`)
     ## @param global.postgresql.auth.username Name for a custom user to create (overrides `auth.username`)
@@ -645,7 +645,7 @@ primary:
   persistence:
     ## @param primary.persistence.enabled Enable PostgreSQL Primary data persistence using PVC
     ##
-    enabled: false
+    enabled: true
     ## @param primary.persistence.existingClaim Name of an existing PVC to use
     ##
     existingClaim: ""
@@ -664,14 +664,14 @@ primary:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "nfs-client"
+    storageClass: ""
     ## @param primary.persistence.accessModes PVC Access Mode for PostgreSQL volume
     ##
     accessModes:
       - ReadWriteOnce
     ## @param primary.persistence.size PVC Storage Request for PostgreSQL volume
     ##
-    size: 30Gi
+    size: 200Gi
     ## @param primary.persistence.annotations Annotations for the PVC
     ##
     annotations: {}

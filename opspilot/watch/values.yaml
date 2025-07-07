@@ -6,7 +6,7 @@ image:
   repository: docker.io/song1206/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "20250703-main-mac"
+  tag: "v20250701-1-main"
 
 imagePullSecrets: []
 nameOverride: "watch"
@@ -71,7 +71,7 @@ affinity: {}
 
 configmapReload:
   image:
-    repository: docker.io/bitnami/configmap-reload
+    repository: public.ecr.aws/bitnami/configmap-reload
     tag: 0.10.0
     pullPolicy: IfNotPresent
   resources:
@@ -107,12 +107,12 @@ server:
       value: Asia/Shanghai
 
 exporter:
-  resourcesPreset: "medium"
+  resourcesPreset: "small"
   resources: {}
   replicaCount: 1
   extraEnvVars: {}
 
 cronjob:
-  resourcesPreset: "small"
+  resourcesPreset: "medium"
   resources: {}
   extraEnvVars: {}

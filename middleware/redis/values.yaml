@@ -19,7 +19,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "gp3"
   redis:
     password: "Devops2019"
 
@@ -448,14 +448,14 @@ master:
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner
     ##
-    storageClass: "alicloud-disk-ssd"
+    storageClass: "gp3"
     ## @param master.persistence.accessModes Persistent Volume access modes
     ##
     accessModes:
       - ReadWriteOnce
     ## @param master.persistence.size Persistent Volume size
     ##
-    size: 30Gi
+    size: 50Gi
     ## @param master.persistence.annotations Additional custom annotations for the PVC
     ##
     annotations: {}

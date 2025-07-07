@@ -20,7 +20,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "local-path"
+  storageClass: "gp3"
   elasticsearch:
     service:
       name: elasticsearch
@@ -202,7 +202,7 @@ image:
   registry: docker.io
   repository: bitnami/elasticsearch
   tag: 8.11.1-debian-11-r0
-  digest: "sha256:cf703e8d47facb0b53e5671f2429509b40d711b922da3226ed55c6bf69616b5a"
+  digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -536,7 +536,7 @@ master:
   ## Example:
   ##   heapSize: 128m
   ##
-#  heapSize: 2048m
+  #  heapSize: 2048m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param master.podSecurityContext.enabled Enabled master-elegible pods' Security Context
@@ -732,7 +732,7 @@ master:
   persistence:
     ## @param master.persistence.enabled Enable persistence using a `PersistentVolumeClaim`
     ##
-    enabled: false
+    enabled: true
     ## @param master.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -740,7 +740,7 @@ master:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: ""
+    storageClass: "gp3"
     ## @param master.persistence.existingClaim Existing Persistent Volume Claim
     ## then accept the value as an existing Persistent Volume Claim to which
     ## the container should be bound
@@ -1040,7 +1040,7 @@ data:
   persistence:
     ## @param data.persistence.enabled Enable persistence using a `PersistentVolumeClaim`
     ##
-    enabled: false
+    enabled: true
     ## @param data.persistence.storageClass Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -1048,7 +1048,7 @@ data:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: ""
+    storageClass: "gp3"
     ## @param data.persistence.existingClaim Existing Persistent Volume Claim
     ## then accept the value as an existing Persistent Volume Claim to which
     ## the container should be bound

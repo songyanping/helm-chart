@@ -33,7 +33,7 @@ oap:
   name: oap
   image:
     repository: apache/skywalking-oap-server
-    tag: 10.0.1@sha256:aef8db6922c3a30cf703a948642b32bb26b6ec14a241fd55f0ce78d7b6fbcf5d  # Must be set explicitly
+    tag: 10.0.1  # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: elasticsearch
   ports:
@@ -51,7 +51,7 @@ oap:
   nodeSelector: {}
   tolerations: []
   resources: {}
-  resourcesPreset: small
+  resourcesPreset: medium
   livenessProbe:
     tcpSocket:
       port: 12800
@@ -233,17 +233,16 @@ ui:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
-  resourcesPreset: small
+  resourcesPreset: medium
   resources: {}
   ingress:
     enabled: true
-    annotations: {}
-
-      # kubernetes.io/ingress.class: nginx
+    annotations:
+       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
-      - skywalking-ui.simple.com
+      - skywalking-tw.intranet.local
     # - skywalking.local
     tls: []
     #  - secretName: skywalking-tls
@@ -371,7 +370,7 @@ elasticsearch:
 
   volumeClaimTemplate:
     accessModes: [ "ReadWriteOnce" ]
-    storageClassName: "alicloud-disk-ssd-retain"
+    storageClassName: "gp3"
     resources:
       requests:
         storage: 100Gi
