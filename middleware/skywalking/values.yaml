@@ -230,13 +230,13 @@ ui:
   resourcesPreset: small
   resources: {}
   ingress:
-    enabled: false
+    enabled: true
     annotations:
-       kubernetes.io/ingress.class: nginx
+      kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
-      - skywalking-ui.zroid.xyz
+      - skywalking-idc.intranet.local
     # - skywalking.local
     tls: []
     #  - secretName: skywalking-tls
