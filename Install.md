@@ -43,6 +43,18 @@ helm install console opspilot/watch --version 1.0.0-arm --namespace opspilot --s
 ```
 
 #### 3.Opspilot构建镜像
+```shell
+#cd 项目代码下 
+docker build -t docker.io/song1206/ops-watch:20250708-main-arm -f Dockerfile-harbor-arm .
+docker build -t docker.io/song1206/ops-lookup:20250708-main-arm -f Dockerfile-harbor-arm .
+docker build -t docker.io/song1206/ops-console:20250708-main-arm -f Dockerfile-arm .
+docker build -t docker.io/song1206/ops-aigc:20250708-main-arm -f Dockerfile-arm .
+
+docker push docker.io/song1206/ops-watch:20250708-main-arm
+docker push docker.io/song1206/ops-lookup:20250708-main-arm
+docker push docker.io/song1206/ops-console:20250708-main-arm
+docker push docker.io/song1206/ops-aigc:20250708-main-arm
+```
 
 #### 4.脚本部署Opspilot
 ```shell
@@ -75,6 +87,11 @@ helm install aigc opspilot/aigc --version 1.0.0-arm --namespace opspilot
 ```
 
 #### 5.opsilot服务项目初始化配置
+1. 登陆http://opspilot.simple.com/login     admin/#EDC4rfv
+2. 添加数据源pd super-app数据源 示例：
+OAP Server地址: http://10.88.252.183:8080/graphql
+Elasticsearch地址: http://10.88.252.68:80
+分组:pd@super-app
 
 
 #### 6.扩容示例
