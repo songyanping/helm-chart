@@ -104,8 +104,8 @@ These presets are for basic testing and not meant to be used in production
    )
   "large" (dict
       "replicaCount" 8
-      "requests" (dict "cpu" "2.0" "memory" "32Gi")
-      "limits" (dict "cpu" "2.0" "memory" "32Gi")
+      "requests" (dict "cpu" "1" "memory" "16Gi")
+      "limits" (dict "cpu" "1" "memory" "16Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
