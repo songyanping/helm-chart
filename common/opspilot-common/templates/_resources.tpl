@@ -62,31 +62,6 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 {{- end -}}
 
-{{- define "skywalking.oap.resources.preset" -}}
-{{/* cpu:mem=1:8 */}}
-{{- $presets := dict
-  "small" (dict
-      "replicaCount" 2
-      "requests" (dict "cpu" "1.0" "memory" "8Gi")
-      "limits" (dict "cpu" "1.0" "memory" "8Gi")
-   )
-  "medium" (dict
-      "replicaCount" 4
-      "requests" (dict "cpu" "1.0" "memory" "16Gi")
-      "limits" (dict "cpu" "1.0" "memory" "16Gi")
-   )
-  "large" (dict
-      "replicaCount" 8
-      "requests" (dict "cpu" "2.0" "memory" "32Gi")
-      "limits" (dict "cpu" "2.0" "memory" "32Gi")
-   )
- }}
-{{- if hasKey $presets .type -}}
-{{- index $presets .type | toYaml -}}
-{{- else -}}
-{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
-{{- end -}}
-{{- end -}}
 
 {{- define "skywalking.ui.resources.preset" -}}
 {{/* the same resources for different sacle */}}
@@ -105,6 +80,32 @@ These presets are for basic testing and not meant to be used in production
       "replicaCount" 1
       "requests" (dict "cpu" "200m" "memory" "512Mi")
       "limits" (dict "cpu" "200m" "memory" "512Mi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "skywalking.oap.resources.preset" -}}
+{{/* cpu:mem=1:8 */}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 2
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
+   )
+  "medium" (dict
+      "replicaCount" 4
+      "requests" (dict "cpu" "1.0" "memory" "8Gi")
+      "limits" (dict "cpu" "1.0" "memory" "8Gi")
+   )
+  "large" (dict
+      "replicaCount" 8
+      "requests" (dict "cpu" "2.0" "memory" "32Gi")
+      "limits" (dict "cpu" "2.0" "memory" "32Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
