@@ -40,7 +40,7 @@ helm package watch/  --dependency-update=true
 helm package console/ --dependency-update=true
 helm package aigc/ --dependency-update=true
 
-helm package common-library/ --dependency-update=true
+helm package opspilot-common/ --dependency-update=true
 ```
 2. 创建index.html
 ```shell
