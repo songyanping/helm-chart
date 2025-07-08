@@ -74,7 +74,7 @@ if [ $? -ne 0 ]; then
 fi
 
 
-helm install lookout opspilot/aigc --version $VERSION --namespace opspilot
+helm install aigc opspilot/aigc --version $VERSION --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 aigc 失败"
     exit 1
