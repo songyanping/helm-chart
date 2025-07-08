@@ -74,6 +74,12 @@ if [ $? -ne 0 ]; then
 fi
 
 
+helm install lookout opspilot/aigc --version $VERSION --namespace opspilot
+if [ $? -ne 0 ]; then
+    echo "安装 aigc 失败"
+    exit 1
+fi
+
 helm install prometheus middleware/prometheus --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 prometheus 失败"
@@ -82,3 +88,5 @@ fi
 
 
 echo "所有组件安装完成"
+
+kubectl get pod -n opspilot

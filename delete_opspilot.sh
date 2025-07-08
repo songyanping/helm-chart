@@ -19,6 +19,11 @@ if [ $? -ne 0 ]; then
     echo "卸载 lookout 失败"
 fi
 
+helm uninstall aigc -n $NAMESPACE
+if [ $? -ne 0 ]; then
+    echo "卸载 aigc 失败"
+fi
+
 # 卸载中间件服务
 helm uninstall elasticsearch -n $NAMESPACE
 if [ $? -ne 0 ]; then

@@ -91,6 +91,8 @@ oap:
     SW_TELEMETRY: prometheus
     SW_OTEL_RECEIVER: default
     SW_OTEL_RECEIVER_ENABLED_OTEL_METRICS_RULES: oap
+    SW_STORAGE_ES_INDEX_SHARDS_NUMBER: 2
+    SW_STORAGE_ES_INDEX_REPLICAS_NUMBER: 1
 
     # more env, please refer to https://hub.docker.com/r/apache/skywalking-oap-server
     # or https://github.com/apache/skywalking-docker/blob/master/6/6.4/oap/README.md#sw_telemetry
