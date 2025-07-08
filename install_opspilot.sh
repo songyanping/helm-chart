@@ -24,7 +24,7 @@ while true; do
         break  # 退出循环，执行下一步
     else
         echo "ES 当前状态：$current_status"
-        sleep 30  # 等待15秒后再次检查
+        sleep 180  # 等待15秒后再次检查
     fi
 done
 
