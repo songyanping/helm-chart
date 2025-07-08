@@ -1101,10 +1101,7 @@ server:
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
   resourcesPreset: small
-  resources:
-    requests:
-      cpu: 1000m
-      memory: 1024Mi
+  resources: {}
 
   # Required for use in managed kubernetes clusters (such as AWS EKS) with custom CNI (such as calico),
   # because control-plane managed by AWS cannot communicate with pods' IP CIDR and admission webhooks are not working
