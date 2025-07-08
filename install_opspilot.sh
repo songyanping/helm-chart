@@ -16,7 +16,18 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-sleep 60
+while true; do
+    current_status=$(get_pod_status)
+    # 检查状态是否为Running
+    if [ "$current_status" == "Running" ]; then
+        echo -e "ES Pod已启动 状态：$current_status"
+        break  # 退出循环，执行下一步
+    else
+        echo -e "ES 当前状态：$current_status"
+        sleep 30  # 等待15秒后再次检查
+    fi
+done
+
 
 helm install kibana middleware/kibana --namespace opspilot
 if [ $? -ne 0 ]; then
@@ -27,12 +38,6 @@ fi
 helm install redis middleware/redis --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 redis 失败"
-    exit 1
-fi
-
-helm install prometheus middleware/prometheus --namespace opspilot
-if [ $? -ne 0 ]; then
-    echo "安装 prometheus 失败"
     exit 1
 fi
 
@@ -49,9 +54,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-
 # 安装 Opspilot 平台组件
-helm install watch opspilot/watch --version $VERSION --namespace opspilot --set watch.resourcesPreset=medium
+helm install watch opspilot/watch --version $VERSION --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 watch 失败"
     exit 1
@@ -69,6 +73,18 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-kubectl -n opspilot get pod
+
+helm install prometheus middleware/prometheus --namespace opspilot
+if [ $? -ne 0 ]; then
+    echo "安装 prometheus 失败"
+    exit 1
+fi
+
 
 echo "所有组件安装完成"
+
+
+get_pod_status() {
+    status=$(kubectl get pod elasticsearch-ingest-0 -n opspilot -o jsonpath='{.status.phase}' 2>/dev/null)
+    echo "$status"
+}
