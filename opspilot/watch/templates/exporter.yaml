@@ -57,11 +57,11 @@ spec:
             - name: TZ
               value: Asia/Shanghai
             - name: MYSQL_SLOWSQL_STANDARD
-              value: "30"
+              value: "10000"
             - name: REDIS_SLOWSQL_STANDARD
               value: "10"
             - name: ES_SLOWSQL_STANDARD
-              value: "100"
+              value: "10"
           lifecycle:
             preStop:
               exec:
