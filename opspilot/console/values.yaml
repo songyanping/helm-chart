@@ -8,7 +8,7 @@ image:
   repository: docker.io/song1206/ops-console
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v202507100454-1de86ab9-main-tw"
+  tag: "v202507141025-29236adc-main-tw"
 
 imagePullSecrets: []
 nameOverride: "console-web"
