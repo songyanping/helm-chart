@@ -36,6 +36,59 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 {{- end -}}
 
+
+{{- define "common.general.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "100m" "memory" "512Mi")
+      "limits" (dict "cpu" "200m" "memory" "1024Mi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "1024Mi")
+      "limits" (dict "cpu" "500m" "memory" "2048Mi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "500m" "memory" "2048Mi")
+      "limits" (dict "cpu" "1" "memory" "4096Mi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "common.memory.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "100m" "memory" "1024Mi")
+      "limits" (dict "cpu" "200m" "memory" "2048Mi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "2048Mi")
+      "limits" (dict "cpu" "500m" "memory" "4096Mi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "500m" "memory" "4096Mi")
+      "limits" (dict "cpu" "1" "memory" "8192Mi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "opspilot.resources.preset" -}}
 {{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
 {{- $presets := dict
