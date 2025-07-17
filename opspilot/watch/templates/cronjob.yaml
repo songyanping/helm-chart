@@ -40,6 +40,9 @@ spec:
                   value: "3"
                 - name: TZ
                   value: Asia/Shanghai
+                {{- if .Values.cronjob.extraEnvVars }}
+                {{- include "opspilot.tplvalues.render" (dict "value" .Values.cronjob.extraEnvVars "context" $) | nindent 12 }}
+                {{- end }}
               {{- if .Values.cronjob.resources }}
               resources:{{- toYaml .Values.cronjob.resources | nindent 16 }}
               {{- else if ne .Values.cronjob.resourcesPreset "none"}}

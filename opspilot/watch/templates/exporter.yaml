@@ -104,6 +104,9 @@ spec:
               value: "55"
             - name: TZ
               value: Asia/Shanghai
+            {{- if .Values.exporter.extraEnvVars }}
+            {{- include "opspilot.tplvalues.render" (dict "value" .Values.exporter.extraEnvVars "context" $) | nindent 12 }}
+            {{- end }}
           lifecycle:
             preStop:
               exec:
