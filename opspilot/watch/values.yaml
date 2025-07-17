@@ -6,7 +6,7 @@ image:
   repository: docker.io/song1206/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "20250708-main-arm"
+  tag: "20250716-dev-arm"
 
 imagePullSecrets: []
 nameOverride: "watch"
@@ -105,14 +105,28 @@ server:
       value: "8080"
     - name: TZ
       value: Asia/Shanghai
+    - name: SW_AGENT_NAME
+      value: "ft2@opspilot::watch-service"
+    - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+      value: "10.158.215.92:80"
+
 
 exporter:
-  resourcesPreset: "medium"
+  resourcesPreset: "small"
   resources: {}
   replicaCount: 1
-  extraEnvVars: {}
+  extraEnvVars:
+    - name: SW_AGENT_NAME
+      value: "ft2@opspilot::watch-exporter"
+    - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+      value: "10.158.215.92:80"
+
 
 cronjob:
   resourcesPreset: "small"
   resources: {}
-  extraEnvVars: {}
+  extraEnvVars:
+    - name: SW_AGENT_NAME
+      value: "ft2@opspilot::watch-cronjob"
+    - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+      value: "10.158.215.92:80"
