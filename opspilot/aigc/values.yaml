@@ -8,7 +8,7 @@ image:
   repository: docker.io/song1206/ops-aigc
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250714-main"
+  tag: "v20250716-main"
 
 imagePullSecrets: []
 nameOverride: "aigc-service"
