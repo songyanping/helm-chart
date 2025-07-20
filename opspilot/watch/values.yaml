@@ -3,12 +3,13 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: docker.io/song1206/ops-watch
+  repository: ccr.ccs.tencentyun.com/zroid/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250716-main"
+  tag: "v20250718-main"
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: "tencentyun-image-secret"
 nameOverride: "watch"
 fullnameOverride: "watch"
 

@@ -5,12 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/song1206/ops-console
+  repository: ccr.ccs.tencentyun.com/zroid/ops-console
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v202507160822-2f9af5bc-main-tw"
+  tag: "v20250718-main"
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: "tencentyun-image-secret"
 nameOverride: "console-web"
 fullnameOverride: "console-web"
 
@@ -48,7 +49,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: opspilot-tw.intranet.local
+    - host: opspilot.lianwei.com
       paths:
         - path: /
           pathType: ImplementationSpecific

@@ -71,7 +71,7 @@ diagnosticMode:
 ## @param image.debug Enable %%MAIN_CONTAINER%% image debug mode
 ##
 image:
-  registry: docker.io
+  registry: docker.m.daocloud.io
   repository: bitnami/kibana
   tag: 8.8.2-debian-11-r4
   digest: ""
@@ -398,7 +398,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress resource. If specified as "*" no host rule is configured
   ##
-  hostname: kibana-tw.intranet.local
+  hostname: kibana.lianwei.com
   ## @param ingress.path The Path to Kibana. You may need to set this to '/*' in order to use this with ALB ingress controllers.
   ##
   path: /

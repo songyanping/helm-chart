@@ -26,13 +26,13 @@ serviceAccounts:
 imagePullSecrets: []
 
 initContainer:
-  image: busybox
+  image: docker.m.daocloud.io/busybox
   tag: '1.30'
 
 oap:
   name: oap
   image:
-    repository: apache/skywalking-oap-server
+    repository: docker.m.daocloud.io/apache/skywalking-oap-server
     tag: 10.0.1  # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: elasticsearch
@@ -51,7 +51,7 @@ oap:
   nodeSelector: {}
   tolerations: []
   resources: {}
-  resourcesPreset: medium
+  resourcesPreset: small
   livenessProbe:
     tcpSocket:
       port: 12800
@@ -225,7 +225,7 @@ ui:
   name: ui
   replicas: 1
   image:
-    repository: apache/skywalking-ui
+    repository: docker.m.daocloud.io/apache/skywalking-ui
     tag: 10.0.1  # Must be set explicitly
     pullPolicy: IfNotPresent
   # podAnnotations:
@@ -242,7 +242,7 @@ ui:
       # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
-      - skywalking-tw.intranet.local
+      - skywalking.lianwei.com
     # - skywalking.local
     tls: []
     #  - secretName: skywalking-tls

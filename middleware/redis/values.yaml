@@ -89,7 +89,7 @@ diagnosticMode:
 ## @param image.debug Enable image debug mode
 ##
 image:
-  registry: docker.io
+  registry: docker.m.daocloud.io
   repository: bitnami/redis
   tag: 7.0.11-debian-11-r20
   digest: ""

@@ -4,7 +4,8 @@ rbac:
 podSecurityPolicy:
   enabled: false
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: "tencentyun-image-secret"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
 ##
@@ -46,7 +47,7 @@ alertmanager:
   ## alertmanager container image
   ##
   image:
-    repository: docker.io/bitnami/alertmanager
+    repository: docker.m.daocloud.io/bitnami/alertmanager
     tag: 0.21.0
     pullPolicy: IfNotPresent
 
@@ -404,7 +405,7 @@ configmapReload:
     ## configmap-reload container image
     ##
     image:
-      repository: docker.io/bitnami/configmap-reload
+      repository: docker.m.daocloud.io/bitnami/configmap-reload
       tag: 0.11.0-debian-11-r4
       pullPolicy: IfNotPresent
 
@@ -446,7 +447,7 @@ configmapReload:
     ## configmap-reload container image
     ##
     image:
-      repository: docker.io/bitnami/configmap-reload
+      repository: docker.m.daocloud.io/bitnami/configmap-reload
       tag: 0.11.0-debian-11-r4
       pullPolicy: IfNotPresent
 
@@ -673,7 +674,7 @@ server:
   #        image: nginx
   sidecarContainers:
     rules-manager:
-      image: docker.io/song1206/ops-lookout:v20250627-main
+      image: ccr.ccs.tencentyun.com/zroid/ops-lookout:v20250718-main
       ports:
         - containerPort: 8080
           protocol: TCP
@@ -702,7 +703,7 @@ server:
   ## Prometheus server container image
   ##
   image:
-    repository: docker.io/bitnami/prometheus
+    repository: docker.m.daocloud.io/bitnami/prometheus
     tag: 2.26.0-debian-10-r33
     pullPolicy: IfNotPresent
 
@@ -867,7 +868,7 @@ server:
     ## Must be provided if Ingress is enabled
     ##
     hosts:
-      - prometheus-tw.intranet.local
+      - prometheus.lianwei.com
     #   - domain.com/prometheus
 
     path: /
@@ -971,7 +972,7 @@ server:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "gp3"
+    storageClass: "alibabacloud-cnfs-nas"
 
     ## Prometheus server data Persistent Volume Binding Mode
     ## If defined, volumeBindingMode: <volumeBindingMode>

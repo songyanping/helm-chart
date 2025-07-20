@@ -20,7 +20,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "gp3"
+  storageClass: "alibabacloud-cnfs-nas"
   elasticsearch:
     service:
       name: elasticsearch
@@ -199,7 +199,7 @@ useIstioLabels: true
 ## @param image.debug Enable Elasticsearch image debug mode
 ##
 image:
-  registry: docker.io
+  registry: docker.m.daocloud.io
   repository: bitnami/elasticsearch
   tag: 8.11.1-debian-11-r0
   digest: ""

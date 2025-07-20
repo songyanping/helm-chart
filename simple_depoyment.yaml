@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-simple
+  namespace: opspilot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-simple
+  template:
+    metadata:
+      labels:
+        app: springboot-simple
+    spec:
+      imagePullSecrets:
+        - name: tencentyun-image-secret
+      containers:
+        - name: springboot-simple
+          image: ccr.ccs.tencentyun.com/zroid/springboot-simple:v20250718
+          env:
+            - name: "JAVA_AGENT"
+              value: "-Djava.security.egd=file:/dev/./urandom  -javaagent:/app/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=dev@tpa::springboot-simple -Dskywalking.collector.backend_service=skywalking-oap:11800 "
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+#          livenessProbe:
+#            httpGet:
+#              path: /api/health
+#              port: 8080
+#            initialDelaySeconds: 120
+#            periodSeconds: 10
+#          readinessProbe:
+#            httpGet:
+#              path: /api/health
+#              port: 8080
+#            initialDelaySeconds: 30
+#            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-simple
+  namespace: opspilot
+spec:
+  selector:
+    app: springboot-simple
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
