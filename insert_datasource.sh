@@ -18,10 +18,10 @@ JSON_DATA='{
   "datasource": {
     "apm": {
       "type": "skywalking",
-      "enable": false,
+      "enable": true,
       "app": "",
       "env": "",
-      "endpoint": "http://skywalking-oap.sre-base.svc.cluster.local:12800/graphql",
+      "endpoint": "http://10.158.215.92:12800/graphql",
       "endpoint2": "http://10.158.215.42:9200",
       "group": ["ft2@opspilot"],
       "mode": "full",
@@ -33,10 +33,10 @@ JSON_DATA='{
     },
     "frontend": {
       "type": "skywalking",
-      "enable": false,
+      "enable": true,
       "app": "",
       "env": "",
-      "endpoint": "http://skywalking-oap.sre-base.svc.cluster.local:12800/graphql",
+      "endpoint": "http://http://10.158.215.92:12800/graphql",
       "endpoint2": "http://10.158.215.42:9200",
       "group": ["ft2"],
       "mode": "full",

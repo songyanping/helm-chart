@@ -233,18 +233,18 @@ These presets are for basic testing and not meant to be used in production
       "replicaCount" 1
       "heapSize" "1024m"
       "requests" (dict "cpu" "100m" "memory" "2Gi")
-      "limits" (dict "cpu" "100m" "memory" "2Gi")
+      "limits" (dict "cpu" "400m" "memory" "2Gi")
    )
   "medium" (dict
       "replicaCount" 2
       "heapSize" "1536m"
-      "requests" (dict "cpu" "300m" "memory" "3Gi")
-      "limits" (dict "cpu" "300m" "memory" "3Gi")
+      "requests" (dict "cpu" "200m" "memory" "3Gi")
+      "limits" (dict "cpu" "400m" "memory" "3Gi")
    )
   "large" (dict
       "replicaCount" 4
       "heapSize" "2048m"
-      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "requests" (dict "cpu" "200m" "memory" "4Gi")
       "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
  }}
