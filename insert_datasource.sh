@@ -39,7 +39,7 @@ JSON_DATA='{
       "env": "",
       "endpoint": "http://10.158.215.92:12800/graphql",
       "endpoint2": "http://10.158.215.42:9200",
-      "group": ["ft2"],
+      "group": ["ft2@opspilot"],
       "mode": "full",
       "traceAnalysis": true,
       "ak": "",
