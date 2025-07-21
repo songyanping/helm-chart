@@ -1,7 +1,5 @@
 #!/bin/bash
 
-nohup kubectl -n opspilot port-forward service/elasticsearch 9200:9200 > output.log 2>&1 &
-
 # Elasticsearch 地址和索引名称
 ES_URL="http://localhost:9200"
 INDEX_NAME="manage_zone"
