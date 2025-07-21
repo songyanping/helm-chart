@@ -13,7 +13,7 @@ JSON_DATA='{
   "name": "Opspilot Ft2",
   "app": "opspilot",
   "env": "ft2",
-  "delayedMin": 0,
+  "delayedMin": 10,
   "serviceBlackList": [],
   "apiBlackList": [],
   "exceptionBlackList": [],
