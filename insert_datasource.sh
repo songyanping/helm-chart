@@ -1,8 +1,11 @@
 #!/bin/bash
 
+nohup kubectl -n opspilot port-forward service/elasticsearch 9200:9200 > output.log 2>&1 &
+
 # Elasticsearch 地址和索引名称
 ES_URL="http://localhost:9200"
 INDEX_NAME="manage_zone"
+
 
 # JSON 数据
 JSON_DATA='{
@@ -36,7 +39,7 @@ JSON_DATA='{
       "enable": true,
       "app": "",
       "env": "",
-      "endpoint": "http://http://10.158.215.92:12800/graphql",
+      "endpoint": "http://10.158.215.92:12800/graphql",
       "endpoint2": "http://10.158.215.42:9200",
       "group": ["ft2"],
       "mode": "full",
