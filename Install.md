@@ -103,3 +103,6 @@ helm upgrade elasticsearch middleware/elasticsearch --namespace skywalking --set
 // 单独修改某个具体指标
 helm upgrade elasticsearch middleware/elasticsearch --namespace skywalking --set master.resources.limits.cpu=2000m
 ```
+
+#### 7.Opspilot of Opspilot
+1. watch 分支: dev-20250715 才包括skywalking go agent
