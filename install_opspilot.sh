@@ -90,3 +90,5 @@ fi
 echo "所有组件安装完成"
 
 kubectl get pod -n opspilot
+
+kubectl -n opspilot port-forward service/elasticsearch 9200:9200

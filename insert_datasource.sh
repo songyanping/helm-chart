@@ -11,7 +11,7 @@ JSON_DATA='{
   "name": "Opspilot Ft2",
   "app": "opspilot",
   "env": "ft2",
-  "delayedMin": 10,
+  "delayedMin": 0,
   "serviceBlackList": [],
   "apiBlackList": [],
   "exceptionBlackList": [],
@@ -42,6 +42,19 @@ JSON_DATA='{
       "group": ["ft2@opspilot"],
       "mode": "full",
       "traceAnalysis": true,
+      "ak": "",
+      "sk": ""
+    },
+    "host": {
+      "type": "prometheus",
+      "enable": true,
+      "app": "",
+      "env": "",
+      "endpoint": "http://prometheus-server:80",
+      "endpoint2": "",
+      "group": ["ft2"],
+      "mode": "full",
+      "traceAnalysis": false,
       "ak": "",
       "sk": ""
     }
