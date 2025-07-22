@@ -24,7 +24,7 @@ while true; do
         break  # 退出循环，执行下一步
     else
         echo "ES 当前状态：$current_status"
-        sleep 180  # 等待15秒后再次检查
+        sleep 120  # 等待120秒后再次检查
     fi
 done
 
@@ -86,9 +86,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-
+sleep 30
 echo "所有组件安装完成"
 
 kubectl get pod -n opspilot
 
+echo "Forward ES port"
 kubectl -n opspilot port-forward service/elasticsearch 9200:9200
