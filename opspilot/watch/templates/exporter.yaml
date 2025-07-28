@@ -1,5 +1,5 @@
 {{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
-{{- $preset := include "opspilot.resources.preset" (dict "type" .Values.exporter.resourcesPreset) | fromYaml -}}
+{{- $preset := include "common.memory.resources.preset" (dict "type" .Values.exporter.resourcesPreset) | fromYaml -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

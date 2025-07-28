@@ -112,7 +112,7 @@ server:
 
 
 exporter:
-  resourcesPreset: "small"
+  resourcesPreset: "large"
   resources: {}
   replicaCount: 1
   extraEnvVars:
