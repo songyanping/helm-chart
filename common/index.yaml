@@ -6,10 +6,36 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-07-28T17:06:14.222057593+08:00"
+    created: "2025-07-29T12:05:22.07854199+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
-    digest: 345bfbd5fad741f0b1c38a6cd65fb88f9a6d7a855bded949cb0f4c4cbda17c69
+    digest: 83d48e205dfe625ac466724bf7b074af4bdf3d0892f295072eec1a0aa2293c36
+    home: https://bitnami.com
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - opspilot-common
+    - helper
+    - template
+    - function
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://songyanping.github.io/helm-chart
+    name: opspilot-common
+    sources:
+    - https://songyanping.github.io/helm-chart/common/opspilot-common
+    type: library
+    urls:
+    - https://songyanping.github.io/helm-chart/common/opspilot-common-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-07-29T12:05:22.072208317+08:00"
+    description: A Library Helm Chart for grouping common logic between bitnami charts.
+      This chart is not deployable by itself.
+    digest: 07c9e2e2e6617bba9770fbb047358a7a96981072f59e1b5214292d0b608fe351
     home: https://bitnami.com
     icon: https://bitnami.com/downloads/logos/bitnami-mark.png
     keywords:
@@ -32,7 +58,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-07-28T17:06:14.214513263+08:00"
+    created: "2025-07-29T12:05:22.066399469+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: 4ebbbf2fe8bbef9c4d1c9d76aa9fb6cdc12dae9db439e534dd09069d2c4c0757
@@ -53,4 +79,4 @@ entries:
     urls:
     - https://songyanping.github.io/helm-chart/common/opspilot-common-1.0.0.tgz
     version: 1.0.0
-generated: "2025-07-28T17:06:14.197946353+08:00"
+generated: "2025-07-29T12:05:22.05946049+08:00"

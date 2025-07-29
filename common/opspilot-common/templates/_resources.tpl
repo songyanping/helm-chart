@@ -68,18 +68,18 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "200m" "memory" "2048Mi")
-      "limits" (dict "cpu" "200m" "memory" "2048Mi")
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "medium" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "500m" "memory" "4096Mi")
-      "limits" (dict "cpu" "500m" "memory" "4096Mi")
+      "requests" (dict "cpu" "1" "memory" "8Gi")
+      "limits" (dict "cpu" "1" "memory" "8Gi")
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "1" "memory" "8192Mi")
-      "limits" (dict "cpu" "1" "memory" "8192Mi")
+      "requests" (dict "cpu" "2" "memory" "12Gi")
+      "limits" (dict "cpu" "2" "memory" "12Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -94,18 +94,18 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "250m" "memory" "1024Mi")
-      "limits" (dict "cpu" "250m" "memory" "1024Mi")
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "500m" "memory" "2048Mi")
-      "limits" (dict "cpu" "500m" "memory" "2048Mi")
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500" "memory" "4Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -126,13 +126,13 @@ These presets are for basic testing and not meant to be used in production
    )
   "medium" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "200m" "memory" "512Mi")
-      "limits" (dict "cpu" "200m" "memory" "512Mi")
+      "requests" (dict "cpu" "200m" "memory" "1024Mi")
+      "limits" (dict "cpu" "200m" "memory" "1024Mi")
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "200m" "memory" "512Mi")
-      "limits" (dict "cpu" "200m" "memory" "512Mi")
+      "requests" (dict "cpu" "200m" "memory" "1024Mi")
+      "limits" (dict "cpu" "200m" "memory" "1024Mi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -146,7 +146,7 @@ These presets are for basic testing and not meant to be used in production
 {{/* cpu:mem=1:8 */}}
 {{- $presets := dict
   "small" (dict
-      "replicaCount" 2
+      "replicaCount" 1
       "requests" (dict "cpu" "500m" "memory" "4Gi")
       "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
@@ -157,8 +157,8 @@ These presets are for basic testing and not meant to be used in production
    )
   "large" (dict
       "replicaCount" 8
-      "requests" (dict "cpu" "1" "memory" "16Gi")
-      "limits" (dict "cpu" "1" "memory" "16Gi")
+      "requests" (dict "cpu" "1500m" "memory" "12Gi")
+      "limits" (dict "cpu" "1500m" "memory" "12Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -172,7 +172,7 @@ These presets are for basic testing and not meant to be used in production
 {{/* cpu:jvm-mem:lucene-mem=1:8:8 */}}
 {{- $presets := dict
   "small" (dict
-      "replicaCount" 2
+      "replicaCount" 1
       "heapSize" "4096m"
       "requests" (dict "cpu" "500m" "memory" "8Gi")
       "limits" (dict "cpu" "500m" "memory" "8Gi")
@@ -202,9 +202,9 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "heapSize" "512m"
-      "requests" (dict "cpu" "200m" "memory" "1Gi")
-      "limits" (dict "cpu" "200m" "memory" "1Gi")
+      "heapSize" "1536m"
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
       "replicaCount" 2
@@ -214,9 +214,9 @@ These presets are for basic testing and not meant to be used in production
    )
   "large" (dict
       "replicaCount" 4
-      "heapSize" "4096m"
-      "requests" (dict "cpu" "1.0" "memory" "8Gi")
-      "limits" (dict "cpu" "1.0" "memory" "8Gi")
+      "heapSize" "2048m"
+      "requests" (dict "cpu" "1.0" "memory" "4Gi")
+      "limits" (dict "cpu" "1.0" "memory" "4Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -232,20 +232,20 @@ These presets are for basic testing and not meant to be used in production
   "small" (dict
       "replicaCount" 1
       "heapSize" "1024m"
-      "requests" (dict "cpu" "100m" "memory" "2Gi")
-      "limits" (dict "cpu" "400m" "memory" "2Gi")
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
-      "replicaCount" 2
-      "heapSize" "1536m"
-      "requests" (dict "cpu" "200m" "memory" "3Gi")
-      "limits" (dict "cpu" "400m" "memory" "3Gi")
+      "replicaCount" 1
+      "heapSize" "2048m"
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "large" (dict
-      "replicaCount" 4
+      "replicaCount" 2
       "heapSize" "2048m"
-      "requests" (dict "cpu" "200m" "memory" "4Gi")
-      "limits" (dict "cpu" "500m" "memory" "4Gi")
+      "requests" (dict "cpu" "1000m" "memory" "4Gi")
+      "limits" (dict "cpu" "1000m" "memory" "4Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -260,21 +260,21 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "heapSize" "512m"
-      "requests" (dict "cpu" "200m" "memory" "1Gi")
-      "limits" (dict "cpu" "200m" "memory" "1Gi")
+      "heapSize" "1536m"
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
       "replicaCount" 2
       "heapSize" "1024m"
-      "requests" (dict "cpu" "300m" "memory" "2Gi")
-      "limits" (dict "cpu" "300m" "memory" "2Gi")
-   )
-  "large" (dict
-      "replicaCount" 3
-      "heapSize" "2048m"
       "requests" (dict "cpu" "500m" "memory" "4Gi")
       "limits" (dict "cpu" "500m" "memory" "4Gi")
+   )
+  "large" (dict
+      "replicaCount" 4
+      "heapSize" "2048m"
+      "requests" (dict "cpu" "1000m" "memory" "4Gi")
+      "limits" (dict "cpu" "1000m" "memory" "4Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
