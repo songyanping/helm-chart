@@ -1,5 +1,5 @@
 {{/* 加载资源预设（传递type参数为.Values.resourcesPreset） */}}
-{{- $preset := include "opspilot.resources.preset" (dict "type" .Values.exporter.resourcesPreset) | fromYaml -}}
+{{- $preset := include "common.memory.resources.preset" (dict "type" .Values.exporter.resourcesPreset) | fromYaml -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,12 +56,6 @@ spec:
               value: "55"
             - name: TZ
               value: Asia/Shanghai
-            - name: MYSQL_SLOWSQL_STANDARD
-              value: "100"
-            - name: REDIS_SLOWSQL_STANDARD
-              value: "10"
-            - name: ES_SLOWSQL_STANDARD
-              value: "100"
           lifecycle:
             preStop:
               exec:
