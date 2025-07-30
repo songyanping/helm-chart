@@ -50,8 +50,6 @@ spec:
               value: exporter
             - name: LOGLEVEL
               value: info
-            - name: SLOWSQL_STANDARD
-              value: "30"
             - name: TIMEOUT
               value: "55"
             - name: TZ

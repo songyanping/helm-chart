@@ -40,11 +40,8 @@ helm package watch/  --dependency-update=true
 helm package console/ --dependency-update=true
 helm package aigc/ --dependency-update=true
 
-helm package common-library/ --dependency-update=true
 ```
 2. 创建index.html
 ```shell
 helm repo index --url https://songyanping.github.io/helm-chart/opspilot .
-helm repo index --url https://songyanping.github.io/helm-chart/middleware .
-helm repo index --url https://songyanping.github.io/helm-chart/common .
 ```

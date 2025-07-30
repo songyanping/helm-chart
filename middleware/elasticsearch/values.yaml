@@ -522,7 +522,7 @@ master:
   ## @param master.resources.limits The resources limits for elasticsearch containers
   ## @param master.resources.requests The requested resources for elasticsearch containers
   ##
-  resourcesPreset: small
+  resourcesPreset: medium
   resources:
     limits:
       cpu: 1
@@ -837,7 +837,7 @@ data:
   ## @param data.resources.requests [object] The requested resources for the data containers
   ##
   resources: {}
-  resourcesPreset: small
+  resourcesPreset: medium
   ## @param data.heapSize Elasticsearch data node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -1146,7 +1146,7 @@ coordinating:
   ## @param coordinating.resources.limits The resources limits for the coordinating-only containers
   ## @param coordinating.resources.requests [object] The requested resources for the coordinating-only containers
   ##
-  resourcesPreset: small
+  resourcesPreset: medium
   resources:
     limits:
       memory: 4096Mi
@@ -1431,7 +1431,7 @@ ingest:
   ## @param ingest.resources.limits The resources limits for the ingest-only containers
   ## @param ingest.resources.requests [object] The requested resources for the ingest-only containers
   ##
-  resourcesPreset: small
+  resourcesPreset: medium
   resources: {}
 
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.

@@ -93,7 +93,7 @@ server:
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-  resourcesPreset: "small"
+  resourcesPreset: "medium"
   resources: {}
   replicaCount: 1
   extraEnvVars:
@@ -107,7 +107,7 @@ server:
       value: Asia/Shanghai
 
 exporter:
-  resourcesPreset: "small"
+  resourcesPreset: "medium"
   resources: {}
   replicaCount: 1
   extraEnvVars: {}
