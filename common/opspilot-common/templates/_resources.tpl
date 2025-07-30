@@ -104,8 +104,8 @@ These presets are for basic testing and not meant to be used in production
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "500m" "memory" "4Gi")
-      "limits" (dict "cpu" "500" "memory" "4Gi")
+      "requests" (dict "cpu" "1000m" "memory" "8Gi")
+      "limits" (dict "cpu" "1000" "memory" "8Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -214,9 +214,9 @@ These presets are for basic testing and not meant to be used in production
    )
   "large" (dict
       "replicaCount" 4
-      "heapSize" "2048m"
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+      "heapSize" "3072m"
+      "requests" (dict "cpu" "1.0" "memory" "6Gi")
+      "limits" (dict "cpu" "1.0" "memory" "6Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
