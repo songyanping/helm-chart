@@ -1,5 +1,8 @@
 #### 1.部署Skywalking APM
 ```shell
+git clone git@github.com:songyanping/helm-chart.git
+git checkout tw
+
 cd helm-chart
 
 kubectl create ns skywalking
@@ -34,7 +37,7 @@ helm install lookout opspilot/lookout --namespace opspilot
 helm install aigc opspilot/aigc --namespace opspilot
 ```
 
-#### 4.扩容示例
+#### 4.更新/扩容示例
 通过helm upgrade命令进行扩容，--set参数修改对应服务配置
 ```shell
 # 修改预设资源规格
@@ -47,7 +50,7 @@ helm upgrade elasticsearch middleware/elasticsearch --namespace skywalking --set
 ```
 
 
-#### 5.通过添加远程helm chart仓库方式安装示例
+#### 5.不需要clone代码，通过添加远程helm chart仓库方式安装示例
 ```shell
 # 通过helm添加仓库方式安装
 helm repo list
