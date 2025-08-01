@@ -19,4 +19,4 @@ name: opspilot-common
 sources:
 - https://songyanping.github.io/helm-chart/common/opspilot-common
 type: library
-version: 1.0.0
+version: 1.0.2

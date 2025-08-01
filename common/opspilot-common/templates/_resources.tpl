@@ -36,23 +36,103 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 {{- end -}}
 
+
+{{- define "common.general.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "100m" "memory" "512Mi")
+      "limits" (dict "cpu" "200m" "memory" "1024Mi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "1024Mi")
+      "limits" (dict "cpu" "500m" "memory" "2048Mi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "500m" "memory" "2048Mi")
+      "limits" (dict "cpu" "1" "memory" "4096Mi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "common.memory.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "1" "memory" "8Gi")
+      "limits" (dict "cpu" "1" "memory" "8Gi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "2" "memory" "12Gi")
+      "limits" (dict "cpu" "2" "memory" "12Gi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "opspilot.resources.preset" -}}
 {{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "250m" "memory" "1024Mi")
-      "limits" (dict "cpu" "250m" "memory" "1024Mi")
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "500m" "memory" "2048Mi")
-      "limits" (dict "cpu" "500m" "memory" "2048Mi")
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+      "requests" (dict "cpu" "1000m" "memory" "8Gi")
+      "limits" (dict "cpu" "1000" "memory" "8Gi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
+
+{{- define "skywalking.ui.resources.preset" -}}
+{{/* the same resources for different sacle */}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "512Mi")
+      "limits" (dict "cpu" "200m" "memory" "512Mi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "1024Mi")
+      "limits" (dict "cpu" "200m" "memory" "1024Mi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "200m" "memory" "1024Mi")
+      "limits" (dict "cpu" "200m" "memory" "1024Mi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -63,48 +143,22 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 
 {{- define "skywalking.oap.resources.preset" -}}
-{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{/* cpu:mem=1:8 */}}
 {{- $presets := dict
   "small" (dict
-      "replicaCount" 2
-      "requests" (dict "cpu" "1.0" "memory" "8Gi")
-      "limits" (dict "cpu" "1.0" "memory" "8Gi")
+      "replicaCount" 1
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "medium" (dict
       "replicaCount" 4
-      "requests" (dict "cpu" "2.0" "memory" "16Gi")
-      "limits" (dict "cpu" "2.0" "memory" "16Gi")
+      "requests" (dict "cpu" "1.0" "memory" "8Gi")
+      "limits" (dict "cpu" "1.0" "memory" "8Gi")
    )
   "large" (dict
       "replicaCount" 8
-      "requests" (dict "cpu" "4.0" "memory" "32Gi")
-      "limits" (dict "cpu" "4.0" "memory" "32Gi")
-   )
- }}
-{{- if hasKey $presets .type -}}
-{{- index $presets .type | toYaml -}}
-{{- else -}}
-{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
-{{- end -}}
-{{- end -}}
-
-{{- define "skywalking.ui.resources.preset" -}}
-{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
-{{- $presets := dict
-  "small" (dict
-      "replicaCount" 1
-      "requests" (dict "cpu" "200m" "memory" "512Mi")
-      "limits" (dict "cpu" "200m" "memory" "512Mi")
-   )
-  "medium" (dict
-      "replicaCount" 1
-      "requests" (dict "cpu" "500m" "memory" "1Gi")
-      "limits" (dict "cpu" "500m" "memory" "1Gi")
-   )
-  "large" (dict
-      "replicaCount" 1
-      "requests" (dict "cpu" "1.0" "memory" "2Gi")
-      "limits" (dict "cpu" "1.0" "memory" "2Gi")
+      "requests" (dict "cpu" "1500m" "memory" "12Gi")
+      "limits" (dict "cpu" "1500m" "memory" "12Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -115,25 +169,54 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 
 {{- define "elasticsearch.data.resources.preset" -}}
-{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{/* cpu:jvm-mem:lucene-mem=1:8:8 */}}
 {{- $presets := dict
   "small" (dict
-      "replicaCount" 2
-      "heapSize" "2048m"
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+      "replicaCount" 1
+      "heapSize" "4096m"
+      "requests" (dict "cpu" "500m" "memory" "8Gi")
+      "limits" (dict "cpu" "500m" "memory" "8Gi")
    )
   "medium" (dict
       "replicaCount" 4
-      "heapSize" "4096m"
-      "requests" (dict "cpu" "2.0" "memory" "8Gi")
-      "limits" (dict "cpu" "2.0" "memory" "8Gi")
+      "heapSize" "8192m"
+      "requests" (dict "cpu" "1.0" "memory" "16Gi")
+      "limits" (dict "cpu" "1.0" "memory" "16Gi")
    )
   "large" (dict
       "replicaCount" 8
-      "heapSize" "8192m"
-      "requests" (dict "cpu" "4.0" "memory" "16Gi")
-      "limits" (dict "cpu" "4.0" "memory" "16Gi")
+      "heapSize" "16384m"
+      "requests" (dict "cpu" "2.0" "memory" "32Gi")
+      "limits" (dict "cpu" "2.0" "memory" "32Gi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "elasticsearch.coordinating.resources.preset" -}}
+{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "heapSize" "1536m"
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
+   )
+  "medium" (dict
+      "replicaCount" 2
+      "heapSize" "2048m"
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
+   )
+  "large" (dict
+      "replicaCount" 4
+      "heapSize" "3072m"
+      "requests" (dict "cpu" "1.0" "memory" "6Gi")
+      "limits" (dict "cpu" "1.0" "memory" "6Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -149,49 +232,20 @@ These presets are for basic testing and not meant to be used in production
   "small" (dict
       "replicaCount" 1
       "heapSize" "1024m"
-      "requests" (dict "cpu" "200m" "memory" "2Gi")
-      "limits" (dict "cpu" "200m" "memory" "2Gi")
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
-      "replicaCount" 2
-      "heapSize" "1536m"
-      "requests" (dict "cpu" "500m" "memory" "3Gi")
-      "limits" (dict "cpu" "500m" "memory" "3Gi")
-   )
-  "large" (dict
-      "replicaCount" 4
-      "heapSize" "2048m"
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
-   )
- }}
-{{- if hasKey $presets .type -}}
-{{- index $presets .type | toYaml -}}
-{{- else -}}
-{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
-{{- end -}}
-{{- end -}}
-
-{{- define "elasticsearch.coordinating.resources.preset" -}}
-{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
-{{- $presets := dict
-  "small" (dict
       "replicaCount" 1
-      "heapSize" "512m"
-      "requests" (dict "cpu" "200m" "memory" "1Gi")
-      "limits" (dict "cpu" "200m" "memory" "1Gi")
-   )
-  "medium" (dict
-      "replicaCount" 2
-      "heapSize" "1024m"
-      "requests" (dict "cpu" "500m" "memory" "2Gi")
-      "limits" (dict "cpu" "500m" "memory" "2Gi")
+      "heapSize" "2048m"
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "large" (dict
-      "replicaCount" 4
+      "replicaCount" 2
       "heapSize" "2048m"
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+      "requests" (dict "cpu" "1000m" "memory" "4Gi")
+      "limits" (dict "cpu" "1000m" "memory" "4Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
@@ -206,21 +260,21 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "heapSize" "512m"
-      "requests" (dict "cpu" "200m" "memory" "1Gi")
-      "limits" (dict "cpu" "200m" "memory" "1Gi")
+      "heapSize" "1536m"
+      "requests" (dict "cpu" "300m" "memory" "3Gi")
+      "limits" (dict "cpu" "300m" "memory" "3Gi")
    )
   "medium" (dict
       "replicaCount" 2
       "heapSize" "1024m"
-      "requests" (dict "cpu" "500m" "memory" "2Gi")
-      "limits" (dict "cpu" "500m" "memory" "2Gi")
+      "requests" (dict "cpu" "500m" "memory" "4Gi")
+      "limits" (dict "cpu" "500m" "memory" "4Gi")
    )
   "large" (dict
-      "replicaCount" 3
+      "replicaCount" 4
       "heapSize" "2048m"
-      "requests" (dict "cpu" "1.0" "memory" "4Gi")
-      "limits" (dict "cpu" "1.0" "memory" "4Gi")
+      "requests" (dict "cpu" "1000m" "memory" "4Gi")
+      "limits" (dict "cpu" "1000m" "memory" "4Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
