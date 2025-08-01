@@ -20,7 +20,7 @@ dependencies:
     repository: https://songyanping.github.io/helm-chart/common
     tags:
       - opspilot-common
-    version: 1.0.0
+    version: 1.0.2
 description: Elasticsearch is a distributed search and analytics engine. It is used for web search, log monitoring, and real-time analytics. Ideal for Big Data applications.
 home: https://bitnami.com
 icon: https://bitnami.com/assets/stacks/elasticsearch/img/elasticsearch-stack-220x234.png
