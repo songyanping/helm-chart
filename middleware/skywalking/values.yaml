@@ -50,7 +50,7 @@ oap:
   nodeSelector: {}
   tolerations: []
   resources: {}
-  resourcesPreset: small
+  resourcesPreset: medium
   livenessProbe:
     tcpSocket:
       port: 12800
@@ -94,7 +94,7 @@ oap:
   config:
        trace-sampling-policy-settings.yml: |
          default:
-           rate: 2000
+           rate: 3000
            duration: -1
     # metadata-service-mapping.yaml: |
     #   serviceName: e2e::${LABELS."service.istio.io/canonical-name"}
@@ -228,7 +228,7 @@ ui:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
-  resourcesPreset: small
+  resourcesPreset: medium
   resources: {}
   ingress:
     enabled: true
