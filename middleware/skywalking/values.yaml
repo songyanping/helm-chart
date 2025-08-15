@@ -51,7 +51,7 @@ oap:
   nodeSelector: {}
   tolerations: []
   resources: {}
-  resourcesPreset: medium
+  resourcesPreset: small
   livenessProbe:
     tcpSocket:
       port: 12800
