@@ -113,13 +113,13 @@ spec:
             httpGet:
               path: /health
               port: 3002
-          {{- if .Values.exporter.resources }}
-          resources: {{- toYaml .Values.exporter.resources | nindent 12 }}
-          {{- else if ne .Values.exporter.resourcesPreset "none" }}
           resources:
-            requests: {{ toYaml $preset.requests | nindent 14 }}
-            limits: {{ toYaml $preset.limits | nindent 14 }}
-          {{- end }}
+            requests:
+              cpu: 300m
+              memory: 2048Mi
+            limits:
+              cpu: 300m
+              memory: 2048Mi
           volumeMounts:
             - mountPath: /opt/config/config.yaml
               name: config-volume
