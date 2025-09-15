@@ -37,7 +37,8 @@ data:
           - name: topology
           - name: manage_label
           - name: problems
-          - name: notify  
+          - name: notify
+          - name: problem_action
       prometheus:
         addr: http://prometheus-server
       application:
