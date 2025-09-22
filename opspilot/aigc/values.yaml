@@ -85,8 +85,23 @@ affinity: {}
 
 extraEnvVars:
   - name: ENV
-    value: "dev"
+    value: "pd-tw"
   - name: APP
     value: "api"
   - name: PYTHONUNBUFFERED
     value: "1"
+  - name: SQL_ADVISORY_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sql-advisory-mcp-access-key
+        key: SQL_ADVISORY_MCP_ACCESS_KEY
+  - name: CMS_METRICS_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: cms-metrics-mcp-access-key
+        key: CMS_METRICS_MCP_ACCESS_KEY
+  - name: WATCH_API_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: watch-api-mcp-access-key
+        key: WATCH_API_MCP_ACCESS_KEY
