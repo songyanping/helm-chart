@@ -46,22 +46,9 @@ spec:
               containerPort: 3001
               protocol: TCP
           env:
-            - name: FUNCTION
-              value: exporter
-            - name: LOGLEVEL
-              value: info
-            - name: SLOWSQL_STANDARD
-              value: "30"
-            - name: TIMEOUT
-              value: "55"
-            - name: TZ
-              value: Asia/Shanghai
-            - name: MYSQL_SLOWSQL_STANDARD
-              value: "30"
-            - name: REDIS_SLOWSQL_STANDARD
-              value: "10"
-            - name: ES_SLOWSQL_STANDARD
-              value: "100"
+            {{- if .Values.exporter.extraEnvVars }}
+            {{- include "opspilot.tplvalues.render" (dict "value" .Values.exporter.extraEnvVars "context" $) | nindent 12 }}
+            {{- end }}
           lifecycle:
             preStop:
               exec:

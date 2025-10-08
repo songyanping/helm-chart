@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/song1206/ops-console
+  repository: harbor.zroid.xyz/zroid/ops-console
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250716-dev-arm-1"
+  tag: "v20251007-main"
 
 imagePullSecrets: []
 nameOverride: "console-web"
