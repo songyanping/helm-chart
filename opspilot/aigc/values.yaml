@@ -91,6 +91,6 @@ extraEnvVars:
   - name: PYTHONUNBUFFERED
     value: "1"
   - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
-    value: "10.158.215.92:80"
+    value: "skywalking-oap:11800"
   - name: SW_AGENT_NAME
     value: "ft2@opspilot::aigc-service"

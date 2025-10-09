@@ -25,9 +25,7 @@ metadata:
     release: {{ .Release.Name }}
   name: {{ template "skywalking.oap.fullname" . }}
 spec:
-  {{- if ne .Values.oap.resourcesPreset "none" }}
-  replicas: {{ $preset.replicaCount }}
-  {{- else if .Values.oap.replicas }}
+  {{- if .Values.oap.replicas }}
   replicas: {{ .Values.oap.replicas }}
   {{- end }}
   selector:
@@ -130,10 +128,6 @@ spec:
 {{- if .Values.oap.resources }}
         resources:
         {{ toYaml .Values.oap.resources | indent 10 }}
-{{- else if ne .Values.oap.resourcesPreset "none" }}
-        resources:
-          requests: {{ toYaml $preset.requests | nindent 12 }}
-          limits: {{ toYaml $preset.limits | nindent 12 }}
 {{- end }}
         env:
         - name: JAVA_OPTS

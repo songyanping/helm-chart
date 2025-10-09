@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: opspilot-skywalking-cors@kubernetescrd
+  labels:
+    app: skywalking
+    app.kubernetes.io/managed-by: Helm
+    chart: skywalking-helm-4.5.0
+    component: oap
+    heritage: Helm
+    release: skywalking
+  name: skywalking-oap
+  namespace: opspilot
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: skywalking-oap.simple.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: skywalking-oap
+            port:
+              number: 12800
+        path: /
+        pathType: Prefix

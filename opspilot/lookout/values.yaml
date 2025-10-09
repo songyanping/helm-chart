@@ -4,10 +4,10 @@
 
 
 image:
-  repository: harbor.zroid.xyz/zroid/ops-lookout
+  repository: docker.io/song1206/ops-lookout
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20251007-main"
+  tag: "v20251009-dev"
 
 imagePullSecrets: []
 nameOverride: "lookout"
@@ -89,3 +89,5 @@ extraEnvVars:
    value: new-ecommerce
  - name: APP_ENV
    value: pd
+ - name: ENV
+   value: mac

@@ -41,40 +41,46 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 添加 Helm 仓库并更新
-helm repo add opspilot https://songyanping.github.io/helm-chart/opspilot
+helm install skywalking middleware/skywalking --namespace opspilot
 if [ $? -ne 0 ]; then
-    echo "添加 Helm 仓库失败"
+    echo "安装 skywalking 失败"
     exit 1
 fi
 
-helm repo update opspilot
-if [ $? -ne 0 ]; then
-    echo "更新 Helm 仓库失败"
-    exit 1
-fi
+# 添加 Helm 仓库并更新
+#helm repo add opspilot https://songyanping.github.io/helm-chart/opspilot
+#if [ $? -ne 0 ]; then
+#    echo "添加 Helm 仓库失败"
+#    exit 1
+#fi
+#
+#helm repo update opspilot
+#if [ $? -ne 0 ]; then
+#    echo "更新 Helm 仓库失败"
+#    exit 1
+#fi
 
 # 安装 Opspilot 平台组件
-helm install watch opspilot/watch --version $VERSION --namespace opspilot
+helm install watch opspilot/watch --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 watch 失败"
     exit 1
 fi
 
-helm install console opspilot/console --version $VERSION --namespace opspilot
+helm install console opspilot/console --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 console 失败"
     exit 1
 fi
 
-helm install lookout opspilot/lookout --version $VERSION --namespace opspilot
+helm install lookout opspilot/lookout --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 lookout 失败"
     exit 1
 fi
 
 
-helm install aigc opspilot/aigc --version $VERSION --namespace opspilot
+helm install aigc opspilot/aigc --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 aigc 失败"
     exit 1

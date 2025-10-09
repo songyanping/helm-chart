@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: harbor.zroid.xyz/zroid/ops-watch
+  repository: docker.io/song1206/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20251008-dev-1"
+  tag: "v20251009-dev"
 
 imagePullSecrets: []
 nameOverride: "watch"
@@ -108,7 +108,7 @@ server:
     - name: SW_AGENT_NAME
       value: "ft2@opspilot::watch-service"
     - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
-      value: "10.158.215.92:80"
+      value: "skywalking-oap:11800"
 
 exporter:
   resourcesPreset: "small"
@@ -134,7 +134,7 @@ exporter:
     - name: SW_AGENT_NAME
       value: "ft2@opspilot::watch-exporter"
     - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
-      value: "10.158.215.92:80"
+      value: "skywalking-oap:11800"
 
 
 cronjob:
@@ -158,4 +158,4 @@ cronjob:
     - name: SW_AGENT_NAME
       value: "ft2@opspilot::watch-cronjob"
     - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
-      value: "10.158.215.92:80"
+      value: "skywalking-oap:11800"

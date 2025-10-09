@@ -25,6 +25,11 @@ if [ $? -ne 0 ]; then
 fi
 
 # 卸载中间件服务
+helm uninstall skywalking -n $NAMESPACE
+if [ $? -ne 0 ]; then
+    echo "卸载 skywalking 失败"
+fi
+
 helm uninstall elasticsearch -n $NAMESPACE
 if [ $? -ne 0 ]; then
     echo "卸载 elasticsearch 失败"

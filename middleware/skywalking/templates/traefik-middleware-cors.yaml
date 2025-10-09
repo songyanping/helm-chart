@@ -1,0 +1,20 @@
+# 创建文件：traefik-cors-middleware.yaml
+apiVersion: traefik.io/v1alpha1  # Traefik 3+ 专用 API 版本
+kind: Middleware
+metadata:
+  name: skywalking-cors  # 中间件名称，需唯一
+  namespace: opspilot     # 与 Ingress/服务同 namespace
+spec:
+  headers:
+     accessControlAllowOriginList:
+       - "http://opspilot.simple.com"
+     accessControlAllowMethods:
+       - "GET"
+       - "POST"
+       - "PUT"
+       - "DELETE"
+       - "OPTIONS"
+     accessControlAllowHeaders:
+       - "*"
+     accessControlAllowCredentials: true
+     accessControlMaxAge: 100
