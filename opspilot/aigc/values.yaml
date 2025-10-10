@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: harbor.zroid.xyz/zroid/ops-aigc
+  repository: docker.io/song1206/ops-aigc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20251008-main"
+  tag: "v20251009-dev"
 
 imagePullSecrets: []
 nameOverride: "aigc-service"

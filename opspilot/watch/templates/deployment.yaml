@@ -41,6 +41,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+            - name: http-8082
+              containerPort: 8082
+              protocol: TCP
           env:
             {{- if .Values.server.extraEnvVars }}
             {{- include "opspilot.tplvalues.render" (dict "value" .Values.server.extraEnvVars "context" $) | nindent 12 }}
