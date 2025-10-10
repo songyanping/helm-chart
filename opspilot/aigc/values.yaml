@@ -8,7 +8,7 @@ image:
   repository: docker.io/song1206/ops-aigc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20251009-dev"
+  tag: "v20251010-dev-3"
 
 imagePullSecrets: []
 nameOverride: "aigc-service"
@@ -56,7 +56,6 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resourcesPreset: "small"
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -94,3 +93,28 @@ extraEnvVars:
     value: "skywalking-oap:11800"
   - name: SW_AGENT_NAME
     value: "ft2@opspilot::aigc-service"
+  - name: SQL_ADVISORY_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sql-advisory-mcp-access-key
+        key: SQL_ADVISORY_MCP_ACCESS_KEY
+  - name: CMS_METRICS_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: cms-metrics-mcp-access-key
+        key: CMS_METRICS_MCP_ACCESS_KEY
+  - name: WATCH_API_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: watch-api-mcp-access-key
+        key: WATCH_API_MCP_ACCESS_KEY
+  - name: SERVICE_CONFIG_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: service-config-mcp-access-key
+        key: SERVICE_CONFIG_MCP_ACCESS_KEY
+  - name: ALI_SLOWLOG_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ali-slowlog-mcp-access-key
+        key: ALI_SLOWLOG_MCP_ACCESS_KEY

@@ -27,3 +27,10 @@ sh 3-insert_aigc.sh  #导入AIGC配置
 ```shell
 sh 4-delete_opspilot.sh
 ```
+
+#### 登陆opspilot平台
+
+1. http://opspilot.simple.com/login     admin/#EDC4rfv
+2. http://prometheus.simple.com
+3. http://kibana.simple.com
+4. http://skywalking-ui.simple.com
