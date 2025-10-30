@@ -73,13 +73,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-helm install lookout opspilot/lookout --namespace opspilot
-if [ $? -ne 0 ]; then
-    echo "安装 lookout 失败"
-    exit 1
-fi
-
-
 helm install aigc opspilot/aigc --namespace opspilot
 if [ $? -ne 0 ]; then
     echo "安装 aigc 失败"

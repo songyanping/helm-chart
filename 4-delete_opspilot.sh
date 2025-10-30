@@ -14,11 +14,6 @@ if [ $? -ne 0 ]; then
     echo "卸载 console 失败"
 fi
 
-helm uninstall lookout -n $NAMESPACE
-if [ $? -ne 0 ]; then
-    echo "卸载 lookout 失败"
-fi
-
 helm uninstall aigc -n $NAMESPACE
 if [ $? -ne 0 ]; then
     echo "卸载 aigc 失败"
