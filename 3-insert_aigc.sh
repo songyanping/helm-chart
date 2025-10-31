@@ -32,11 +32,29 @@ JSON_DATA2='{
              "update_time": "2025-10-09T16:41:38.659957631+08:00"
            }'
 
+JSON_DATA3='{
+             "id": "ab3624cd-df56-43fa-becf-d61f5571a111",
+             "name": "阿里云qwen3",
+             "api_base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+             "model_name": "qwen-plus-latest",
+             "llm_api_key": "sk-1713011e65ae4041b4207a6be7675545",
+             "is_embedding_model": false,
+             "is_enable": true,
+             "is_default": true,
+             "create_time": "2025-10-29T16:41:38.659957465+08:00",
+             "update_time": "2025-10-29T16:41:38.659957631+08:00"
+           }'
 # 发送请求
 curl -XPOST "$ES_URL/$INDEX_NAME/_doc" \
   -H "Content-Type: application/json" \
   -d "$JSON_DATA1"
 
+#curl -XPOST "$ES_URL/$INDEX_NAME/_doc" \
+#  -H "Content-Type: application/json" \
+#  -d "$JSON_DATA2"
+#
+curl -XPUT "$ES_URL/sop"
+
 curl -XPOST "$ES_URL/$INDEX_NAME/_doc" \
   -H "Content-Type: application/json" \
-  -d "$JSON_DATA2"
+  -d "$JSON_DATA3"
