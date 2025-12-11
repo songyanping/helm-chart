@@ -105,6 +105,10 @@ server:
       value: "8080"
     - name: TZ
       value: Asia/Shanghai
+    - name: SW_AGENT_NAME
+      value: "pd@opspilot::watch-service"
+    - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+      value: "skywalking-oap.skywalking.svc:11800"
 
 exporter:
   resourcesPreset: "medium"

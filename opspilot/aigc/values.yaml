@@ -90,3 +90,32 @@ extraEnvVars:
     value: "api"
   - name: PYTHONUNBUFFERED
     value: "1"
+  - name: SQL_ADVISORY_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sql-advisory-mcp-access-key
+        key: SQL_ADVISORY_MCP_ACCESS_KEY
+  - name: CMS_METRICS_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: cms-metrics-mcp-access-key
+        key: CMS_METRICS_MCP_ACCESS_KEY
+  - name: WATCH_API_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: watch-api-mcp-access-key
+        key: WATCH_API_MCP_ACCESS_KEY
+  - name: SERVICE_CONFIG_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: service-config-mcp-access-key
+        key: SERVICE_CONFIG_MCP_ACCESS_KEY
+  - name: ALI_SLOWLOG_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ali-slowlog-mcp-access-key
+        key: ALI_SLOWLOG_MCP_ACCESS_KEY
+  - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
+    value: "skywalking-oap.skywalking.svc:11800"
+  - name: SW_AGENT_NAME
+    value: "pd@opspilot::aigc-service"
