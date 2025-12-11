@@ -50,7 +50,13 @@ oap:
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
-  resources: {}
+  resources:
+    limits:
+      memory: 4Gi
+      cpu: 2
+    requests:
+      memory: 2Gi
+      cpu: 1
   resourcesPreset: small
   livenessProbe:
     tcpSocket:

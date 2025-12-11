@@ -8,7 +8,7 @@ image:
   repository: ccr.ccs.tencentyun.com/zroid/ops-console
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250718-main"
+  tag: "v202511-5-dev"
 
 imagePullSecrets:
   - name: "tencentyun-image-secret"

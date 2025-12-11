@@ -6,7 +6,7 @@ image:
   repository: ccr.ccs.tencentyun.com/zroid/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250718-main"
+  tag: "v20251031-dev"
 
 imagePullSecrets:
   - name: "tencentyun-image-secret"
@@ -106,6 +106,10 @@ server:
       value: "8080"
     - name: TZ
       value: Asia/Shanghai
+    - name: SW_AGENT_NAME
+      value: "ft2@opspilot::watch-service"
+    - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+      value: "skywalking-oap:11800"
 
 exporter:
   resourcesPreset: "small"

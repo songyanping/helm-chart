@@ -46,13 +46,13 @@ spec:
                   value: "3"
                 - name: TZ
                   value: Asia/Shanghai
-              {{- if .Values.cronjob.resources }}
-              resources:{{- toYaml .Values.cronjob.resources | nindent 16 }}
-              {{- else if ne .Values.cronjob.resourcesPreset "none"}}
               resources:
-                requests: {{ toYaml $preset.requests | nindent 18 }}
-                limits: {{ toYaml $preset.limits | nindent 18 }}
-              {{- end }}
+                requests:
+                  cpu: 500m
+                  memory: 1Gi
+                limits:
+                  cpu: 1
+                  memory: 4Gi
               volumeMounts:
                 - mountPath: /opt/config/config.yaml
                   name: config-volume

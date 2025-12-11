@@ -8,7 +8,7 @@ image:
   repository: ccr.ccs.tencentyun.com/zroid/ops-aigc
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250721-main"
+  tag: "v20251031-dev"
 
 imagePullSecrets:
   - name: tencentyun-image-secret
@@ -57,18 +57,17 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resourcesPreset: "small"
-resources: {}
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+   cpu: 500m
+   memory: 1024Mi
+  requests:
+   cpu: 200m
+   memory: 512Mi
 
 autoscaling:
   enabled: false
@@ -86,8 +85,37 @@ affinity: {}
 
 extraEnvVars:
   - name: ENV
-    value: "pd-tw"
+    value: "pd-mac"
   - name: APP
     value: "api"
   - name: PYTHONUNBUFFERED
     value: "1"
+  - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
+    value: "skywalking-oap:11800"
+  - name: SW_AGENT_NAME
+    value: "ft2@opspilot::aigc-service"
+  - name: SQL_ADVISORY_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sql-advisory-mcp-access-key
+        key: SQL_ADVISORY_MCP_ACCESS_KEY
+  - name: CMS_METRICS_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: cms-metrics-mcp-access-key
+        key: CMS_METRICS_MCP_ACCESS_KEY
+  - name: WATCH_API_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: watch-api-mcp-access-key
+        key: WATCH_API_MCP_ACCESS_KEY
+  - name: SERVICE_CONFIG_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: service-config-mcp-access-key
+        key: SERVICE_CONFIG_MCP_ACCESS_KEY
+  - name: ALI_SLOWLOG_MCP_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ali-slowlog-mcp-access-key
+        key: ALI_SLOWLOG_MCP_ACCESS_KEY

@@ -20,7 +20,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "alibabacloud-cnfs-nas"
+  storageClass: "alicloud-disk-ssd"
   elasticsearch:
     service:
       name: elasticsearch
@@ -372,7 +372,7 @@ service:
 ingress:
   ## @param ingress.enabled Enable ingress record generation for Elasticsearch
   ##
-  enabled: false
+  enabled: true
   ## @param ingress.pathType Ingress path type
   ##
   pathType: ImplementationSpecific
@@ -381,7 +381,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: elasticsearch.local
+  hostname: elasticsearch.lianwei.com
   ## @param ingress.path Default path for the ingress record
   ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
   ##
@@ -740,7 +740,7 @@ master:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "gp3"
+    storageClass: ""
     ## @param master.persistence.existingClaim Existing Persistent Volume Claim
     ## then accept the value as an existing Persistent Volume Claim to which
     ## the container should be bound
@@ -1048,7 +1048,7 @@ data:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "gp3"
+    storageClass: ""
     ## @param data.persistence.existingClaim Existing Persistent Volume Claim
     ## then accept the value as an existing Persistent Volume Claim to which
     ## the container should be bound
@@ -1072,7 +1072,7 @@ data:
       - ReadWriteOnce
     ## @param data.persistence.size Persistent Volume Size
     ##
-    size: 100Gi
+    size: 50Gi
   ## Pods Service Account
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   ## @param data.serviceAccount.create Specifies whether a ServiceAccount should be created
@@ -1431,7 +1431,7 @@ ingest:
   ## @param ingest.resources.limits The resources limits for the ingest-only containers
   ## @param ingest.resources.requests [object] The requested resources for the ingest-only containers
   ##
-  resourcesPreset: small
+  resourcesPreset: medium
   resources: {}
 
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.
