@@ -11,6 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 80
+      targetPort: 8082
+      name: sse
   selector:
     type: service
     {{- include "watch.selectorLabels" . | nindent 4 }}

@@ -20,3 +20,7 @@ data:
     influxdb:
       endpoint: http://influxdb:8086
       database: sre_metrics
+    notify:
+      url: https://opspilot-idc.intranet.local
+      notifyInterval: 240
+      notifyLevel: P1
