@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/song1206/ops-aigc
+  repository: 636957932458.dkr.ecr.ap-northeast-1.amazonaws.com/devops/opspilot/ops-aigc
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20250801-main"
+  tag: "v20251212-main"
 
 imagePullSecrets: []
 nameOverride: "aigc-service"
