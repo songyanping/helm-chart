@@ -673,7 +673,7 @@ server:
   #        image: nginx
   sidecarContainers:
     rules-manager:
-      image: 636957932458.dkr.ecr.ap-northeast-1.amazonaws.com/devops/opspilot/ops-watch:v20251219-main
+      image: 636957932458.dkr.ecr.ap-northeast-1.amazonaws.com/devops/opspilot/ops-watch:v20251225-main
       ports:
         - containerPort: 8080
           protocol: TCP
