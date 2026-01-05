@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "cn-stoprof-prod-01-tkgs"
 
 ## @section Common parameters
 ##
@@ -105,7 +105,7 @@ image:
   debug: false
 ## @param architecture MySQL architecture (`standalone` or `replication`)
 ##
-architecture: replication
+architecture: standalone
 ## MySQL Authentication parameters
 ##
 auth:
@@ -124,7 +124,7 @@ auth:
   ## @param auth.username Name for a custom user to create
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mysql#creating-a-database-user-on-first-run
   ##
-  username: "simple"
+  username: "casdoor"
   ## @param auth.password Password for the new user. Ignored if existing secret is provided
   ##
   password: "Devops2019"
@@ -322,8 +322,8 @@ primary:
   ##
   resources:
     limits:
-      cpu: 1
-      memory: 4Gi
+      cpu: 500m
+      memory: 2Gi
     requests:
       cpu: 200m
       memory: 1Gi
@@ -437,7 +437,7 @@ primary:
       - ReadWriteOnce
     ## @param primary.persistence.size MySQL primary persistent volume size
     ##
-    size: 100Gi
+    size: 50Gi
     ## @param primary.persistence.selector Selector to match an existing Persistent Volume
     ## selector:
     ##   matchLabels:
@@ -696,8 +696,8 @@ secondary:
   ##
   resources:
     limits:
-      cpu: 1
-      memory: 4Gi
+      cpu: 500m
+      memory: 2Gi
     requests:
       cpu: 200m
       memory: 1Gi
@@ -811,7 +811,7 @@ secondary:
       - ReadWriteOnce
     ## @param secondary.persistence.size MySQL secondary persistent volume size
     ##
-    size: 100Gi
+    size: 50Gi
     ## @param secondary.persistence.selector Selector to match an existing Persistent Volume
     ## selector:
     ##   matchLabels:
