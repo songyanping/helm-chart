@@ -200,7 +200,7 @@ useIstioLabels: true
 ##
 image:
   registry: docker.io
-  repository: bitnami/elasticsearch
+  repository: bitnamilegacy/elasticsearch
   tag: 8.11.1-debian-11-r0
   digest: ""
   ## Specify a imagePullPolicy
@@ -2182,7 +2182,7 @@ volumePermissions:
   ##
   image:
     registry: docker.io
-    repository: bitnami/os-shell
+    repository: bitnamilegacy/os-shell
     tag: 11-debian-11-r2
     digest: ""
     pullPolicy: IfNotPresent
@@ -2229,7 +2229,7 @@ sysctlImage:
   ## @param sysctlImage.pullSecrets Kernel settings modifier image pull secrets
   ##
   registry: docker.io
-  repository: bitnami/os-shell
+  repository: bitnamilegacy/os-shell
   tag: 11-debian-11-r2
   digest: ""
   ## Specify a imagePullPolicy

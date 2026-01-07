@@ -702,8 +702,8 @@ server:
   ## Prometheus server container image
   ##
   image:
-    repository: docker.io/bitnami/prometheus
-    tag: 2.26.0-debian-10-r33
+    repository: docker.io/bitnamilegacy/prometheus
+    tag: 2.26.0
     pullPolicy: IfNotPresent
 
   ## prometheus server priorityClassName
