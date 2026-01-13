@@ -667,11 +667,11 @@ serverBlock: |-
     # ========== 3. 兜底规则：拒绝所有其他请求 ==========
     location / {
         # 记录拒绝请求的日志（标记为FORBIDDEN）
-        # access_log /var/log/nginx/forbidden.log main;
+        access_log /opt/bitnami/nginx/logs/forbidden.log main;
         # 返回403，自定义提示信息（避免暴露Nginx版本）
         # return 403 "Forbidden: Only /browser/perfData and /browser/errorLogs are allowed\n";
         # 可选：若需返回JSON格式（适配API场景），替换上面的return为：
-        return 403 '{"code":403,"msg":"Forbidden: Only /browser/perfData and /browser/errorLogs are allowed"}\n';
+        return 403 '{"code":403,"msg":"Forbidden: Only /browser/perfData /v3/segments and /browser/errorLogs are allowed"}\n';
         add_header Content-Type application/json;
     }
 
