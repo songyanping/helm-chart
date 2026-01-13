@@ -84,7 +84,7 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/mysql
+  repository: bitnamilegacy/mysql
   tag: 8.0.33-debian-11-r17
   digest: ""
   ## Specify a imagePullPolicy
@@ -998,8 +998,8 @@ volumePermissions:
   ##
   image:
     registry: docker.io
-    repository: bitnami/bitnami-shell
-    tag: 11-debian-11-r123
+    repository: bitnamilegacy/os-shell
+    tag: 11-debian-11-r112
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -1032,7 +1032,7 @@ metrics:
   ##
   image:
     registry: docker.io
-    repository: bitnami/mysqld-exporter
+    repository: bitnamilegacy/mysqld-exporter
     tag: 0.14.0-debian-11-r125
     digest: ""
     pullPolicy: IfNotPresent
