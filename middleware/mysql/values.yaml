@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "cn-stoprof-prod-01-tkgs"
+  storageClass: "gp3"
 
 ## @section Common parameters
 ##
