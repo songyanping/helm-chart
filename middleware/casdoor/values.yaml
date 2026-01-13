@@ -34,14 +34,14 @@ config: |
 
 database:
   # Supports mysql, postgres, cockroachdb, sqlite3
-  driver: postgres
+  driver: mysql
 
-  user: "postgres"
+  user: "casdoor"
   password: "Devops2019"
-  host: "postgresql"
+  host: "mysql"
   # If port is empty, default port will be used.
   # mysql: 3306, postgres: 5432, cockroachdb: 26257
-  port: "5432"
+  port: "3306"
   databaseName: casdoor
 
   sslMode: disable
