@@ -612,8 +612,24 @@ serverBlock: |-
   upstream backend_service {
       server skywalking-oap:12800;  # 替换为你的后端服务地址
   }
+  # 统一限流区域，适用于所有受保护路径
+  limit_req_zone $binary_remote_addr zone=all_paths_limit:10m rate=20r/s;
+  limit_req_status 429;
   server {
     listen 8081;
+
+    limit_req zone=all_paths_limit burst=5;
+
+    set $allowed_token "TOKEN_@WSX3edc";
+
+    if ($http_x_api_token = "") {
+      # return 403 "Forbidden: Missing API Token";
+    }
+    if ($http_x_api_token != $allowed_token) {
+      # return 403 "Forbidden: Invalid API Token";
+    }
+
+
     location /browser/perfData {
 
       # 转发请求头（保留客户端真实 IP、Host 等）
@@ -663,7 +679,71 @@ serverBlock: |-
 
       # 缓冲区配置（提升大请求处理效率）
     }
+    location /browser/errorLog {
+      # 转发请求头（保留客户端真实 IP、Host 等）
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
 
+      proxy_pass http://backend_service;
+
+      # 超时配置（避免请求挂起）
+      proxy_connect_timeout 30s;
+      proxy_send_timeout 30s;
+      proxy_read_timeout 60s;
+
+      # 缓冲区配置（提升大请求处理效率）
+    }
+
+    location /browser/perfData/webVitals {
+      # 转发请求头（保留客户端真实 IP、Host 等）
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://backend_service;
+
+      # 超时配置（避免请求挂起）
+      proxy_connect_timeout 30s;
+      proxy_send_timeout 30s;
+      proxy_read_timeout 60s;
+
+      # 缓冲区配置（提升大请求处理效率）
+    }
+    location /browser/perfData/resources {
+      # 转发请求头（保留客户端真实 IP、Host 等）
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://backend_service;
+
+      # 超时配置（避免请求挂起）
+      proxy_connect_timeout 30s;
+      proxy_send_timeout 30s;
+      proxy_read_timeout 60s;
+
+      # 缓冲区配置（提升大请求处理效率）
+    }
+    location /browser/perfData/webInteractions {
+      # 转发请求头（保留客户端真实 IP、Host 等）
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://backend_service;
+
+      # 超时配置（避免请求挂起）
+      proxy_connect_timeout 30s;
+      proxy_send_timeout 30s;
+      proxy_read_timeout 60s;
+
+      # 缓冲区配置（提升大请求处理效率）
+    }
     # ========== 3. 兜底规则：拒绝所有其他请求 ==========
     location / {
         # 记录拒绝请求的日志（标记为FORBIDDEN）
