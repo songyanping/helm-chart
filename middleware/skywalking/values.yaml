@@ -85,6 +85,7 @@ oap:
     SW_CORE_RECORD_DATA_TTL: 7
     SW_CORE_METRICS_DATA_TTL: 2
     SW_OAL_ENGINE_DEBUG: Y
+    SW_SEARCHABLE_TAG_KEYS: http.method,http.status_code,rpc.status_code,db.type,db.instance,mq.queue,mq.topic,mq.broker,userId,sessionId
 
     # more env, please refer to https://hub.docker.com/r/apache/skywalking-oap-server
     # or https://github.com/apache/skywalking-docker/blob/master/6/6.4/oap/README.md#sw_telemetry
