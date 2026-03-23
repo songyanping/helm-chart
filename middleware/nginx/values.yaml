@@ -615,23 +615,35 @@ serverBlock: |-
   # 统一限流区域，适用于所有受保护路径
   limit_req_zone $binary_remote_addr zone=all_paths_limit:10m rate=20r/s;
   limit_req_status 429;
+
+  map $http_x_sky_ak:$http_x_sky_sk $ak_sk_valid {
+      default                              0;
+      "AK_10001:SK_aB3xY9mN2pQ7kL5w"                      1;
+      "AK_10002:SK_bY8hN4jM6pS1cV9z"                      1;
+      "AK_10003:SK_rT2wX7kL5nQ9mA3p"                      1;
+      "AK_10004:SK_dF3vC9nM2lK7jR5q"                      1;
+      "AK_10005:SK_tS1jL6nH8mY4bF9x"                      1;
+  }
   server {
     listen 8081;
+    # 全局请求大小限制（默认兜底，可被server/location块覆盖）
+    client_max_body_size 10m; # 全局限制请求体最大10M
+    client_header_buffer_size 1k; # 默认请求头缓冲区大小1k
+    large_client_header_buffers 4 4k; # 大请求头缓冲区：4个缓冲区，每个4k，最大支持16k请求头
 
     limit_req zone=all_paths_limit burst=5;
 
-    set $allowed_token "TOKEN_@WSX3edc";
-
-    if ($http_x_api_token = "") {
-      # return 403 "Forbidden: Missing API Token";
+    if ($http_x_sky_ak = "") {
+      #return 403 "Forbidden: Missing Access Key";
     }
-    if ($http_x_api_token != $allowed_token) {
-      # return 403 "Forbidden: Invalid API Token";
+    if ($http_x_sky_sk = "") {
+      #return 403 "Forbidden: Missing Secret Key";
+    }
+    if ($ak_sk_valid = 0) {
+      #return 403 "Forbidden: Missing AK SK";
     }
 
-
-    location /browser/perfData {
-
+    location ~ ^/(browser/|v3/segments) {
       # 转发请求头（保留客户端真实 IP、Host 等）
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -647,104 +659,7 @@ serverBlock: |-
 
       # 缓冲区配置（提升大请求处理效率）
     }
-
-    location /v3/segments {
-      # 转发请求头（保留客户端真实 IP、Host 等）
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://backend_service;
-
-      # 超时配置（避免请求挂起）
-      proxy_connect_timeout 30s;
-      proxy_send_timeout 30s;
-      proxy_read_timeout 60s;
-    }
-
-    location /browser/errorLogs {
-      # 转发请求头（保留客户端真实 IP、Host 等）
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://backend_service;
-
-      # 超时配置（避免请求挂起）
-      proxy_connect_timeout 30s;
-      proxy_send_timeout 30s;
-      proxy_read_timeout 60s;
-
-      # 缓冲区配置（提升大请求处理效率）
-    }
-    location /browser/errorLog {
-      # 转发请求头（保留客户端真实 IP、Host 等）
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://backend_service;
-
-      # 超时配置（避免请求挂起）
-      proxy_connect_timeout 30s;
-      proxy_send_timeout 30s;
-      proxy_read_timeout 60s;
-
-      # 缓冲区配置（提升大请求处理效率）
-    }
-
-    location /browser/perfData/webVitals {
-      # 转发请求头（保留客户端真实 IP、Host 等）
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://backend_service;
-
-      # 超时配置（避免请求挂起）
-      proxy_connect_timeout 30s;
-      proxy_send_timeout 30s;
-      proxy_read_timeout 60s;
-
-      # 缓冲区配置（提升大请求处理效率）
-    }
-    location /browser/perfData/resources {
-      # 转发请求头（保留客户端真实 IP、Host 等）
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://backend_service;
-
-      # 超时配置（避免请求挂起）
-      proxy_connect_timeout 30s;
-      proxy_send_timeout 30s;
-      proxy_read_timeout 60s;
-
-      # 缓冲区配置（提升大请求处理效率）
-    }
-    location /browser/perfData/webInteractions {
-      # 转发请求头（保留客户端真实 IP、Host 等）
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://backend_service;
-
-      # 超时配置（避免请求挂起）
-      proxy_connect_timeout 30s;
-      proxy_send_timeout 30s;
-      proxy_read_timeout 60s;
-
-      # 缓冲区配置（提升大请求处理效率）
-    }
-    # ========== 3. 兜底规则：拒绝所有其他请求 ==========
+    # ========== 兜底规则：拒绝所有其他请求 ==========
     location / {
         # 记录拒绝请求的日志（标记为FORBIDDEN）
         access_log /opt/bitnami/nginx/logs/forbidden.log main;
