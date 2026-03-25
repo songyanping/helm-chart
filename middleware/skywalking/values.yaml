@@ -32,8 +32,8 @@ initContainer:
 oap:
   name: oap
   image:
-    repository: apache/skywalking-oap-server
-    tag: 10.0.1  # Must be set explicitly
+    repository: docker.io/song1206/skywalking-oap-server
+    tag: 10.2.0_alinux3  # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: elasticsearch
   ports:
