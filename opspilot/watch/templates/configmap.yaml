@@ -21,6 +21,6 @@ data:
       endpoint: http://influxdb:8086
       database: sre_metrics
     notify:
-      url: https://opspilot-tw.intranet.local
+      url: https://opspilot-tk.intranet.local
       notifyInterval: 240
       notifyLevel: P1
