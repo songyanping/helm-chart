@@ -24,3 +24,9 @@ data:
       url: https://opspilot-idc.intranet.local
       notifyInterval: 240
       notifyLevel: P1
+    redis:
+      host: redis-master
+      port: 6379
+      password: Devops2019
+      db: 1
+      timeout: 2
