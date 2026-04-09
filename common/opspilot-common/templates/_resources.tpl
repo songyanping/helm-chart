@@ -68,18 +68,18 @@ These presets are for basic testing and not meant to be used in production
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "500m" "memory" "4Gi")
-      "limits" (dict "cpu" "500m" "memory" "4Gi")
+      "requests" (dict "cpu" "1" "memory" "2Gi")
+      "limits" (dict "cpu" "1" "memory" "2Gi")
    )
   "medium" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "1" "memory" "8Gi")
-      "limits" (dict "cpu" "1" "memory" "8Gi")
+      "requests" (dict "cpu" "2" "memory" "4Gi")
+      "limits" (dict "cpu" "2" "memory" "4Gi")
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "2" "memory" "12Gi")
-      "limits" (dict "cpu" "2" "memory" "12Gi")
+      "requests" (dict "cpu" "4" "memory" "8Gi")
+      "limits" (dict "cpu" "4" "memory" "8Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
