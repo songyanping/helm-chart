@@ -63,8 +63,34 @@ These presets are for basic testing and not meant to be used in production
 {{- end -}}
 {{- end -}}
 
+{{- define "common.cpu.resources.preset" -}}
+{{/* cpu:mem = 1:2 */}}
+{{- $presets := dict
+  "small" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "1" "memory" "2Gi")
+      "limits" (dict "cpu" "1" "memory" "2Gi")
+   )
+  "medium" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "2" "memory" "4Gi")
+      "limits" (dict "cpu" "2" "memory" "4Gi")
+   )
+  "large" (dict
+      "replicaCount" 1
+      "requests" (dict "cpu" "4" "memory" "8Gi")
+      "limits" (dict "cpu" "4" "memory" "8Gi")
+   )
+ }}
+{{- if hasKey $presets .type -}}
+{{- index $presets .type | toYaml -}}
+{{- else -}}
+{{- printf "ERROR: Preset key '%s' invalid. Allowed values are %s" .type (join "," (keys $presets)) | fail -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "common.memory.resources.preset" -}}
-{{/* The limits are the requests increased by 50% (except ephemeral-storage and xlarge/2xlarge sizes)*/}}
+{{/* cpu:mem = 1:8 */}}
 {{- $presets := dict
   "small" (dict
       "replicaCount" 1
@@ -78,8 +104,8 @@ These presets are for basic testing and not meant to be used in production
    )
   "large" (dict
       "replicaCount" 1
-      "requests" (dict "cpu" "2" "memory" "12Gi")
-      "limits" (dict "cpu" "2" "memory" "12Gi")
+      "requests" (dict "cpu" "2" "memory" "16Gi")
+      "limits" (dict "cpu" "2" "memory" "16Gi")
    )
  }}
 {{- if hasKey $presets .type -}}
