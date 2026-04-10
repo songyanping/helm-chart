@@ -54,6 +54,10 @@ spec:
               value: "55"
             - name: TZ
               value: Asia/Shanghai
+            - name: SW_AGENT_NAME
+              value: "pd@opspilot::watch-exporter"
+            - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+              value: "skywalking-oap.skywalking.svc:11800"
           lifecycle:
             preStop:
               exec:
@@ -98,6 +102,10 @@ spec:
               value: "55"
             - name: TZ
               value: Asia/Shanghai
+            - name: SW_AGENT_NAME
+              value: "pd@opspilot::watch-exporter"
+            - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+              value: "skywalking-oap.skywalking.svc:11800"
           lifecycle:
             preStop:
               exec:

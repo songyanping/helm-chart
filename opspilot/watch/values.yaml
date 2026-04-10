@@ -116,6 +116,7 @@ exporter:
   replicaCount: 1
   extraEnvVars: {}
 
+
 cronjob:
   resourcesPreset: "medium"
   resources: {}
