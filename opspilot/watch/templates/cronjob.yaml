@@ -40,6 +40,10 @@ spec:
                   value: "3"
                 - name: TZ
                   value: Asia/Shanghai
+                - name: SW_AGENT_NAME
+                  value: "pd@opspilot::watch-cronjob"
+                - name: SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE
+                  value: "skywalking-oap.skywalking.svc:11800"
               {{- if .Values.cronjob.resources }}
               resources:{{- toYaml .Values.cronjob.resources | nindent 16 }}
               {{- else if ne .Values.cronjob.resourcesPreset "none"}}
