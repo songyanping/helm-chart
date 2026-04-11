@@ -6,7 +6,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-04-12T00:47:28.6352357+08:00"
+    created: "2026-04-12T00:53:31.6410244+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: d394447555cf6ede45b5ee036806e2455584858d391e7fba3a994848e8c3371d
@@ -33,10 +33,10 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-04-12T00:47:28.6385668+08:00"
+    created: "2026-04-12T00:53:31.6450898+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
-    digest: 3db9fda6170b9d407949035ce069f744c036157bbf3e412d8f6d53266d9675e3
+    digest: 1875c97c962a20806226b43fd4a324b0a9b5c46d8559dcfcf391ee68607ca8d1
     home: https://bitnami.com
     icon: https://bitnami.com/downloads/logos/bitnami-mark.png
     keywords:
@@ -59,7 +59,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-04-12T00:47:28.638014+08:00"
+    created: "2026-04-12T00:53:31.6437709+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: 88a72bbb3c9e50b8c23d930839f60719aa45749d6c5c1bf736ba7ab2b0f867c6
@@ -85,7 +85,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-04-12T00:47:28.6369561+08:00"
+    created: "2026-04-12T00:53:31.6426833+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: 07c9e2e2e6617bba9770fbb047358a7a96981072f59e1b5214292d0b608fe351
@@ -111,7 +111,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-04-12T00:47:28.6364192+08:00"
+    created: "2026-04-12T00:53:31.6421671+08:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: 4ebbbf2fe8bbef9c4d1c9d76aa9fb6cdc12dae9db439e534dd09069d2c4c0757
@@ -132,4 +132,4 @@ entries:
     urls:
     - https://songyanping.github.io/helm-chart/common/opspilot-common-1.0.0.tgz
     version: 1.0.0
-generated: "2026-04-12T00:47:28.6342221+08:00"
+generated: "2026-04-12T00:53:31.6404908+08:00"
