@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lookout-config
+  labels:
+    app: lookout-config
+data:
+  config.yaml: |
+    server:
+      http:
+        addr: 0.0.0.0:8080
+        timeout: 600s
+      grpc:
+        addr: 0.0.0.0:8090
+        timeout: 600s
+    data:
+      mongodb:
+        addr: localhost:27017
+        dbname: "test"
+        username: "test"
+        password: "test"
+      search:
+        addr: elasticsearch
+        port: 9200
+        protocol: http
+        username: ""
+        password: ""
+        indices:
+          - name: new_todo_list
+          - name: alerts
+          - name: alert_rules
+          - name: prometheus_events
+          - name: build_events
+          - name: k8s_events
+          - name: slo_api_metrics
+          - name: manage_zone
+          - name: topology
+          - name: manage_label
+          - name: problems
+          - name: notify  
+      prometheus:
+        addr: http://prometheus-server
+      application:
+        app: ""
+        env: ""
+      interval:
+        alertInterval: 240   # 分钟
+        notifyInterval: 240  # 分钟
+        notifyLevel: P1
+      notify:
+        url: https://opspilot-dev.intranet.local
+      whitelist:
+        services:                 #服务列表
+        apis: /v1/api/closePayment,/v1/api/payment,/v1/api/sku/querySkuByLabelOrTag       #api列表
+        https:                    #外部依赖列表
+        middlewares:              #中间件列表
