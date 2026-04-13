@@ -3,4 +3,4 @@ dependencies:
   repository: https://songyanping.github.io/helm-chart/common
   version: 1.0.3
 digest: sha256:770cebb9e291f35ecbb99a238cc1f5a7f919107ab006ead045fa5d11a98bf01d
-generated: "2026-04-13T15:15:31.9911402+08:00"
+generated: "2026-04-13T18:32:19.34203106+08:00"
