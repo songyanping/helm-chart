@@ -634,13 +634,13 @@ serverBlock: |-
     limit_req zone=all_paths_limit burst=5;
 
     if ($http_x_sky_ak = "") {
-      #return 403 "Forbidden: Missing Access Key";
+      return 403 "Forbidden: Missing Access Key";
     }
     if ($http_x_sky_sk = "") {
-      #return 403 "Forbidden: Missing Secret Key";
+      return 403 "Forbidden: Missing Secret Key";
     }
     if ($ak_sk_valid = 0) {
-      #return 403 "Forbidden: Missing AK SK";
+      return 403 "Forbidden: Missing AK SK";
     }
 
     location ~ ^/(browser/|v3/segments) {

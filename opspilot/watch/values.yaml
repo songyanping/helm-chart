@@ -6,7 +6,7 @@ image:
   repository: 636957932458.dkr.ecr.ap-northeast-1.amazonaws.com/devops/opspilot/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20260122-main"
+  tag: "v20260410-main"
 
 imagePullSecrets: []
 nameOverride: "watch"
@@ -115,7 +115,6 @@ exporter:
   resources: {}
   replicaCount: 1
   extraEnvVars: {}
-
 
 cronjob:
   resourcesPreset: "medium"

@@ -245,7 +245,7 @@ ui:
       # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
-      - skywalking-tw.intranet.local
+      - skywalking-tk.intranet.local
     # - skywalking.local
     tls: []
     #  - secretName: skywalking-tls
