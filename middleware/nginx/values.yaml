@@ -620,9 +620,11 @@ serverBlock: |-
       default                              0;
       "AK_10001:SK_aB3xY9mN2pQ7kL5w"                      1;
       "AK_10002:SK_bY8hN4jM6pS1cV9z"                      1;
-      "AK_10003:SK_rT2wX7kL5nQ9mA3p"                      1; #TW
+      "AK_10003:SK_rT2wX7kL5nQ9mA3p"                      1;
       "AK_10004:SK_dF3vC9nM2lK7jR5q"                      1;
       "AK_10005:SK_tS1jL6nH8mY4bF9x"                      1;
+      "AK_10006:SK_aB3xY9mN2pQ7kL5wR8tJ6hF4vC1nM0sD"      1; #TW
+      "AK_10007:SK_bY8hN4jM6pS1cV9zX3qW7eR2tK5uA0iG"      1;
   }
   server {
     listen 8081;
@@ -634,15 +636,23 @@ serverBlock: |-
     limit_req zone=all_paths_limit burst=5;
 
     if ($http_x_sky_ak = "") {
-      return 403 "Forbidden: Missing Access Key";
+      # return 403 "Forbidden: Missing Access Key";
     }
     if ($http_x_sky_sk = "") {
-      return 403 "Forbidden: Missing Secret Key";
+      # return 403 "Forbidden: Missing Secret Key";
     }
     if ($ak_sk_valid = 0) {
-      return 403 "Forbidden: Missing AK SK";
+      # return 403 "Forbidden: Missing AK SK";
     }
 
+    # 只允许一下接口上报数据
+    # /browser/perfData
+    # /browser/perfData/webVitals
+    # /v3/segments
+    # /browser/errorLogs
+    # /browser/perfData/resources
+    # /browser/perfData/webInteractions
+    # /browser/errorLog
     location ~ ^/(browser/|v3/segments) {
       # 转发请求头（保留客户端真实 IP、Host 等）
       proxy_set_header Host $host;
