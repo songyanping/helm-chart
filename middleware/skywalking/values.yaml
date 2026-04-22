@@ -33,7 +33,7 @@ oap:
   name: oap
   image:
     repository: cnharbor.amway.com.cn/opspilot/skywalking-oap-server
-    tag: 10.0.1  # Must be set explicitly
+    tag: 10.2.0_alinux3  # Must be set explicitly
     pullPolicy: IfNotPresent
   storageType: elasticsearch
   ports:
