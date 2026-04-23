@@ -55,7 +55,7 @@ oap:
     tcpSocket:
       port: 12800
     initialDelaySeconds: 60
-    periodSeconds: 30
+    periodSeconds: 60
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 3
@@ -66,12 +66,12 @@ oap:
       port: 12800
     initialDelaySeconds: 60
     failureThreshold: 3
-    periodSeconds: 30
+    periodSeconds: 60
   readinessProbe:
     tcpSocket:
       port: 12800
     initialDelaySeconds: 60
-    periodSeconds: 30
+    periodSeconds: 60
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 3
