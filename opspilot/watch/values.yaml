@@ -6,7 +6,7 @@ image:
   repository: cnharbor.amway.com.cn/opspilot/ops-watch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v20260422-main"
+  tag: "v202604240326-ae94bcef-main"
 
 imagePullSecrets: []
 nameOverride: "watch"
