@@ -8,7 +8,7 @@ image:
   repository: cnharbor.amway.com.cn/opspilot/ops-console
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v202604130928-f95d07ae-main-idc"
+  tag: "v202604240303-ee627b88-main"
 
 imagePullSecrets: []
 nameOverride: "console-web"
