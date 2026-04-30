@@ -10,7 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v202604101034-228ac865-main-tw"
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: alicloud-registry-secret
 nameOverride: "console-web"
 fullnameOverride: "console-web"
 
