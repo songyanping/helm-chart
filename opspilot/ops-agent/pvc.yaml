@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: agent-memories-pvc
+  namespace: aiops
+spec:
+  accessModes:
+    - ReadWriteOnce  # 单节点读写（适合单副本 Deployment）
+  storageClassName: alicloud-disk-ssd  # 根据你的集群调整 StorageClass 名称
+  resources:
+    requests:
+      storage: 30Gi  # 根据实际需求调整大小

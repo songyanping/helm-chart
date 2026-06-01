@@ -3,8 +3,7 @@ replicaCount: 1
 nameOverride: "agent-service"
 fullnameOverride: "agent-service"
 
-imagePullSecrets:
-  - name: amway-devops-registry-vpc.cn-shenzhen.cr.aliyuncs.com
+imagePullSecrets: []
 
 serviceAccount:
   create: true
@@ -16,7 +15,7 @@ podSecurityContext: {}
 
 agent:
   image:
-    repository: amway-devops-registry-vpc.cn-shenzhen.cr.aliyuncs.com/sre/ops-agent
+    repository: cnharbor.amway.com.cn/opspilot/ops-agent
     tag: "v202605291027-25c1c8f3-dev"
     pullPolicy: IfNotPresent
   securityContext:
@@ -34,7 +33,7 @@ agent:
 
 ccConnect:
   image:
-    repository: amway-devops-registry-vpc.cn-shenzhen.cr.aliyuncs.com/sre/cc-connect
+    repository: cnharbor.amway.com.cn/opspilot/cc-connect
     tag: "v202605290821-67aa1cab-cc"
     pullPolicy: IfNotPresent
   credentials:
@@ -88,9 +87,7 @@ ccConnect:
 
 service:
   type: LoadBalancer
-  annotations:
-    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: intranet
-    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-instance-charge-type: PayBySpec
+  annotations: {}
   ports:
     http: 8080
     ccConnect: 1455
