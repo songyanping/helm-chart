@@ -16,7 +16,7 @@ podSecurityContext: {}
 agent:
   image:
     repository: cnharbor.amway.com.cn/opspilot/ops-agent
-    tag: "v202605291027-25c1c8f3-dev"
+    tag: "v202606010639-29fac0f1-dev"
     pullPolicy: IfNotPresent
   securityContext:
     readOnlyRootFilesystem: false
