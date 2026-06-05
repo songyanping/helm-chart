@@ -647,13 +647,13 @@ serverBlock: |-
     limit_req zone=all_paths_limit burst=5;
 
     if ($http_x_sky_ak = "") {
-      return 403 "Forbidden: Missing Access Key";
+      # return 403 "Forbidden: Missing Access Key";
     }
     if ($http_x_sky_sk = "") {
-      return 403 "Forbidden: Missing Secret Key";
+      # return 403 "Forbidden: Missing Secret Key";
     }
     if ($ak_sk_valid = 0) {
-      return 403 "Forbidden: Missing AK SK";
+      # return 403 "Forbidden: Missing AK SK";
     }
 
     location ~ ^/(browser/|v3/segments) {
@@ -714,7 +714,7 @@ staticSitePVC: ""
 service:
   ## @param service.type Service type
   ##
-  type: ClusterIP
+  type: LoadBalancer
   ## @param service.ports.http Service HTTP port
   ## @param service.ports.https Service HTTPS port
   ##
@@ -784,7 +784,7 @@ service:
 networkPolicy:
   ## @param networkPolicy.enabled Specifies whether a NetworkPolicy should be created
   ##
-  enabled: true
+  enabled: false
   ## @param networkPolicy.allowExternal Don't require server label for connections
   ## The Policy model to apply. When set to false, only pods with the correct
   ## server label will have network access to the ports server is listening
