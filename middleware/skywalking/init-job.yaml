@@ -23,9 +23,9 @@ spec:
     - name: SW_ES_PASSWORD
       value: xxx
     - name: SW_CORE_METRICS_DATA_TTL
-      value: "2"
+      value: "14"
     - name: SW_CORE_RECORD_DATA_TTL
-      value: "2"
+      value: "14"
     - name: SW_OAL_ENGINE_DEBUG
       value: "true"
     image: apache/skywalking-oap-server:10.0.1

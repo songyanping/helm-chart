@@ -41,9 +41,9 @@ spec:
             - name: SW_STORAGE_ES_CLUSTER_NODES
               value: elasticsearch:9200
             - name: SW_CORE_METRICS_DATA_TTL
-              value: '2'
+              value: '14'
             - name: SW_CORE_RECORD_DATA_TTL
-              value: '2'
+              value: '14'
             - name: SW_OAL_ENGINE_DEBUG
               value: 'true'
           imagePullPolicy: IfNotPresent
