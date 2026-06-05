@@ -83,7 +83,7 @@ oap:
     # fsGroup: 1000
   env:
     SW_CORE_RECORD_DATA_TTL: 14
-    SW_CORE_METRICS_DATA_TTL: 14
+    SW_CORE_METRICS_DATA_TTL: 2
     SW_OAL_ENGINE_DEBUG: Y
     SW_SEARCHABLE_TAG_KEYS: http.method,http.status_code,rpc.status_code,db.type,db.instance,mq.queue,mq.topic,mq.broker,userId,sessionId
     SW_CORE_REST_REST_MAX_THREADS: 400
