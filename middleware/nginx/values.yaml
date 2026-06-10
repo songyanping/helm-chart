@@ -640,7 +640,7 @@ serverBlock: |-
   server {
     listen 8081;
     # 全局请求大小限制（默认兜底，可被server/location块覆盖）
-    client_max_body_size 10m; # 全局限制请求体最大10M
+    client_max_body_size 50k; # 全局限制请求体最大50KB
     client_header_buffer_size 1k; # 默认请求头缓冲区大小1k
     large_client_header_buffers 4 4k; # 大请求头缓冲区：4个缓冲区，每个4k，最大支持16k请求头
 
