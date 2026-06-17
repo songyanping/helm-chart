@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitLab HK"
+  short_description: "不使用浏览器操作 GitLab HK"
+  default_prompt: "使用 $gitlab-hk 从功能分支编辑内部 GitLab HK 仓库，创建 MR，并自动合并到 master。"

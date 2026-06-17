@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitLab SRE"
+  short_description: "操作内部 GitLab SRE 仓库、分支、提交和合并请求。"
+  default_prompt: "Use $gitlab-sre to inspect or modify a repository on gitlab-sre.intranet.local."

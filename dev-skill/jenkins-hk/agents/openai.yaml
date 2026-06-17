@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jenkins HK"
+  short_description: "Trigger OpsPilot Jenkins webhook"
+  default_prompt: "Use $jenkins-hk to trigger the OpsPilot Jenkins webhook for watch, console, or aigc."

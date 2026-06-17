@@ -1,0 +1,4 @@
+interface:
+  display_name: "TK Release"
+  short_description: "自动获取 image tag 并发布 TK"
+  default_prompt: "使用 $tk-release 自动从 $gitlab-sre 获取 OpsPilot watch、console 和/或 aigc 的 image tag，通过 $gitlab-hk 更新 Helm tag，然后通过 $jenkins-hk 部署。"
