@@ -1,0 +1,97 @@
+replicaCount: 1
+
+nameOverride: "agent-service"
+fullnameOverride: "agent-service"
+
+imagePullSecrets: []
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podSecurityContext: {}
+
+agent:
+  image:
+    repository: cnharbor.amway.com.cn/opspilot/ops-agent
+    tag: "v202606010639-29fac0f1-dev"
+    pullPolicy: IfNotPresent
+  securityContext:
+    readOnlyRootFilesystem: false
+    runAsUser: 0
+    runAsGroup: 0
+    runAsNonRoot: false
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1024Mi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+
+ccConnect:
+  image:
+    repository: cnharbor.amway.com.cn/opspilot/cc-connect
+    tag: "v202605290821-67aa1cab-cc"
+    pullPolicy: IfNotPresent
+  credentials:
+    feishuAppIdBase64: "Y2xpX2E5NDc2OTQ3OTIyNGRiZDg="
+    feishuAppSecretBase64: "TDRvYkdUYjNrWWVWUndxMkh3Y1d1Y1FZRm1EU2p4dWw="
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1024Mi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+  config: |
+    language = "zh"
+    data_dir = "/data/cc-connect"
+
+    [log]
+    level = "info"
+
+    [display]
+    thinking_messages = false
+    tool_messages = true
+
+    [stream_preview]
+    enabled = true
+    interval_ms = 1500
+    min_delta_chars = 30
+    max_chars = 2000
+
+    [[projects]]
+    name = "sre-agent"
+
+    [projects.agent]
+    type = "acp"
+
+    [projects.agent.options]
+    command = "python"
+    args = ["-m", "acp_server"]
+    work_dir = "/app"
+    timeout_mins = 120
+
+    [[projects.platforms]]
+    type = "feishu"
+
+    [projects.platforms.options]
+    app_id = "${FEISHU_APP_ID}"
+    app_secret = "${FEISHU_APP_SECRET}"
+    enable_feishu_card = true
+    progress_style = "card"
+    done_emoji = "Done"
+
+service:
+  type: LoadBalancer
+  annotations: {}
+  ports:
+    http: 8080
+    ccConnect: 1455
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

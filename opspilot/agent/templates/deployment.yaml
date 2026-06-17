@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "agent.fullname" . }}
+  labels:
+    {{- include "agent.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "agent.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "agent.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "agent.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: agent-service
+          image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag }}"
+          imagePullPolicy: {{ .Values.agent.image.pullPolicy }}
+          securityContext:
+            {{- toYaml .Values.agent.securityContext | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.agent.resources | nindent 12 }}
+          volumeMounts:
+            - name: matplotlib-cache
+              mountPath: /app/.matplotlib
+            - name: workspace
+              mountPath: /app/workspace
+        - name: cc-connect
+          image: "{{ .Values.ccConnect.image.repository }}:{{ .Values.ccConnect.image.tag }}"
+          imagePullPolicy: {{ .Values.ccConnect.image.pullPolicy }}
+          ports:
+            - name: cc-connect
+              containerPort: 1455
+              protocol: TCP
+          env:
+            - name: FEISHU_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "agent.fullname" . }}-cc-connect-secret
+                  key: FEISHU_APP_ID
+            - name: FEISHU_APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "agent.fullname" . }}-cc-connect-secret
+                  key: FEISHU_APP_SECRET
+          resources:
+            {{- toYaml .Values.ccConnect.resources | nindent 12 }}
+          volumeMounts:
+            - name: cc-connect-data
+              mountPath: /data
+            - name: cc-connect-config
+              mountPath: /etc/cc-connect/config.toml
+              subPath: config.toml
+              readOnly: true
+      volumes:
+        - name: matplotlib-cache
+          emptyDir: {}
+        - name: workspace
+          emptyDir: {}
+        - name: cc-connect-data
+          emptyDir: {}
+        - name: cc-connect-config
+          configMap:
+            name: {{ include "agent.fullname" . }}-cc-connect-config
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
