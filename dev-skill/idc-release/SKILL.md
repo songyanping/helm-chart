@@ -1,6 +1,6 @@
 ---
 name: idc-release
-description: 发布 OpsPilot watch、console、agent 或 aigc 到 IDC Kubernetes 环境。使用主 chart 目录 opspilot，使用本仓库 dev-skill/idc-release 下的 kubeconfig 和 helm.exe。适用于用户要求发布、部署、release、upgrade 或更新 IDC 的 OpsPilot watch/console/agent/aigc 版本；需要自动从 gitlab-sre 获取 main 分支最新 push pipeline 推送的 image tag，通过 helm --set 注入 image tag，执行 helm upgrade，并验证 pod、rollout 状态和 deployment 镜像。
+description: 发布 OpsPilot watch、console、agent 或 aigc 到 IDC Kubernetes 环境。使用主 chart 目录 opspilot，使用本仓库 dev-skill/idc-release 下的 kubeconfig；Helm 不限制固定路径，本地找不到时先下载再执行。适用于用户要求发布、部署、release、upgrade 或更新 IDC 的 OpsPilot watch/console/agent/aigc 版本；需要自动从 gitlab-sre 获取 main 分支最新 push pipeline 推送的 image tag，通过 helm --set 注入 image tag，执行 helm upgrade，并验证 pod、rollout 状态和 deployment 镜像。
 ---
 
 # IDC 发布
@@ -17,7 +17,6 @@ $skillRoot = Join-Path $repoRoot 'dev-skill\idc-release'
 $gitlabSreSkillRoot = Join-Path $repoRoot 'dev-skill\gitlab-sre'
 
 $kubeconfig = Join-Path $skillRoot 'assets\idc.kubeconfig'
-$helm = Join-Path $skillRoot 'assets\bin\helm.exe'
 $chartRoot = Join-Path $repoRoot 'opspilot'
 ```
 
@@ -103,14 +102,28 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 必须显式传入 IDC kubeconfig，不要依赖默认 kubeconfig。
 
+Helm 路径不做固定限制。优先使用本机 `PATH` 中的 `helm`；如果本机找不到 Helm，先下载 Helm，再使用下载得到的可执行文件。不要再依赖仓库内固定 Helm 路径。
+
 统一命令前置变量：
 
 ```powershell
 $repoRoot = (git rev-parse --show-toplevel).Trim()
 $skillRoot = Join-Path $repoRoot 'dev-skill\idc-release'
 $kubeconfig = Join-Path $skillRoot 'assets\idc.kubeconfig'
-$helm = Join-Path $skillRoot 'assets\bin\helm.exe'
 $chartRoot = Join-Path $repoRoot 'opspilot'
+
+$helmCommand = Get-Command helm -ErrorAction SilentlyContinue
+if ($helmCommand) {
+  $helm = $helmCommand.Source
+} else {
+  $helmVersion = 'v3.15.4'
+  $helmDir = Join-Path $repoRoot '.tools\helm'
+  $zipPath = Join-Path $helmDir "helm-$helmVersion-windows-amd64.zip"
+  New-Item -ItemType Directory -Force -Path $helmDir | Out-Null
+  Invoke-WebRequest -Uri "https://get.helm.sh/helm-$helmVersion-windows-amd64.zip" -OutFile $zipPath
+  Expand-Archive -LiteralPath $zipPath -DestinationPath $helmDir -Force
+  $helm = Join-Path $helmDir 'windows-amd64\helm.exe'
+}
 ```
 
 发布 `watch`：

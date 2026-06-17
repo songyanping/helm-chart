@@ -50,7 +50,7 @@ $chartRoot = Join-Path $repoRoot 'opspilot'
 
 IDC 发布使用：
 
-- Helm 二进制：`dev-skill/idc-release/assets/bin/helm.exe`
+- Helm：不限制固定路径。优先使用本机 `PATH` 中的 `helm`；找不到时先下载 Helm，再使用下载得到的可执行文件。
 - kubeconfig：`dev-skill/idc-release/assets/idc.kubeconfig`
 - Chart 根目录：`opspilot`
 
@@ -76,7 +76,18 @@ IDC 发布使用：
 - Chart 修改后，尽量使用本地 Helm 执行相关验证：
 
 ```powershell
-$helm = Resolve-Path 'dev-skill\idc-release\assets\bin\helm.exe'
+$helmCommand = Get-Command helm -ErrorAction SilentlyContinue
+if ($helmCommand) {
+  $helm = $helmCommand.Source
+} else {
+  $helmVersion = 'v3.15.4'
+  $helmDir = Join-Path (git rev-parse --show-toplevel).Trim() '.tools\helm'
+  $zipPath = Join-Path $helmDir "helm-$helmVersion-windows-amd64.zip"
+  New-Item -ItemType Directory -Force -Path $helmDir | Out-Null
+  Invoke-WebRequest -Uri "https://get.helm.sh/helm-$helmVersion-windows-amd64.zip" -OutFile $zipPath
+  Expand-Archive -LiteralPath $zipPath -DestinationPath $helmDir -Force
+  $helm = Join-Path $helmDir 'windows-amd64\helm.exe'
+}
 & $helm lint opspilot\watch
 & $helm template watch opspilot\watch
 ```
