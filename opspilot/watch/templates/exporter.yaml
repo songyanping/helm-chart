@@ -69,7 +69,9 @@ spec:
 {{/*            httpGet:*/}}
 {{/*              path: /health*/}}
 {{/*              port: 3001*/}}
-          {{- if .Values.exporter.resources }}
+          {{- if .Values.exporter.mainResources }}
+          resources: {{- toYaml .Values.exporter.mainResources | nindent 12 }}
+          {{- else if .Values.exporter.resources }}
           resources: {{- toYaml .Values.exporter.resources | nindent 12 }}
           {{- else if ne .Values.exporter.resourcesPreset "none" }}
           resources:
@@ -113,7 +115,9 @@ spec:
             httpGet:
               path: /health
               port: 3002
-          {{- if .Values.exporter.resources }}
+          {{- if .Values.exporter.hourResources }}
+          resources: {{- toYaml .Values.exporter.hourResources | nindent 12 }}
+          {{- else if .Values.exporter.resources }}
           resources: {{- toYaml .Values.exporter.resources | nindent 12 }}
           {{- else if ne .Values.exporter.resourcesPreset "none" }}
           resources:

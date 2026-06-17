@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: cnharbor.amway.com.cn/opspilot/ops-watch
+  repository: cnharbor.amway.com.cn/opspilot/opswatch
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v202604240326-ae94bcef-main"
+  tag: "v202605280147-93507293-main"
 
 imagePullSecrets: []
 nameOverride: "watch"
@@ -93,7 +93,7 @@ server:
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-  resourcesPreset: "medium"
+  resourcesPreset: "small"
   resources: {}
   replicaCount: 1
   extraEnvVars:
@@ -107,12 +107,26 @@ server:
       value: Asia/Shanghai
 
 exporter:
-  resourcesPreset: "medium"
+  resourcesPreset: "small"
   resources: {}
+  mainResources:
+    limits:
+      cpu: 1
+      memory: 4Gi
+    requests:
+      cpu: 1
+      memory: 4Gi
+  hourResources:
+    limits:
+      cpu: 300m
+      memory: 1Gi
+    requests:
+      cpu: 300m
+      memory: 1Gi
   replicaCount: 1
   extraEnvVars: {}
 
 cronjob:
-  resourcesPreset: "medium"
+  resourcesPreset: "small"
   resources: {}
   extraEnvVars: {}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "IDC 发布"
+  short_description: "自动获取 main 最新 tag 并发布 OpsPilot 到 IDC。"
+  default_prompt: "使用 $idc-release 自动从 $gitlab-sre 获取 main 分支最新推送 tag，并从内置 Helm chart 发布 OpsPilot watch 或 console 到 IDC。"
