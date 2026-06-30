@@ -685,7 +685,7 @@ server:
   #        image: nginx
   sidecarContainers:
     rules-manager:
-      image: cnharbor.amway.com.cn/opspilot/ops-watch:v20251212-main
+      image: cnharbor.amway.com.cn/opspilot/ops-watch:v202604240326-ae94bcef-main
       ports:
         - containerPort: 8080
           protocol: TCP
