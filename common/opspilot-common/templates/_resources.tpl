@@ -175,16 +175,19 @@ These presets are for basic testing and not meant to be used in production
       "replicaCount" 1
       "requests" (dict "cpu" "500m" "memory" "4Gi")
       "limits" (dict "cpu" "500m" "memory" "4Gi")
+      "javaOpts" "-Xmx2g -Xms2g"
    )
   "medium" (dict
       "replicaCount" 4
       "requests" (dict "cpu" "2.0" "memory" "8Gi")
       "limits" (dict "cpu" "2.0" "memory" "8Gi")
+      "javaOpts" "-Xmx4g -Xms4g"
    )
   "large" (dict
       "replicaCount" 8
       "requests" (dict "cpu" "3.0" "memory" "12Gi")
       "limits" (dict "cpu" "3.0" "memory" "12Gi")
+      "javaOpts" "-Xmx6g -Xms6g"
    )
  }}
 {{- if hasKey $presets .type -}}
